@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import { StyleSheet, Text, View, Button, TextInput, SafeAreaView} from 'react-native';
 
 //Screens
-import AppColors from './config/AppColors';
+import AppColors from '../config/Colors';
 
 
 export default function App({navigation}) {

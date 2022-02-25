@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import { StyleSheet, Text, View, Button} from 'react-native';
 
 //Screens
-import AppColors from './config/AppColors';
+import AppColors from '../config/Colors';
 
 export default function App({route, navigation}) {
     const {username, password} = route.params;
@@ -28,11 +28,16 @@ export default function App({route, navigation}) {
 
   return (
     <View style={styles.container}>
-      <Text>Calendar</Text>  
-      {/*<Text>{data.userid}</Text>*/}
+      <Text>login 2</Text>  
+      <Text>{data.userId}</Text>
       <Button
         title="DailyCalendar" 
-        onPress={() => navigation.navigate('DailyCalendar')}
+        onPress={() => navigation.navigate('DailyCalendar', {
+          userId: data.userId,
+          firstName: data.firstName,
+          lastName: data.lastName
+        })
+      }
       />
       <Button
         title="Go Back" 

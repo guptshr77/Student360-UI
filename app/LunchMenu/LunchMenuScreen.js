@@ -3,34 +3,34 @@ import { StyleSheet, Text, View, Button, ActivityIndicator} from 'react-native';
 import { FlatList } from 'react-native-web';
 
 //Screens
-import AppColors from './config/AppColors';
+import AppColors from '../config/Colors';
 
 export default function App({route, navigation}) {
-    // const {lunchMenu} = route.params;
-    // const [isLoading, setLoading] = useState(true);
-    // const [data, setData] = useState([]);
+    const {userId, firstName, lastName} = route.params;
+    const [isLoading, setLoading] = useState(true);
+    const [data, setData] = useState([]);
 
-    // const getLunchMenu = async () => {
-    //   try{
-    //     const response = await fetch('http://localhost:8080/lunchmenu');
-    //     const json = await response.json();
-    //     console.log(json);
-    //     setData(json);
-    //   } catch (error) {
-    //     console.error(error);
-    //   }finally{
-    //     setLoading(false);
-    //   }
-    // }
-    // useEffect(() => {
-    //   getLunchMenu();
-    // }, []);
+    const getLunchMenu = async () => {
+      try{
+        const response = await fetch('http://localhost:8080/lunchmenu');
+        const json = await response.json();
+        console.log(json);
+        setData(json);
+      } catch (error) {
+        console.error(error);
+      }finally{
+        setLoading(false);
+      }
+    }
+    useEffect(() => {
+      getLunchMenu();
+    }, []);
 
   return (
     <View style={styles.container}>
       <Text>Lunch Menu</Text>
       
-      {/* {isLoading ? <ActivityIndicator/> : (
+      {isLoading ? <ActivityIndicator/> : (
         <FlatList
           data={data}
           keyExtractor = {({ day }, index) => day}
@@ -40,8 +40,7 @@ export default function App({route, navigation}) {
             </Text>
           )}
         />
-      )} */}
-
+      )}
 
       <Button
         title="Go Back" 

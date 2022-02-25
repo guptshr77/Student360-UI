@@ -5,14 +5,16 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 
 //Screens
-import LoginScreen from './app/LoginScreen';
-import Login2Screen from './app/Login2Screen';
-import LunchMenuScreen from './app/LunchMenuScreen';
-import CalendarDailyScreen from './app/CalendarDailyScreen';
-import ECActivitiesScreen from './app/ECActivitiesScreen';
-import MessagesScreen from './app/MessagesScreen';
-import MessageSendScreen from './app/MessageSendScreen';
-import ScheduleEditingScreen from './app/ScheduleEditingScreen';
+import LoginScreen from './app/Login/LoginScreen';
+import Login2Screen from './app/Login/Login2Screen';
+import LunchMenuScreen from './app/LunchMenu/LunchMenuScreen';
+import CalendarDailyScreen from './app/Calendar/CalendarDailyScreen';
+import ECActivitiesScreen from './app/Extracurricular/ECActivitiesScreen';
+import MessagesScreen from './app/Message/MessagesScreen';
+import MessageSendScreen from './app/Message/MessageSendScreen';
+import ScheduleEditingScreen from './app/Schedule/ScheduleEditingScreen';
+import ECActivitiesAddScreen from './app/Extracurricular/ECActivitiesAddScreen';
+import CalendarMonthlyScreen from './app/Calendar/CalendarMonthlyScreen';
 
 
 const Stack = createNativeStackNavigator();
@@ -29,6 +31,8 @@ export default function App() {
         <Stack.Screen name = "Messages" component={MessagesScreen}/>
         <Stack.Screen name = "MessageSend" component={MessageSendScreen}/>
         <Stack.Screen name = "ScheduleEditing" component={ScheduleEditingScreen}/>
+        <Stack.Screen name = "AddActivity" component={ECActivitiesAddScreen}/>
+        <Stack.Screen name = "MonthlyCalendar" component={CalendarMonthlyScreen}/>
       </Stack.Navigator>
     </NavigationContainer>
   );
