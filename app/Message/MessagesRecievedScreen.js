@@ -1,5 +1,8 @@
 import React, {useEffect, useState} from 'react';
-import { StyleSheet, Text, View, Button} from 'react-native';
+import { StyleSheet, Text, View, Button, ActivityIndicator} from 'react-native';
+import { FlatList } from 'react-native-web';
+
+import Colors from '../config/Colors';
 
 export default function App({route, navigation}) {
   const {userId, firstName, lastName}= route.params;
@@ -7,9 +10,9 @@ export default function App({route, navigation}) {
   const [data, setData] = useState([]);
   let x = false
 
-  const getAllActivities = async () => {
+  const MessagesRecievedScreen = async () => {
       try{
-        const response = await fetch('http://localhost:8080/getMessage?user_id'+ userid);
+        const response = await fetch('http://localhost:8080/getMessage?user_id='+ userId);
         const json = await response.json();
         console.log(json);
         setData(json);
@@ -21,7 +24,7 @@ export default function App({route, navigation}) {
     }
 
     useEffect(() => {
-      getAllActivities();
+      MessagesRecievedScreen();
     }, []);
 
     return (
@@ -44,7 +47,7 @@ export default function App({route, navigation}) {
             )}
             />
         )}
-      <Button
+      <Button  
         title="Go Back" 
         onPress={() => navigation.goBack()}
       /> 
@@ -52,7 +55,7 @@ export default function App({route, navigation}) {
         title="SendMessage" 
         onPress={() => navigation.navigate('MessageSend'
         ,{
-           userid: userid 
+           userId: userId 
         }
         )}
       />           

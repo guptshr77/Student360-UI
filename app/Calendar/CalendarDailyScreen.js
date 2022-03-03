@@ -29,7 +29,7 @@ export default function App({route, navigation}) {
 
   return (
     <View style={styles.container}>
-      <Text>Monthly Calendar</Text>
+      <Text>Daily Calendar</Text>
 
       <FlatList
           data={data.classes}
@@ -93,7 +93,15 @@ export default function App({route, navigation}) {
           firstName: firstName,
           lastName: lastName
         })}
-      />  
+      /> 
+      <Button
+      title="Messages"
+      onPress={() => navigation.navigate('MessagesRecieved',{
+        userId: userId,
+        firstName: firstName,
+        lastName: lastName
+      })}
+      /> 
     </View>
   );
 }
