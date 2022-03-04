@@ -3,9 +3,6 @@ import { StyleSheet, Text, View, SafeAreaView, Button, ActivityIndicator, Sectio
 import { FlatList, Picker } from 'react-native-web';
 import Colors from '../config/Colors.js';
 
-//Screens
-import AppColors from '../config/Colors';
-
 export default function App({route, navigation}) {
     const {userId, firstName, lastName} = route.params;
     const [isLoading, setLoading] = useState(true);
@@ -115,3 +112,6 @@ const styles = StyleSheet.create({
     color: Colors.black
   }
 });
+
+//https://www.npmjs.com/package/react-native-collapsible 
+//collapsable list

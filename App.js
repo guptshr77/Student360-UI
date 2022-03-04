@@ -13,11 +13,11 @@ import ECActivitiesScreen from './app/Extracurricular/ECActivitiesScreen';
 import MessagesRecievedScreen from './app/Message/MessagesRecievedScreen';
 import MessageSendScreen from './app/Message/MessageSendScreen';
 import ScheduleEditingScreen from './app/Schedule/ScheduleEditingScreen';
-import ECActivitiesAddScreen from './app/Extracurricular/ECActivitiesAddScreen';
+import GetAllEC from './app/Extracurricular/GetAllEC';
 import CalendarMonthlyScreen from './app/Calendar/CalendarMonthlyScreen'
 import ViewMessageSentScreen from './app/Message/ViewMessageSentScreen';
 import SendMessageLoadingScreen from './app/Message/SendMessageLoadScreen';
-
+import AddActivity from './app/Extracurricular/AddActivityLoad';
 
 const Stack = createNativeStackNavigator();
 
@@ -33,10 +33,11 @@ export default function App() {
         <Stack.Screen name = "MessagesRecieved" component={MessagesRecievedScreen}/>
         <Stack.Screen name = "MessageSend" component={MessageSendScreen}/>
         <Stack.Screen name = "ScheduleEditing" component={ScheduleEditingScreen}/>
-        <Stack.Screen name = "AddActivity" component={ECActivitiesAddScreen}/>
+        <Stack.Screen name = "GetAllEC" component={GetAllEC}/>
         <Stack.Screen name = "MonthlyCalendar" component={CalendarMonthlyScreen}/>
         <Stack.Screen name = "ViewSentMessages" component={ViewMessageSentScreen}/>
         <Stack.Screen name = "SendMessage" component={SendMessageLoadingScreen}/>
+        <Stack.Screen name = "AddActivity" component={AddActivity}/>
       </Stack.Navigator>
     </NavigationContainer>
   );

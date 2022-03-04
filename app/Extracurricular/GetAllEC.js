@@ -1,6 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import { StyleSheet, Text, View, Button, ActivityIndicator} from 'react-native';
 import { FlatList } from 'react-native-web';
+import Colors from '../config/Colors.js';
+
 
 export default function App({route, navigation}) {
     const {userId, firstName, lastName} = route.params;
@@ -33,9 +35,21 @@ export default function App({route, navigation}) {
             data={data}
             keyExtractor = {({ actId }, index) => actId}
             renderItem = {({item}) => (
-                <Text>
-                {item.actId}, {item.title}
-                </Text>
+              <div>
+
+              <Text style={styles.dayTitle}>{item.title}</Text>
+
+              <Button
+                title="Add"
+                onPress={() => navigation.navigate('AddActivity', {
+                  userId: userId,
+                  firstName: firstName,
+                  lastName: lastName,
+                  actId: item.actId
+                })}
+              />
+            </div>
+
             )}
             />
         )}
@@ -50,9 +64,30 @@ export default function App({route, navigation}) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: Colors.c5,
     alignItems: 'center',
     justifyContent: 'center',
   },
+  dayTitle:{
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: Colors.c1
+  },
+  subTitles:{
+    fontSize: 15,
+    fontWeight: 'bold',
+    color: Colors.c1,
+  },
+  title: {
+    fontSize: 30,
+    fontWeight: 'bold',
+    color: Colors.c1,
+    textDecorationLine: 'underline'
+  },
+  items: {
+    fontSize: 15,
+    fontWeight: 'bold',
+    color: Colors.black
+  }
 });
   
