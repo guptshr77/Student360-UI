@@ -88,7 +88,7 @@ export default function App({route, navigation}) {
 
       <Button
         title="Schedule" 
-        onPress={() => navigation.navigate('ScheduleEditing', {
+        onPress={() => navigation.navigate('GetSchedule', {
           userId: userId,
           firstName: firstName,
           lastName: lastName

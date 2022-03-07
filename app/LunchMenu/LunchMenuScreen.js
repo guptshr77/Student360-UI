@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import { StyleSheet, Text, View, SafeAreaView, Button, ActivityIndicator, SectionList} from 'react-native';
+import { StyleSheet, Image, Text, View, SafeAreaView, Button, ActivityIndicator, SectionList} from 'react-native';
 import { FlatList, Picker } from 'react-native-web';
 import Colors from '../config/Colors.js';
 
@@ -26,9 +26,9 @@ export default function App({route, navigation}) {
     }, []);
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <Text style={styles.title}>Lunch Menu</Text>
-  
+      <Image source={require("../assets/student360.png")}/>
 
       <Picker
         selectedValue = {day}
@@ -79,7 +79,7 @@ export default function App({route, navigation}) {
         title="Go Back" 
         onPress={() => navigation.goBack()}
       />
-    </View>
+    </SafeAreaView>
   );
 }
 
@@ -87,8 +87,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: Colors.c5,
-    alignItems: 'center',
-    justifyContent: 'center',
+    // alignItems: 'center',
+    // justifyContent: 'center',
   },
   dayTitle:{
     fontSize: 20,

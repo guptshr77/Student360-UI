@@ -29,7 +29,8 @@ export default function App({route, navigation}) {
 
     return (
         <View style={styles.container}>
-          <Text>Activity Screen</Text>
+          <Text style={styles.title}>Activity Screen</Text>
+          <Text>{`\n`}</Text>
 
       {isLoading ? <ActivityIndicator/> : (
         <FlatList
@@ -41,19 +42,10 @@ export default function App({route, navigation}) {
               <Text style={styles.dayTitle}>{item.title}</Text>
 
               <Text>{`\n`}</Text>
-              <Text style={styles.items}>{`\t`}Location: {item.location}</Text>
-
-
-              <Text>{`\n`}</Text>
               <Text style={styles.items}>{`\t`}Description: {item.descr}</Text>
 
-
               <Text>{`\n`}</Text>
-              <Text style={styles.items}>{`\t`}{`\t`}Date: {item.date}</Text>
-
-
-              <Text>{`\n`}</Text>
-              <Text style={styles.items}>{`\t`}{`\t`}Time: {item.startTime} - {item.endTime}</Text>
+              <Text style={styles.items}>{`\t`}Teacher: {item.teacherId}</Text>
 
               <Text>{`\n`}</Text>
             </div>

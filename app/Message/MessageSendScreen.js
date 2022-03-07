@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import { StyleSheet, Text, View, Button, TextInput, SafeAreaView} from 'react-native';
+import { FlatList, Picker } from 'react-native-web';
 
 import Colors from '../config/Colors';
 
@@ -7,9 +8,26 @@ export default function App({route, navigation}) {
   const {userId, firstName, lastName} = route.params;
   const [isLoading, setLoading] = useState(true);
   const [data, setData] = useState([]); 
-  const [recipient_user_id, onChangeRecipient] = React.useState();
-  const [subject, onChangeSubject] = React.useState(); 
-  const [msg_content, onChangeContent] = React.useState(); 
+  const [recipient_id, setRecipientId] = useState([]);
+  const [subject, onChangeSubject] = React.useState(""); 
+  const [msg_content, onChangeContent] = React.useState(""); 
+
+  const getLunchMenu = async () => {
+    try{
+      const response = await fetch('http://localhost:8080/teachers');
+      const json = await response.json();
+      console.log(json);
+      setData(json);
+    } catch (error) {
+      console.error(error);
+    }finally{
+      setLoading(false);
+    }
+  }
+  useEffect(() => {
+    getLunchMenu();
+  }, []);
+
 
     return (
         <View style={styles.container}>
@@ -17,12 +35,16 @@ export default function App({route, navigation}) {
 
         <Text style={styles.subTitles}>
           To:
-          <TextInput 
-            style={styles.input}
-            onChangeText = {onChangeRecipient}
-            value = {recipient_user_id}
-            keyboardType = "default"
-          />
+          <Picker
+            selectedValue = {data.userId}
+            onValueChange = {(itemValue) => setRecipientId(itemValue)}
+          >
+            <Picker.Item key="" label="" value=""/>
+            {data.map ((obj, firstName) => (
+              <Picker.Item key={obj.userId} label={obj.firstName + " " + obj.lastName} value={obj.userId}/>
+           ))}
+
+          </Picker>
         </Text>
 
         <Text style={styles.subTitles}>
@@ -51,7 +73,7 @@ export default function App({route, navigation}) {
             userId: userId,
             firstName: firstName,
             lastName: lastName,
-            recipient_user_id: recipient_user_id,
+            recipient_id: recipient_id,
             subject: subject,
             msg_content: msg_content
           })}

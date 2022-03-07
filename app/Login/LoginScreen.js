@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import { StyleSheet, Text, View, Button, TextInput, SafeAreaView} from 'react-native';
+import { StyleSheet, Image, Text, View, Button, TextInput, SafeAreaView} from 'react-native';
 
 //Screens
 import AppColors from '../config/Colors';
@@ -11,12 +11,13 @@ export default function App({navigation}) {
 
     return (
     <SafeAreaView style={styles.container}>
-    
+      <Image source={require("../assets/student360.png")}/>
 
       <Text style = {styles.text}>Login</Text>
 
-      <Text>
-          username:
+
+      <Text style={styles.inputTitle}>
+          Username:
           <TextInput 
             style={styles.input}
             onChangeText = {onChangeUsername}
@@ -25,7 +26,7 @@ export default function App({navigation}) {
           />
       </Text>
 
-      <Text>
+      <Text style={styles.inputTitle}>
           Password:
           <TextInput 
             style={styles.input}
@@ -71,5 +72,8 @@ const styles = StyleSheet.create({
   button: {
     backgroundColor: AppColors.c3,
     color: AppColors.c2
+  },
+  inputTitle:{
+    fontWeight: 'bold'
   }
 });
