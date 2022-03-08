@@ -1,6 +1,8 @@
 import React, {useEffect, useState} from 'react';
-import { StyleSheet, Text, View, Button} from 'react-native';
+import { StyleSheet, Text, View, SafeAreaView, Button, Image} from 'react-native';
 import { FlatList } from 'react-native-web';
+import Colors from '../config/Colors';
+//import { RNNDrawer } from "react-native-navigation-drawer-extension";
 
 //Screens
 import AppColors from '../config/Colors';
@@ -28,89 +30,148 @@ export default function App({route, navigation}) {
     }, []);
 
   return (
-    <View style={styles.container}>
-      <Text>Daily Calendar</Text>
+    <SafeAreaView>
 
-      <FlatList
-          data={data.classes}
-          keyExtractor = {({ classId }, index) => classId}
-          renderItem = {({item}) => (
-            <Text>
-              {item.classId}, {item.classname},{item.roomnum}, {item.startTime}, {item.endTime}
-            </Text>
-          )}
-        />
+      <View>
+        <View
+          style={styles.header}>
+        <Image 
+            source={require('../assets/student360.png')} 
+            style={styles.logo}
+          />
+        </View>
+        <View
+          style={styles.header}>
+          <Text style={styles.topLabel}>{firstName} {lastName}</Text>  
+        </View>
+      </View>
 
+
+      <View style={styles.container}>
+        <Text style = {styles.title}>Daily Calendar</Text>
+
+        <Text style={styles.text}>Classes:</Text>
         <FlatList
-          data={data.events}
-          keyExtractor = {({ event_id }, index) => event_id}
-          renderItem = {({item}) => (
-            <Text>
-              {item.event_id}, {item.dates},{item.title}, {item.descr}, {}
-            </Text>
-          )}
-        />
+            data={data.classes}
+            keyExtractor = {({ classId }, index) => classId}
+            renderItem = {({item}) => (
+              <div>
+                <Text>{`\n`}</Text>
+                <Text>
+                  {`\t`}{item.classname},{item.roomnum}, {item.startTime}, {item.endTime}
+                </Text>
+              </div> 
+              
+            )}
+          />
+          
+          <Text style = {styles.text}>Events:</Text>
+          <FlatList
+            data={data.events}
+            keyExtractor = {({ event_id }, index) => event_id}
+            renderItem = {({item}) => (
+              <div>
+              <Text>{`\n`}</Text>
+              <Text>
+                {`\t`}{item.dateTime},{item.title}, {item.description}
+              </Text>
 
-        <FlatList
-          data={data.extracurriculars}
-          keyExtractor = {({ act_id }, index) => act_id}
-          renderItem = {({item}) => (
-            <Text>
-              {item.act_id}, {item.title},{item.descr}, {item.teacher_id}, {item.elocation}, {item.time_start},{item.time_end},{item.edate}
-            </Text>
-          )}
-        />
+              </div>
+            )}
+          />
 
-      <Button
-        title="Extracurricular" 
-        onPress={() => navigation.navigate('ECActivities', {
+          <Text style = {styles.text}>Extracurricular Activities</Text>
+          <FlatList
+            data={data.extracurriculars}
+            keyExtractor = {({ actId }, index) => actId}
+            renderItem = {({item}) => (
+              <div>
+              <Text>{`\n`}</Text>
+              <Text>
+              {`\t`}{item.title},{item.descr}, {item.teacher_id}, {item.location}, {item.startTime},{item.endTime},{item.date}
+              </Text>
+
+              </div>
+                        )}
+          />
+
+{/* //https://reactnativeexample.com/react-native-navigation-drawer-extension/ */}
+        <Button
+          title="Extracurricular" 
+          onPress={() => navigation.navigate('ECActivities', {
+              userId: userId,
+              firstName: firstName,
+              lastName: lastName
+          })}
+        /> 
+        <Button
+          title="Monthly Calendar" 
+          onPress={() => navigation.navigate('MonthlyCalendar', {
             userId: userId,
             firstName: firstName,
             lastName: lastName
-        })}
-      /> 
-      <Button
-        title="Monthly Calendar" 
-        onPress={() => navigation.navigate('MonthlyCalendar', {
-          userId: userId,
-          firstName: firstName,
-          lastName: lastName
-        })}
-      /> 
-      <Button
-        title="Lunch Menu" 
-        onPress={() => navigation.navigate('LunchMenu',{
-          userId: userId,
-          firstName: firstName,
-          lastName: lastName
-        })}
-      /> 
+          })}
+        /> 
 
-      <Button
-        title="Schedule" 
-        onPress={() => navigation.navigate('GetSchedule', {
+        <Button
+          title="Lunch Menu" 
+          onPress={() => navigation.navigate('LunchMenu',{
+            userId: userId,
+            firstName: firstName,
+            lastName: lastName
+          })}
+        /> 
+
+        <Button
+          title="Schedule" 
+          onPress={() => navigation.navigate('GetSchedule', {
+            userId: userId,
+            firstName: firstName,
+            lastName: lastName
+          })}
+        /> 
+        <Button
+        title="Messages"
+        onPress={() => navigation.navigate('MessagesRecieved',{
           userId: userId,
           firstName: firstName,
           lastName: lastName
         })}
-      /> 
-      <Button
-      title="Messages"
-      onPress={() => navigation.navigate('MessagesRecieved',{
-        userId: userId,
-        firstName: firstName,
-        lastName: lastName
-      })}
-      /> 
-    </View>
+        /> 
+      </View>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: AppColors.c4,
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'center' 
   },
+  text: {
+    fontSize: 20,
+  },
+  button: {
+    backgroundColor: AppColors.c3,
+    color: AppColors.c2
+  },
+  title:{
+    fontSize: 40,
+    fontWeight: 'bold'
+  },
+  topLabel: {
+    textAlign: 'right',
+    fontSize: 20
+  },
+  header: {
+    backgroundColor: Colors.white,
+    width: "100%",
+    height: "10%",
+  },
+  logo: {
+    width: 50,
+    height: "100%"
+  }
 });

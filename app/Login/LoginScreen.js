@@ -11,7 +11,6 @@ export default function App({navigation}) {
 
     return (
     <SafeAreaView style={styles.container}>
-      <Image source={require("../assets/student360.png")}/>
 
       <Text style = {styles.text}>Login</Text>
 
