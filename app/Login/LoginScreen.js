@@ -10,30 +10,28 @@ export default function App({navigation}) {
     const [password, onChangePassword] = React.useState("lol");    
 
     return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
 
       <Text style = {styles.text}>Login</Text>
 
 
-      <Text style={styles.inputTitle}>
-          Username:
+      <Text style={styles.inputTitle}>Username:</Text>
           <TextInput 
-            style={styles.input}
+            style={[styles.input]}
             onChangeText = {onChangeUsername}
             value = {username}
             keyboardType = "default"
           />
-      </Text>
+    
 
-      <Text style={styles.inputTitle}>
-          Password:
+      <Text style={styles.inputTitle}>Password:</Text>
           <TextInput 
             style={styles.input}
             onChangeText = {onChangePassword}
             value = {password}
             keyboardType = "default"
           />
-      </Text>
+
 
       <Text>
           <Button
@@ -47,7 +45,15 @@ export default function App({navigation}) {
             style={styles.button}
           />
       </Text>
-    </SafeAreaView>
+      <Button
+          title="Monthly Calendar" 
+          onPress={() => navigation.navigate('MonthlyCalendar', {
+            userId: 1,
+            firstName: "Hi",
+            lastName: "LOL"
+          })}
+        /> 
+    </View>
   );
 }
 
@@ -62,7 +68,8 @@ const styles = StyleSheet.create({
     fontSize: 40,
   },
   input: {
-      height:  40,
+      height:  60,
+      width: 200,
       margin: 12,
       borderWidth: 1,
       padding: 10,

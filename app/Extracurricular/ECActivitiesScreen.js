@@ -37,7 +37,7 @@ export default function App({route, navigation}) {
           data={data}
           keyExtractor = {({ actId }, index) => actId}
           renderItem = {({item}) => ( 
-            <div>
+            <View>
 
               <Text style={styles.dayTitle}>{item.title}</Text>
 
@@ -48,7 +48,7 @@ export default function App({route, navigation}) {
               <Text style={styles.items}>{`\t`}Teacher: {item.teacherId}</Text>
 
               <Text>{`\n`}</Text>
-            </div>
+            </View>
           )}
         />
       )}

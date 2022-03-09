@@ -35,7 +35,7 @@ export default function App({route, navigation}) {
             data={data}
             keyExtractor = {({ actId }, index) => actId}
             renderItem = {({item}) => (
-              <div>
+              <View>
 
               <Text style={styles.dayTitle}>{item.title}</Text>
 
@@ -48,7 +48,7 @@ export default function App({route, navigation}) {
                   actId: item.actId
                 })}
               />
-            </div>
+            </View>
 
             )}
             />

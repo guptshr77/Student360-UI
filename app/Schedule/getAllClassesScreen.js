@@ -35,7 +35,7 @@ export default function App({route, navigation}) {
             data={data}
             keyExtractor = {({ classId }, index) => classId}
             renderItem = {({item}) => (
-              <div>
+              <View>
 
               <Text style={styles.dayTitle}>{item.classname}</Text>
 
@@ -48,7 +48,7 @@ export default function App({route, navigation}) {
                   classId: item.classId
                 })}
               />
-            </div>
+            </View>
 
             )}
             />

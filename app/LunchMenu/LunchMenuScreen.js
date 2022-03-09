@@ -26,7 +26,7 @@ export default function App({route, navigation}) {
     }, []);
 
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       <Text style={styles.title}>Lunch Menu</Text>
       <Image source={require("../assets/student360.png")}/>
 
@@ -47,7 +47,7 @@ export default function App({route, navigation}) {
           data={data}
           keyExtractor = {({ day }, index) => day}
           renderItem = {({item}) => (
-            <div>
+            <View>
 
               <Text style={styles.dayTitle}>{item.day}</Text>
 
@@ -70,7 +70,7 @@ export default function App({route, navigation}) {
 
 
               <Text>{`\n`}</Text>
-            </div>
+            </View>
           )}
         />
       )}
@@ -79,7 +79,7 @@ export default function App({route, navigation}) {
         title="Go Back" 
         onPress={() => navigation.goBack()}
       />
-    </SafeAreaView>
+    </View>
   );
 }
 

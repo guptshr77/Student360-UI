@@ -2,6 +2,8 @@ import React, {useEffect, useState} from 'react';
 import { StyleSheet, Text, View, SafeAreaView, Button, Image} from 'react-native';
 import { FlatList } from 'react-native-web';
 import Colors from '../config/Colors';
+import { useIsFocused } from "@react-navigation/native";
+
 //import { RNNDrawer } from "react-native-navigation-drawer-extension";
 
 //Screens
@@ -15,7 +17,7 @@ export default function App({route, navigation}) {
     const getCalendarDailyScreen = async () => {
       try{
         console.log('http://localhost:8080/calendar?userid=' + userId);
-        const response = await fetch('http://localhost:8080/calendar?userid=' + userId);
+        const response = await fetch('http://localhost:8080/calendar?userid=' + userId );
         const json = await response.json();
         console.log(json);
         setData(json);
@@ -30,37 +32,23 @@ export default function App({route, navigation}) {
     }, []);
 
   return (
-    <SafeAreaView>
-
-      <View>
-        <View
-          style={styles.header}>
-        <Image 
-            source={require('../assets/student360.png')} 
-            style={styles.logo}
-          />
-        </View>
-        <View
-          style={styles.header}>
-          <Text style={styles.topLabel}>{firstName} {lastName}</Text>  
-        </View>
-      </View>
-
-
-      <View style={styles.container}>
+    <View>
+      <Text>Hello World, {userId}</Text>
+      {/* <View style={styles.container}>
         <Text style = {styles.title}>Daily Calendar</Text>
-
-        <Text style={styles.text}>Classes:</Text>
-        <FlatList
+    
+        <Text style={styles.text}>Classes:</Text> 
+          
+          <FlatList
             data={data.classes}
             keyExtractor = {({ classId }, index) => classId}
             renderItem = {({item}) => (
-              <div>
+              <View>
                 <Text>{`\n`}</Text>
                 <Text>
                   {`\t`}{item.classname},{item.roomnum}, {item.startTime}, {item.endTime}
                 </Text>
-              </div> 
+              </View> 
               
             )}
           />
@@ -70,13 +58,13 @@ export default function App({route, navigation}) {
             data={data.events}
             keyExtractor = {({ event_id }, index) => event_id}
             renderItem = {({item}) => (
-              <div>
+              <View>
               <Text>{`\n`}</Text>
               <Text>
                 {`\t`}{item.dateTime},{item.title}, {item.description}
               </Text>
 
-              </div>
+              </View>
             )}
           />
 
@@ -85,18 +73,18 @@ export default function App({route, navigation}) {
             data={data.extracurriculars}
             keyExtractor = {({ actId }, index) => actId}
             renderItem = {({item}) => (
-              <div>
+              <View>
               <Text>{`\n`}</Text>
               <Text>
               {`\t`}{item.title},{item.descr}, {item.teacher_id}, {item.location}, {item.startTime},{item.endTime},{item.date}
               </Text>
 
-              </div>
-                        )}
-          />
+              </View>
+            )}
+          /> */}
 
-{/* //https://reactnativeexample.com/react-native-navigation-drawer-extension/ */}
-        <Button
+          {/* //https://reactnativeexample.com/react-native-navigation-drawer-extension/ */}
+        {/* <Button
           title="Extracurricular" 
           onPress={() => navigation.navigate('ECActivities', {
               userId: userId,
@@ -138,20 +126,21 @@ export default function App({route, navigation}) {
           lastName: lastName
         })}
         /> 
-      </View>
-    </SafeAreaView>
+      </View> */}
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: AppColors.c4,
-    alignItems: 'center',
-    justifyContent: 'center' 
+    backgroundColor: AppColors.c5,
+    // alignItems: 'center',
+    // justifyContent: 'center' 
   },
   text: {
     fontSize: 20,
+    textAlign: 'left'
   },
   button: {
     backgroundColor: AppColors.c3,

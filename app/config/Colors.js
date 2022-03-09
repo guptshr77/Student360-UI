@@ -3,7 +3,7 @@ export default {
     c2: "#dc143c",
     c3: "#ff4500",
     c4: "#ffa500",
-    c5: "#ffd700",    
+    c5: "#fcef91",    
     white: "#fff",
     black: "#000"
 }

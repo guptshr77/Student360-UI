@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import { StyleSheet, Text, View, Button} from 'react-native';
+import Moment from 'moment';
 
 //Screens
 import AppColors from '../config/Colors';
@@ -35,7 +36,8 @@ export default function App({route, navigation}) {
         onPress={() => navigation.navigate('DailyCalendar', {
           userId: data.userId,
           firstName: data.firstName,
-          lastName: data.lastName
+          lastName: data.lastName,
+          cdate: Moment(new Date()).format('yyyy-MM-DD')
         })
       }
       />
