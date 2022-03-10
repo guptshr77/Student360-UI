@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import { StyleSheet, Text, View, Button} from 'react-native';
 import Colors from '../config/Colors.js';
+import globalStyles from '../config/globalStyles';
 
 export default function App({route, navigation}) {
     const {userId, firstName, lastName, classId} = route.params;
@@ -9,7 +10,7 @@ export default function App({route, navigation}) {
 
     const AddClass = async () => {
         try{
-          const response = await fetch('http://localhost:8080/addschedule?user_id=' + userId + '&class_id=' + classId);
+          const response = await fetch(enviornment.restUrl + 'addschedule?user_id=' + userId + '&class_id=' + classId);
           // const json = await response.json();
           console.log(response);
 //          setData(response);

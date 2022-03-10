@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { StyleSheet, View, Button } from 'react-native';
 import CalendarPicker from 'react-native-calendar-picker';
 import Moment from 'moment';
+import globalStyles from '../config/globalStyles';
 
 export default class CalendarScreen extends Component {
   constructor(props) {

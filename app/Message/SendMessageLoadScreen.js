@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import { StyleSheet, Text, View, Button} from 'react-native';
-
+import globalStyles from '../config/globalStyles';
 
 import Colors from '../config/Colors';
 
@@ -11,7 +11,7 @@ export default function App({route, navigation}) {
 
   const getMessageSendScreen = async () => {
     try{
-      const response = await fetch('http://localhost:8080/sendMessage?user_id=' + userId + '&recipient_id='+ recipient_id + '&subject=' + subject + '&msg_content=' + msg_content);
+      const response = await fetch(enviornment.restUrl + 'sendMessage?user_id=' + userId + '&recipient_id='+ recipient_id + '&subject=' + subject + '&msg_content=' + msg_content);
       // const json = await response.json();
       // console.log(json);
       // setData(json);

@@ -1,9 +1,10 @@
 import React, {useEffect, useState} from 'react';
-import { StyleSheet, Text, View, Button} from 'react-native';
+import {Text, View, Button} from 'react-native';
 import Moment from 'moment';
+import globalStyles from '../config/globalStyles';
 
 //Screens
-import AppColors from '../config/Colors';
+import enviornment from '../config/enviornment';
 
 export default function App({route, navigation}) {
     const {username, password} = route.params;
@@ -12,8 +13,8 @@ export default function App({route, navigation}) {
 
     const getLogin2 = async () => {
       try{
-        console.log('http://localhost:8080/login?username=' + username + '&password='+ password);
-        const response = await fetch('http://localhost:8080/login?username=' + username + '&password='+ password);
+        console.log(enviornment.restUrl + 'login?username=' + username + '&password='+ password);
+        const response = await fetch(enviornment.restUrl + 'login?username=' + username + '&password='+ password);
         const json = await response.json();
         console.log(json);
         setData(json);
@@ -28,11 +29,11 @@ export default function App({route, navigation}) {
     }, []);
 
   return (
-    <View style={styles.container}>
-      <Text>login 2</Text>  
-      <Text>{data.userId}</Text>
+    <View style={globalStyles.container}>
+      <Text style = {globalStyles.text}>Welcome, {data.firstName} {data.lastName}!</Text> 
+
       <Button
-        title="DailyCalendar" 
+        title="Continue" 
         onPress={() => navigation.navigate('DailyCalendar', {
           userId: data.userId,
           firstName: data.firstName,
@@ -40,20 +41,7 @@ export default function App({route, navigation}) {
           cdate: Moment(new Date()).format('yyyy-MM-DD')
         })
       }
-      />
-      <Button
-        title="Go Back" 
-        onPress={() => navigation.goBack()}
-      />  
+      /> 
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});

@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import { StyleSheet, Text, View, Button, ActivityIndicator} from 'react-native';
 import { FlatList } from 'react-native-web';
-
+import globalStyles from '../config/globalStyles';
 import Colors from '../config/Colors';
 
 export default function App({route, navigation}) {
@@ -12,7 +12,7 @@ export default function App({route, navigation}) {
 
   const getUserActivities = async () => {
     try{
-      const response = await fetch('http://localhost:8080/getuseractivity?userid='+ userId);
+      const response = await fetch(enviornment.restUrl + 'getuseractivity?userid='+ userId);
       const json = await response.json();
       console.log(json);
       setData(json);

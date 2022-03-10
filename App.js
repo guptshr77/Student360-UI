@@ -2,6 +2,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import React, {useState} from "react";
 import { StyleSheet, Text, View, SafeAreaView, Image} from 'react-native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import globalStyles from './app/config/globalStyles';
 
 //Login
 import LoginScreen from './app/Login/LoginScreen';
@@ -36,7 +37,7 @@ export default function App() {
   return (
    <SafeAreaView style={styles.header}>
       <View style={{
-        flex: .01,
+        flex: .1,
         flexDirection: "row",
       }}>
 
@@ -45,7 +46,9 @@ export default function App() {
           width: "10%",
           height: 100,
           justifyContent: "center",
-          alignItems: "center"
+          alignItems: "center",
+          paddingLeft: 40,
+          paddingBottom: 20
         }}>
             <Image source={require("./app/assets/student360.png")} style={{width: 100, height: 100}}/>
         </View>
@@ -56,7 +59,6 @@ export default function App() {
           alignItems: "center",
           justifyContent: "center"
         }}>
-          <Text>hh: {global.usersName}</Text>
         </View>
         <View style={{
           background: "orange",
@@ -66,7 +68,7 @@ export default function App() {
         </View>
       </View>
       <View style={{
-        flex: .8,
+        flex: .9,
         flexDirection: "row",
         justifyContent: "top"                
       }}>

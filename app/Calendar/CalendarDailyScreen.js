@@ -3,7 +3,8 @@ import { StyleSheet, Text, View, SafeAreaView, Button, Image} from 'react-native
 import { FlatList } from 'react-native-web';
 import Colors from '../config/Colors';
 import { useIsFocused } from "@react-navigation/native";
-
+import enviornment from '../config/enviornment';
+import globalStyles from '../config/globalStyles';
 //import { RNNDrawer } from "react-native-navigation-drawer-extension";
 
 //Screens
@@ -16,8 +17,7 @@ export default function App({route, navigation}) {
 
     const getCalendarDailyScreen = async () => {
       try{
-        console.log('http://localhost:8080/calendar?userid=' + userId);
-        const response = await fetch('http://localhost:8080/calendar?userid=' + userId );
+        const response = await fetch(enviornment.restUrl + 'calendar?userid=' + userId );
         const json = await response.json();
         console.log(json);
         setData(json);
@@ -32,13 +32,10 @@ export default function App({route, navigation}) {
     }, []);
 
   return (
-    <View>
-      <Text>Hello World, {userId}</Text>
-      {/* <View style={styles.container}>
+      <View style={styles.container}>
         <Text style = {styles.title}>Daily Calendar</Text>
     
-        <Text style={styles.text}>Classes:</Text> 
-          
+        {/* <Text style={styles.text}>Classes:</Text>   
           <FlatList
             data={data.classes}
             keyExtractor = {({ classId }, index) => classId}
@@ -51,9 +48,9 @@ export default function App({route, navigation}) {
               </View> 
               
             )}
-          />
+          /> */}
           
-          <Text style = {styles.text}>Events:</Text>
+          {/* <Text style = {styles.text}>Events:</Text>
           <FlatList
             data={data.events}
             keyExtractor = {({ event_id }, index) => event_id}
@@ -66,9 +63,9 @@ export default function App({route, navigation}) {
 
               </View>
             )}
-          />
+          /> */}
 
-          <Text style = {styles.text}>Extracurricular Activities</Text>
+          {/* <Text style = {styles.text}>Extracurricular Activities</Text>
           <FlatList
             data={data.extracurriculars}
             keyExtractor = {({ actId }, index) => actId}
@@ -84,7 +81,7 @@ export default function App({route, navigation}) {
           /> */}
 
           {/* //https://reactnativeexample.com/react-native-navigation-drawer-extension/ */}
-        {/* <Button
+        <Button
           title="Extracurricular" 
           onPress={() => navigation.navigate('ECActivities', {
               userId: userId,
@@ -126,8 +123,7 @@ export default function App({route, navigation}) {
           lastName: lastName
         })}
         /> 
-      </View> */}
-    </View>
+      </View>
   );
 }
 
@@ -135,8 +131,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: AppColors.c5,
-    // alignItems: 'center',
-    // justifyContent: 'center' 
+    alignItems: 'center',
+    justifyContent: 'center' 
   },
   text: {
     fontSize: 20,
@@ -148,7 +144,7 @@ const styles = StyleSheet.create({
   },
   title:{
     fontSize: 40,
-    fontWeight: 'bold'
+    fontWeight: 'bold',
   },
   topLabel: {
     textAlign: 'right',

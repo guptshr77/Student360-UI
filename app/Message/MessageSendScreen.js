@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import { StyleSheet, Text, View, Button, TextInput, SafeAreaView} from 'react-native';
 import { FlatList, Picker } from 'react-native-web';
-
+import globalStyles from '../config/globalStyles';
 import Colors from '../config/Colors';
 
 export default function App({route, navigation}) {
@@ -14,7 +14,7 @@ export default function App({route, navigation}) {
 
   const getLunchMenu = async () => {
     try{
-      const response = await fetch('http://localhost:8080/teachers');
+      const response = await fetch(enviornment.restUrl + 'teachers');
       const json = await response.json();
       console.log(json);
       setData(json);

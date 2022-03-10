@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import { StyleSheet, Text, View, Button} from 'react-native';
 import Colors from '../config/Colors.js';
+import globalStyles from '../config/globalStyles';
 
 export default function App({route, navigation}) {
     const {userId, firstName, lastName, actId} = route.params;
@@ -9,8 +10,7 @@ export default function App({route, navigation}) {
 
     const AddActivity = async () => {
         try{
-          console.log('http://localhost:8080/addactivity?userid=' + userId +'&act_id='+ actId);
-          const response = await fetch('http://localhost:8080/addactivity?userid=' + userId +'&act_id='+ actId);
+          const response = await fetch(enviornment.restUrl + 'addactivity?userid=' + userId +'&act_id='+ actId);
           // const json = await response.json();
           console.log(response);
 //          setData(response);
