@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from 'react';
-import { StyleSheet, Text, View, Button, TextInput, SafeAreaView} from 'react-native';
-import { FlatList, Picker } from 'react-native-web';
+import { StyleSheet, Text, View, Button, TextInput, Picker} from 'react-native';
 import globalStyles from '../config/globalStyles';
 import Colors from '../config/Colors';
+import enviornment from '../config/enviornment';
 
 export default function App({route, navigation}) {
   const {userId, firstName, lastName} = route.params;
@@ -33,8 +33,7 @@ export default function App({route, navigation}) {
         <View style={styles.container}>
           <Text style={styles.title}>New Message</Text>
 
-        <Text style={styles.subTitles}>
-          To:
+        <Text style={styles.subTitles}>To:</Text>
           <Picker
             selectedValue = {data.userId}
             onValueChange = {(itemValue) => setRecipientId(itemValue)}
@@ -45,27 +44,24 @@ export default function App({route, navigation}) {
            ))}
 
           </Picker>
-        </Text>
 
-        <Text style={styles.subTitles}>
-            Subject:
+        <Text style={styles.subTitles}>Subject:</Text>
             <TextInput 
-              style={styles.input}
+              style={[globalStyles.input]}
               onChangeText = {onChangeSubject}
               value = {subject}
               keyboardType = "default"
             />
-        </Text>
 
-        <Text style={styles.subTitles}>
-            Message:
+
+        <Text style={styles.subTitles}>Message:</Text>
             <TextInput 
-              style={styles.input}
+              style={[globalStyles.input]}
               onChangeText = {onChangeContent}
               value = {msg_content}
               keyboardType = "default"
             />
-        </Text>
+
 
         <Button
           title="Send" 
@@ -98,12 +94,12 @@ export default function App({route, navigation}) {
         fontSize: 40,
       },
       input: {
-          height:  40,
           margin: 12,
           borderWidth: 1,
           padding: 10,
           backgroundColor: Colors.white,
-          flex: 1
+          flex: 1,
+          height: 10
       },
       button: {
         backgroundColor: Colors.c3,

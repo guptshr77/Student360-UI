@@ -4,6 +4,9 @@ import { StyleSheet, Text, View, SafeAreaView, Image} from 'react-native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import globalStyles from './app/config/globalStyles';
 
+//navigation
+import Menu from './app/MenuScreen';
+
 //Login
 import LoginScreen from './app/Login/LoginScreen';
 import Login2Screen from './app/Login/Login2Screen';
@@ -102,6 +105,8 @@ export default function App() {
           <Stack.Screen name = "GetAllClasses" component={GetAllClasses} options={{ headerShown: false }}/>        
           <Stack.Screen name = "AddClass" component={AddClass} options={{ headerShown: false }}/>
           
+          {/* Menu*/}
+          <Stack.Screen name = "Menu" component={Menu} options={{ headerShown: false }}/>
         </Stack.Navigator>
       </NavigationContainer>
       </View>

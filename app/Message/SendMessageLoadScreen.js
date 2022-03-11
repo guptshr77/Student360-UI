@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import { StyleSheet, Text, View, Button} from 'react-native';
 import globalStyles from '../config/globalStyles';
-
+import enviornment from '../config/enviornment';
 import Colors from '../config/Colors';
 
 export default function App({route, navigation}) {

@@ -1,23 +1,23 @@
 import React, {useEffect, useState} from 'react';
-import { StyleSheet, Text, View, SafeAreaView, Button, Image} from 'react-native';
-import { FlatList } from 'react-native-web';
+import { StyleSheet, Text, View, SafeAreaView, Button, Image, FlatList} from 'react-native';
+// import { FlatList, View } from 'react-native-web';
 import Colors from '../config/Colors';
 import { useIsFocused } from "@react-navigation/native";
 import enviornment from '../config/enviornment';
 import globalStyles from '../config/globalStyles';
-//import { RNNDrawer } from "react-native-navigation-drawer-extension";
 
 //Screens
 import AppColors from '../config/Colors';
 
 export default function App({route, navigation}) {
-    const {userId, firstName, lastName} = route.params;
+    const {userId, firstName, lastName, date} = route.params;
     const [isLoading, setLoading] = useState(true);
     const [data, setData] = useState([]);
 
     const getCalendarDailyScreen = async () => {
       try{
-        const response = await fetch(enviornment.restUrl + 'calendar?userid=' + userId );
+        console.log(enviornment.restUrl + 'calendar?userid=' + userId + '&date=' + date);
+        const response = await fetch(enviornment.restUrl + 'calendar?userid=' + userId + '&date=' + date);
         const json = await response.json();
         console.log(json);
         setData(json);
@@ -35,93 +35,58 @@ export default function App({route, navigation}) {
       <View style={styles.container}>
         <Text style = {styles.title}>Daily Calendar</Text>
     
-        {/* <Text style={styles.text}>Classes:</Text>   
+        <Text style={styles.text}>{`\t`}{`\t`}{`\t`}Classes:</Text>   
           <FlatList
             data={data.classes}
             keyExtractor = {({ classId }, index) => classId}
             renderItem = {({item}) => (
               <View>
                 <Text>{`\n`}</Text>
-                <Text>
-                  {`\t`}{item.classname},{item.roomnum}, {item.startTime}, {item.endTime}
-                </Text>
+                <Text>{`\t`}{item.classname}</Text>
+                <Text>{`\t`}{`\t`}{item.roomnum}</Text>
+                <Text>{`\t`}{`\t`}{item.startTime} to {item.endTime}</Text>
               </View> 
               
             )}
-          /> */}
+          />
           
-          {/* <Text style = {styles.text}>Events:</Text>
+          <Text style = {styles.text}>{`\t`}{`\t`}{`\t`}Events:</Text>
           <FlatList
             data={data.events}
             keyExtractor = {({ event_id }, index) => event_id}
             renderItem = {({item}) => (
               <View>
               <Text>{`\n`}</Text>
-              <Text>
-                {`\t`}{item.dateTime},{item.title}, {item.description}
-              </Text>
+              <Text>{`\t`}{item.title}</Text>
+              <Text>{`\t`}{`\t`}{item.dateTime}</Text>
+              <Text>{`\t`}{`\t`}{item.description}</Text>
 
               </View>
             )}
-          /> */}
+          />
 
-          {/* <Text style = {styles.text}>Extracurricular Activities</Text>
+          <Text style = {styles.text}>{`\t`}{`\t`}{`\t`}Extracurricular Activities</Text>
           <FlatList
             data={data.extracurriculars}
             keyExtractor = {({ actId }, index) => actId}
             renderItem = {({item}) => (
               <View>
               <Text>{`\n`}</Text>
-              <Text>
-              {`\t`}{item.title},{item.descr}, {item.teacher_id}, {item.location}, {item.startTime},{item.endTime},{item.date}
-              </Text>
-
+              <Text>{`\t`}{item.title}</Text>
+              <Text>{`\t`}{`\t`}{item.descr}</Text>
+              <Text>{`\t`}{`\t`}{item.location}</Text>
+              <Text>{`\t`}{`\t`}{item.startTime},{item.endTime}</Text>
               </View>
             )}
-          /> */}
+          />
 
-          {/* //https://reactnativeexample.com/react-native-navigation-drawer-extension/ */}
         <Button
-          title="Extracurricular" 
-          onPress={() => navigation.navigate('ECActivities', {
-              userId: userId,
-              firstName: firstName,
-              lastName: lastName
-          })}
-        /> 
-        <Button
-          title="Monthly Calendar" 
-          onPress={() => navigation.navigate('MonthlyCalendar', {
+          title="Main Menu" 
+          onPress={() => navigation.navigate('Menu',{
             userId: userId,
             firstName: firstName,
             lastName: lastName
           })}
-        /> 
-
-        <Button
-          title="Lunch Menu" 
-          onPress={() => navigation.navigate('LunchMenu',{
-            userId: userId,
-            firstName: firstName,
-            lastName: lastName
-          })}
-        /> 
-
-        <Button
-          title="Schedule" 
-          onPress={() => navigation.navigate('GetSchedule', {
-            userId: userId,
-            firstName: firstName,
-            lastName: lastName
-          })}
-        /> 
-        <Button
-        title="Messages"
-        onPress={() => navigation.navigate('MessagesRecieved',{
-          userId: userId,
-          firstName: firstName,
-          lastName: lastName
-        })}
         /> 
       </View>
   );
@@ -136,7 +101,10 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 20,
-    textAlign: 'left'
+    textAlign: 'left',
+    textDecorationLine: 'underline',
+    alignSelf: 'baseline',
+    color: Colors.c1
   },
   button: {
     backgroundColor: AppColors.c3,
@@ -145,6 +113,7 @@ const styles = StyleSheet.create({
   title:{
     fontSize: 40,
     fontWeight: 'bold',
+    color: Colors.c1
   },
   topLabel: {
     textAlign: 'right',

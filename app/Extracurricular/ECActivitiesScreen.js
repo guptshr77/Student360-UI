@@ -1,8 +1,9 @@
 import React, {useEffect, useState} from 'react';
-import { StyleSheet, Text, View, Button, ActivityIndicator} from 'react-native';
-import { FlatList } from 'react-native-web';
+import { StyleSheet, Text, View, Button, ActivityIndicator, FlatList} from 'react-native';
+// import { FlatList } from 'react-native-web';
 import globalStyles from '../config/globalStyles';
 import Colors from '../config/Colors';
+import enviornment from '../config/enviornment';
 
 export default function App({route, navigation}) {
   const {userId, firstName, lastName} = route.params;
@@ -42,10 +43,8 @@ export default function App({route, navigation}) {
               <Text style={styles.dayTitle}>{item.title}</Text>
 
               <Text>{`\n`}</Text>
-              <Text style={styles.items}>{`\t`}Description: {item.descr}</Text>
-
-              <Text>{`\n`}</Text>
-              <Text style={styles.items}>{`\t`}Teacher: {item.teacherId}</Text>
+              <Text style={styles.items}>{`\t`}Description:</Text>
+              <Text style = {styles.items}>{`\t`}{`\t`}{item.descr}</Text>
 
               <Text>{`\n`}</Text>
             </View>

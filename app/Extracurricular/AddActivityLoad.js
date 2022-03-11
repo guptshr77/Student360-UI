@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import { StyleSheet, Text, View, Button} from 'react-native';
 import Colors from '../config/Colors.js';
 import globalStyles from '../config/globalStyles';
+import enviornment from '../config/enviornment';
 
 export default function App({route, navigation}) {
     const {userId, firstName, lastName, actId} = route.params;

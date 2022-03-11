@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import { StyleSheet, Image, Text, View, Button, TextInput, SafeAreaView} from 'react-native';
 import globalStyles from '../config/globalStyles';
+import enviornment from '../config/enviornment';
 
 export default function App({navigation}) {
     const [username, onChangeUsername] = React.useState("zekepat");

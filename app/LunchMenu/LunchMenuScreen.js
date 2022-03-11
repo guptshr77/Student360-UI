@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from 'react';
-import { StyleSheet, Image, Text, View, SafeAreaView, Button, ActivityIndicator, SectionList} from 'react-native';
-import { FlatList, Picker } from 'react-native-web';
+import { StyleSheet, Image, Text, View, SafeAreaView, Button, ActivityIndicator, FlatList, Picker} from 'react-native'; 
 import Colors from '../config/Colors.js';
 import globalStyles from '../config/globalStyles';
+import enviornment from '../config/enviornment';
 
 export default function App({route, navigation}) {
     const {userId, firstName, lastName} = route.params;
@@ -29,9 +29,8 @@ export default function App({route, navigation}) {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Lunch Menu</Text>
-      <Image source={require("../assets/student360.png")}/>
 
-      <Picker
+      {/* <Picker
         selectedValue = {day}
         onValueChange = {(itemValue) => setDay(itemValue)}
       >
@@ -41,7 +40,7 @@ export default function App({route, navigation}) {
         ))}
 
       </Picker>
-      <Text>{day}</Text>
+      <Text>{day}</Text> */}
 
       {isLoading ? <ActivityIndicator/> : (
         <FlatList
@@ -68,7 +67,6 @@ export default function App({route, navigation}) {
               <Text style={styles.subTitles}>{`\t`}Milk:</Text>
               <Text>{`\n`}</Text>
               <Text style={styles.items}>{`\t`}{`\t`}{item.milks}</Text>
-
 
               <Text>{`\n`}</Text>
             </View>

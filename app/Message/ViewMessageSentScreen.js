@@ -1,7 +1,9 @@
 import React, {useEffect, useState} from 'react';
-import { StyleSheet, Text, View, Button, ActivityIndicator} from 'react-native';
-import { FlatList } from 'react-native-web';
+import { StyleSheet, Text, View, Button, ActivityIndicator, FlatList} from 'react-native';
+// import { FlatList } from 'react-native-web';
 import globalStyles from '../config/globalStyles';
+import enviornment from '../config/enviornment';
+import Colors from '../config/Colors';
 
 export default function App({route, navigation}) {
   const {userId, firstName, lastName}= route.params;
@@ -11,7 +13,7 @@ export default function App({route, navigation}) {
 
   const ViewMessageSentScreen = async () => {
       try{
-        const response = await fetch(enviornment.restUrl + 'getSentMessages?user_id=' + userId);
+        const response = await fetch(enviornment.restUrl+ 'getSentMessages?user_id=' + userId);
         const json = await response.json();
         console.log(json);
         setData(json);
@@ -27,22 +29,22 @@ export default function App({route, navigation}) {
     }, []);
 
     return (
-        <View style={styles.container}>
-          <Text>View Message Sent Screen</Text>
+        <View style={[globalStyles.container]}>
+          <Text style={styles.title}>Past Sent Messages:</Text>
 
           {isLoading ? <ActivityIndicator/> : (
             <FlatList
             data={data}
             keyExtractor = {({ msgId }, index) => msgId}
             renderItem = {({item}) => (
-                <Text>
-                  {item.msgId},
-                  {item.firstname},
-                  {item.lastname},
-                  {item.subject},
-                  {item.msg_content},
-                  {item.msg_date}
-                </Text>
+              <View>
+                <Text>{item.msgId}</Text>
+                <Text>{item.firstname}</Text>
+                <Text>{item.lastname}</Text>
+                <Text>{item.subject}</Text>
+                <Text>{item.msg_content}</Text>
+                <Text>{item.msg_date}</Text>
+              </View>
             )}
             />
         )}
@@ -68,5 +70,17 @@ export default function App({route, navigation}) {
         backgroundColor: '#fff',
         alignItems: 'center',
         justifyContent: 'center',
+      },
+      text: {
+        fontSize: 20,
+        textAlign: 'left',
+        textDecorationLine: 'underline',
+        alignSelf: 'baseline',
+        color: Colors.c1
+      },
+      title:{
+        fontSize: 40,
+        fontWeight: 'bold',
+        color: Colors.c1
       },
     });

@@ -1,8 +1,9 @@
 import React, {useEffect, useState} from 'react';
-import { StyleSheet, Text, View, Button, ActivityIndicator} from 'react-native';
-import { FlatList } from 'react-native-web';
+import { StyleSheet, Text, View, Button, ActivityIndicator, FlatList} from 'react-native';
+// import { FlatList } from 'react-native-web';
 import globalStyles from '../config/globalStyles';
 import Colors from '../config/Colors';
+import enviornment from '../config/enviornment';
 
 export default function App({route, navigation}) {
   const {userId, firstName, lastName}= route.params;
