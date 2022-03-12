@@ -6,7 +6,7 @@ import globalStyles from '../config/globalStyles';
 import enviornment from '../config/enviornment';
 
 export default function App({route, navigation}) {
-    const {userId, firstName, lastName} = route.params;
+    const {userId} = route.params;
     const [isLoading, setLoading] = useState(true);
     const [data, setData] = useState([]);
 
@@ -44,8 +44,6 @@ export default function App({route, navigation}) {
                 title="Add"
                 onPress={() => navigation.navigate('AddClass', {
                   userId: userId,
-                  firstName: firstName,
-                  lastName: lastName,
                   classId: item.classId
                 })}
               />

@@ -10,7 +10,7 @@ import globalStyles from '../config/globalStyles';
 import AppColors from '../config/Colors';
 
 export default function App({route, navigation}) {
-    const {userId, firstName, lastName, date} = route.params;
+    const {userId, date} = route.params;
     const [isLoading, setLoading] = useState(true);
     const [data, setData] = useState([]);
 
@@ -83,9 +83,7 @@ export default function App({route, navigation}) {
         <Button
           title="Main Menu" 
           onPress={() => navigation.navigate('Menu',{
-            userId: userId,
-            firstName: firstName,
-            lastName: lastName
+            userId: userId
           })}
         /> 
       </View>

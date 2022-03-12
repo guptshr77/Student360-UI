@@ -5,7 +5,7 @@ import globalStyles from '../config/globalStyles';
 import enviornment from '../config/enviornment';
 
 export default function App({route, navigation}) {
-    const {userId, firstName, lastName, classId} = route.params;
+    const {userId, classId} = route.params;
     const [isLoading, setLoading] = useState(true);
     // const [data, setData] = useState("");
 
@@ -31,9 +31,7 @@ export default function App({route, navigation}) {
       <Button
         title="Schedule Home" 
         onPress={() => navigation.navigate('GetSchedule', {
-          userId: userId,
-          firstName: firstName,
-          lastName: lastName
+          userId: userId
         }) }
       />           
         </View>

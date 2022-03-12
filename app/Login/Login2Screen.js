@@ -36,9 +36,7 @@ export default function App({route, navigation}) {
         title="Continue" 
         onPress={() => navigation.navigate('DailyCalendar', {
           userId: data.userId,
-          firstName: data.firstName,
-          lastName: data.lastName,
-          cdate: Moment(new Date()).format('yyyy-MM-DD')
+          date: Moment(new Date()).format('yyyy-MM-DD')
         })
       }
       /> 

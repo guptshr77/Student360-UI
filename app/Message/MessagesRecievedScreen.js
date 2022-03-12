@@ -6,7 +6,7 @@ import Colors from '../config/Colors';
 import enviornment from '../config/enviornment';
 
 export default function App({route, navigation}) {
-  const {userId, firstName, lastName}= route.params;
+  const {userId}= route.params;
   const [isLoading, setLoading] = useState(true);
   const [data, setData] = useState([]);
   let x = false
@@ -56,7 +56,7 @@ export default function App({route, navigation}) {
         title="SendMessage" 
         onPress={() => navigation.navigate('MessageSend'
         ,{
-           userId: userId 
+          userId1: userId 
         }
         )}
       />

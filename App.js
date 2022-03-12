@@ -44,17 +44,16 @@ export default function App() {
         flexDirection: "row",
       }}>
 
-        <View style={{
+        {/* <View style={{
           background: "dodgerblue",
-          width: "10%",
+          width: "5%",
           height: 100,
           justifyContent: "center",
           alignItems: "center",
           paddingLeft: 40,
           paddingBottom: 20
         }}>
-            <Image source={require("./app/assets/student360.png")} style={{width: 100, height: 100}}/>
-        </View>
+        </View> */}
         <View style={{
           background: "gold",
           flexGrow: 1,
@@ -62,13 +61,21 @@ export default function App() {
           alignItems: "center",
           justifyContent: "center"
         }}>
+          <Image 
+            source={require("./app/assets/Student360_idea1.png")} 
+            style={{
+              width: 200, 
+              height: 50,
+              resizeMode: 'contain'
+            }}
+          />
         </View>
-        <View style={{
+        {/* <View style={{
           background: "orange",
-          width: "20%",
+          width: "5%",
           height: 100,
         }}>
-        </View>
+        </View> */}
       </View>
       <View style={{
         flex: .9,

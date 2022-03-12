@@ -6,7 +6,7 @@ import globalStyles from '../config/globalStyles';
 import enviornment from '../config/enviornment';
 
 export default function App({route, navigation}) {
-  const {userId, firstName, lastName}= route.params;
+  const {userId}= route.params;
   const [isLoading, setLoading] = useState(true);
   const [data, setData] = useState([]);
  
@@ -29,7 +29,7 @@ export default function App({route, navigation}) {
 
     return (
         <View style={styles.container}>
-          <Text style={styles.title}>{firstName}'s Schedule:</Text>
+          <Text style={styles.title}>Schedule:</Text>
           <Text>{`\n`}</Text>
 
           {isLoading ? <ActivityIndicator/> : (
@@ -37,18 +37,26 @@ export default function App({route, navigation}) {
             data={data}
             keyExtractor = {({ classId }, index) => classId}
             renderItem = {({item}) => (
-                <Text>
-                {item.classId}, {item.classname},{item.roomnum}, {item.startTime}, {item.endTime}
-                </Text>
+
+              <View>
+
+              <Text>{`\n`}</Text>
+              <Text style={styles.subTitles}>{`\t`}Class:</Text>
+              <Text style={styles.items}>{`\t`}{`\t`}{item.classname}</Text>
+              <Text style={styles.subTitles}>{`\t`}Room:</Text>
+              <Text style={styles.items}>{`\t`}{`\t`}{item.roomnum}</Text>
+              <Text style={styles.subTitles}>{`\t`}Timing:</Text>
+              <Text style={styles.items}>{`\t`}{`\t`}{item.startTime} to {item.endTime}</Text>
+              <Text>{`\n`}</Text>
+              </View>
+                
             )}
             />
         )}
       <Button
         title="Add Class" 
         onPress={() => navigation.navigate('GetAllClasses', {
-          userId: userId,
-          firstName: firstName,
-          lastName: lastName
+          userId: userId
         }) }
       />
       <Button

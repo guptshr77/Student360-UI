@@ -6,7 +6,7 @@ import enviornment from '../config/enviornment';
 import Colors from '../config/Colors';
 
 export default function App({route, navigation}) {
-  const {userId, firstName, lastName}= route.params;
+  const {userId}= route.params;
   const [isLoading, setLoading] = useState(true);
   const [data, setData] = useState([]);
   let x = false

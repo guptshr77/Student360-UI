@@ -1,11 +1,12 @@
 import React, {useEffect, useState} from 'react';
-import { StyleSheet, Text, View, Button, TextInput, Picker} from 'react-native';
+import { StyleSheet, Text, View, Button, TextInput} from 'react-native';
 import globalStyles from '../config/globalStyles';
 import Colors from '../config/Colors';
 import enviornment from '../config/enviornment';
+import {Picker} from '@react-native-picker/picker';
 
 export default function App({route, navigation}) {
-  const {userId, firstName, lastName} = route.params;
+  const {userId1} = route.params;
   const [isLoading, setLoading] = useState(true);
   const [data, setData] = useState([]); 
   const [recipient_id, setRecipientId] = useState([]);
@@ -34,14 +35,21 @@ export default function App({route, navigation}) {
           <Text style={styles.title}>New Message</Text>
 
         <Text style={styles.subTitles}>To:</Text>
-          <Picker
-            selectedValue = {data.userId}
+          {/* <Picker
+            selectedValue = {recipient_id}
             onValueChange = {(itemValue) => setRecipientId(itemValue)}
-          >
-            <Picker.Item key="" label="" value=""/>
-            {data.map ((obj, firstName) => (
+          > */}
+          <Picker
+            selectedValue={recipient_id}
+            onValueChange={(itemValue, itemIndex) =>
+              setSelectedLanguage(itemValue)
+            }>          
+              <Picker.Item label="Java" value="java" />
+              <Picker.Item label="JavaScript" value="js" />
+            {/* <Picker.Item key="" label="" value=""/>
+            {data.map ((obj, userId) => (
               <Picker.Item key={obj.userId} label={obj.firstName + " " + obj.lastName} value={obj.userId}/>
-           ))}
+           ))} */}
 
           </Picker>
 
@@ -66,9 +74,7 @@ export default function App({route, navigation}) {
         <Button
           title="Send" 
           onPress={() => navigation.navigate('SendMessage', {
-            userId: userId,
-            firstName: firstName,
-            lastName: lastName,
+            userId: userId1,
             recipient_id: recipient_id,
             subject: subject,
             msg_content: msg_content

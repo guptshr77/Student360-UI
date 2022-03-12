@@ -7,9 +7,12 @@ import enviornment from '../config/enviornment';
 import Colors from '../config/Colors';
 
 export default class CalendarScreen extends Component {
-  // const {userId, firstName, lastName} = route.params;
+  userId = '';
   constructor(props) {
     super(props);
+    const {userId} = props.route.params;
+    console.log(userId);
+    this.userId = userId
     this.state = {
       selectedStartDate: null,
     };
@@ -22,13 +25,14 @@ export default class CalendarScreen extends Component {
     });
     console.log(Moment(date).format('yyyy-MM-DD'));
     this.props.navigation.navigate('DailyCalendar', {
-      date: Moment(date).format('yyyy-MM-DD')
+      date: Moment(date).format('yyyy-MM-DD'),
+      userId: this.userId
     });
 
   }
   render() {
     return (
-      <View style={styles.container}>
+      <View style={globalStyles.container}>
         <CalendarPicker
           onDateChange={this.onDateChange}
         />

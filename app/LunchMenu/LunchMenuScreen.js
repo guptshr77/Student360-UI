@@ -53,19 +53,10 @@ export default function App({route, navigation}) {
 
               <Text>{`\n`}</Text>
               <Text style={styles.subTitles}>{`\t`}Hot Lunch:</Text>
-              <Text>{`\n`}</Text>
               <Text style={styles.items}>{`\t`}{`\t`}{item.foodItems}</Text>
-
-
-              <Text>{`\n`}</Text>
               <Text style={styles.subTitles}>{`\t`}Grab N Go:</Text>
-              <Text>{`\n`}</Text>
               <Text style={styles.items}>{`\t`}{`\t`}{item.grabNGo}</Text>
-
-
-              <Text>{`\n`}</Text>
               <Text style={styles.subTitles}>{`\t`}Milk:</Text>
-              <Text>{`\n`}</Text>
               <Text style={styles.items}>{`\t`}{`\t`}{item.milks}</Text>
 
               <Text>{`\n`}</Text>

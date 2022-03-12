@@ -5,7 +5,7 @@ import enviornment from '../config/enviornment';
 import Colors from '../config/Colors';
 
 export default function App({route, navigation}) {
-  const {userId, firstName, lastName, recipient_id, subject, msg_content} = route.params;
+  const {userId, recipient_id, subject, msg_content} = route.params;
   const [isLoading, setLoading] = useState(true);
   const [data, setData] = useState([]); 
 

@@ -5,7 +5,7 @@ import globalStyles from '../config/globalStyles';
 import enviornment from '../config/enviornment';
 
 export default function App({route, navigation}) {
-    const {userId, firstName, lastName, actId} = route.params;
+    const {userId, actId} = route.params;
     const [isLoading, setLoading] = useState(true);
     // const [data, setData] = useState("");
 
@@ -31,9 +31,7 @@ export default function App({route, navigation}) {
       <Button
         title="Extracurricular Home" 
         onPress={() => navigation.navigate('ECActivities', {
-          userId: userId,
-          firstName: firstName,
-          lastName: lastName
+          userId: userId
         }) }
       />           
         </View>
