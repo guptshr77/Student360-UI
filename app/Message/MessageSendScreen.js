@@ -1,17 +1,19 @@
 import React, {useEffect, useState} from 'react';
-import { StyleSheet, Text, View, Button, TextInput} from 'react-native';
+import { StyleSheet, Text, View, Button, TextInput, Picker} from 'react-native';
 import globalStyles from '../config/globalStyles';
 import Colors from '../config/Colors';
 import enviornment from '../config/enviornment';
-import {Picker} from '@react-native-picker/picker';
+// import {Picker} from '@react-native-picker/picker';
 
 export default function App({route, navigation}) {
   const {userId1} = route.params;
   const [isLoading, setLoading] = useState(true);
   const [data, setData] = useState([]); 
-  const [recipient_id, setRecipientId] = useState([]);
+  const [recipientId, setRecipientId] = useState([]);
   const [subject, onChangeSubject] = React.useState(""); 
   const [msg_content, onChangeContent] = React.useState(""); 
+
+  const [selectedLanguage, setSelectedLanguage] = useState();
 
   const getLunchMenu = async () => {
     try{
@@ -35,27 +37,21 @@ export default function App({route, navigation}) {
           <Text style={styles.title}>New Message</Text>
 
         <Text style={styles.subTitles}>To:</Text>
-          {/* <Picker
-            selectedValue = {recipient_id}
-            onValueChange = {(itemValue) => setRecipientId(itemValue)}
-          > */}
-          <Picker
-            selectedValue={recipient_id}
-            onValueChange={(itemValue, itemIndex) =>
-              setSelectedLanguage(itemValue)
-            }>          
-              <Picker.Item label="Java" value="java" />
-              <Picker.Item label="JavaScript" value="js" />
-            {/* <Picker.Item key="" label="" value=""/>
-            {data.map ((obj, userId) => (
-              <Picker.Item key={obj.userId} label={obj.firstName + " " + obj.lastName} value={obj.userId}/>
-           ))} */}
 
-          </Picker>
+        <Picker
+          selectedValue = {recipientId}
+          onValueChange = {(itemValue) => setRecipientId(itemValue)}
+        >
+          <Picker.Item key="" label="" value=""/>
+          {data.map ((obj, userId) => (
+            <Picker.Item key={obj.userId} label={obj.firstName + ' '+ obj.lastName} value={obj.userId}/>
+          ))}
+
+        </Picker>
 
         <Text style={styles.subTitles}>Subject:</Text>
             <TextInput 
-              style={[globalStyles.input]}
+              style={styles.inputSubject}
               onChangeText = {onChangeSubject}
               value = {subject}
               keyboardType = "default"
@@ -64,7 +60,8 @@ export default function App({route, navigation}) {
 
         <Text style={styles.subTitles}>Message:</Text>
             <TextInput 
-              style={[globalStyles.input]}
+              multiline={true}
+              style={styles.inputMessage}
               onChangeText = {onChangeContent}
               value = {msg_content}
               keyboardType = "default"
@@ -75,7 +72,7 @@ export default function App({route, navigation}) {
           title="Send" 
           onPress={() => navigation.navigate('SendMessage', {
             userId: userId1,
-            recipient_id: recipient_id,
+            recipient_id: recipientId,
             subject: subject,
             msg_content: msg_content
           })}
@@ -92,21 +89,33 @@ export default function App({route, navigation}) {
       container: {
         flex: 1,
         backgroundColor: Colors.c5,
-        alignItems: 'center',
-        justifyContent: 'center',
-        padding: 15, 
+        // alignItems: 'center',
+        // justifyContent: 'center',
+        // padding: 15, 
       },
       text: {
         fontSize: 40,
       },
-      input: {
+      scrollView: {
+        backgroundColor: 'pink',
+        marginHorizontal: 20,
+      },
+      inputMessage: {
           margin: 12,
           borderWidth: 1,
           padding: 10,
           backgroundColor: Colors.white,
-          flex: 1,
+          flex: .9,
           height: 10
       },
+      inputSubject: {
+        margin: 12,
+        borderWidth: 1,
+        padding: 10,
+        backgroundColor: Colors.white,
+        flex: .1,
+        height: 10
+    },
       button: {
         backgroundColor: Colors.c3,
         color: Colors

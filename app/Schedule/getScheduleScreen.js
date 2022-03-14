@@ -28,8 +28,8 @@ export default function App({route, navigation}) {
   }, []);
 
     return (
-        <View style={styles.container}>
-          <Text style={styles.title}>Schedule:</Text>
+        <View style={globalStyles.container2}>
+          <Text style={globalStyles.title}>Schedule:</Text>
           <Text>{`\n`}</Text>
 
           {isLoading ? <ActivityIndicator/> : (
@@ -41,12 +41,12 @@ export default function App({route, navigation}) {
               <View>
 
               <Text>{`\n`}</Text>
-              <Text style={styles.subTitles}>{`\t`}Class:</Text>
-              <Text style={styles.items}>{`\t`}{`\t`}{item.classname}</Text>
-              <Text style={styles.subTitles}>{`\t`}Room:</Text>
-              <Text style={styles.items}>{`\t`}{`\t`}{item.roomnum}</Text>
-              <Text style={styles.subTitles}>{`\t`}Timing:</Text>
-              <Text style={styles.items}>{`\t`}{`\t`}{item.startTime} to {item.endTime}</Text>
+              <Text style={globalStyles.H1}>{`\t`}Class:</Text>
+              <Text style={globalStyles.content}>{`\t`}{`\t`}{item.classname}</Text>
+              <Text style={globalStyles.H1}>{`\t`}Room:</Text>
+              <Text style={globalStyles.content}>{`\t`}{`\t`}{item.roomnum}</Text>
+              <Text style={globalStyles.H1}>{`\t`}Timing:</Text>
+              <Text style={globalStyles.content}>{`\t`}{`\t`}{item.startTime} to {item.endTime}</Text>
               <Text>{`\n`}</Text>
               </View>
                 
@@ -66,33 +66,3 @@ export default function App({route, navigation}) {
         </View>
       );
     }
-  
-    const styles = StyleSheet.create({
-      container: {
-        flex: 1,
-        backgroundColor: Colors.c5,
-        alignItems: 'center',
-        justifyContent: 'center',
-      },
-      headTitle:{
-        fontSize: 20,
-        fontWeight: 'bold',
-        color: Colors.c1
-      },
-      subTitles:{
-        fontSize: 15,
-        fontWeight: 'bold',
-        color: Colors.c1,
-      },
-      title: {
-        fontSize: 30,
-        fontWeight: 'bold',
-        color: Colors.c1,
-        textDecorationLine: 'underline'
-      },
-      items: {
-        fontSize: 15,
-        fontWeight: 'bold',
-        color: Colors.black
-      }
-    });

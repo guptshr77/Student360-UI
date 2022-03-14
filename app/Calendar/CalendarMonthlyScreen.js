@@ -32,7 +32,7 @@ export default class CalendarScreen extends Component {
   }
   render() {
     return (
-      <View style={globalStyles.container}>
+      <View style={globalStyles.container2}>
         <CalendarPicker
           onDateChange={this.onDateChange}
         />
@@ -40,11 +40,3 @@ export default class CalendarScreen extends Component {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: Colors.c5,
-    marginTop: 100,
-  },
-});

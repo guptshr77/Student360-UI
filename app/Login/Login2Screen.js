@@ -29,8 +29,8 @@ export default function App({route, navigation}) {
     }, []);
 
   return (
-    <View style={globalStyles.container}>
-      <Text style = {globalStyles.text}>Welcome, {data.firstName} {data.lastName}!</Text> 
+    <View style={globalStyles.container1}>
+      <Text style = {globalStyles.Message}>Welcome, {data.firstName} {data.lastName}!</Text> 
 
       <Button
         title="Continue" 

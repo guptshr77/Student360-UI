@@ -8,17 +8,18 @@ import globalStyles from '../config/globalStyles';
 
 //Screens
 import AppColors from '../config/Colors';
+import moment from 'moment';
 
 export default function App({route, navigation}) {
-    const {userId, date} = route.params;
-    const [isLoading, setLoading] = useState(true);
-    const [data, setData] = useState([]);
+    let {userId, date} = route.params;
+    let [isLoading, setLoading] = useState(true);
+    let [data, setData] = useState([]);
 
     const getCalendarDailyScreen = async () => {
       try{
         console.log(enviornment.restUrl + 'calendar?userid=' + userId + '&date=' + date);
-        const response = await fetch(enviornment.restUrl + 'calendar?userid=' + userId + '&date=' + date);
-        const json = await response.json();
+        let response = await fetch(enviornment.restUrl + 'calendar?userid=' + userId + '&date=' + date);
+        let json = await response.json();
         console.log(json);
         setData(json);
       } catch (error) {
@@ -32,50 +33,54 @@ export default function App({route, navigation}) {
     }, []);
 
   return (
-      <View style={styles.container}>
-        <Text style = {styles.title}>Daily Calendar</Text>
-    
-        <Text style={styles.text}>{`\t`}{`\t`}{`\t`}Classes:</Text>   
+      <View style={globalStyles.container2}>
+        <Text style = {globalStyles.title}>Daily Calendar</Text>
+        <Text>{`\n`}</Text>
+
+        <Text style = {globalStyles.title}>{moment(date).format('MM/DD/yyyy')}</Text>
+        <Text>{`\n`}</Text>
+        
+        <Text style={globalStyles.H1}>{`\t`}{`\t`}{`\t`}Classes:</Text>   
           <FlatList
             data={data.classes}
             keyExtractor = {({ classId }, index) => classId}
             renderItem = {({item}) => (
               <View>
                 <Text>{`\n`}</Text>
-                <Text>{`\t`}{item.classname}</Text>
-                <Text>{`\t`}{`\t`}{item.roomnum}</Text>
-                <Text>{`\t`}{`\t`}{item.startTime} to {item.endTime}</Text>
+                <Text>{`\t`}Class: {item.classname}</Text>
+                <Text>{`\t`}{`\t`}Room: {item.roomnum}</Text>
+                <Text>{`\t`}{`\t`}Timing: {item.startTime} to {item.endTime}</Text>
               </View> 
               
             )}
           />
           
-          <Text style = {styles.text}>{`\t`}{`\t`}{`\t`}Events:</Text>
+          <Text style = {globalStyles.H1}>{`\t`}{`\t`}{`\t`}Events:</Text>
           <FlatList
             data={data.events}
             keyExtractor = {({ event_id }, index) => event_id}
             renderItem = {({item}) => (
               <View>
               <Text>{`\n`}</Text>
-              <Text>{`\t`}{item.title}</Text>
-              <Text>{`\t`}{`\t`}{item.dateTime}</Text>
+              <Text>{`\t`}Event: {item.title}</Text>
+              <Text>{`\t`}{`\t`}Time: {item.dateTime}</Text>
               <Text>{`\t`}{`\t`}{item.description}</Text>
 
               </View>
             )}
           />
 
-          <Text style = {styles.text}>{`\t`}{`\t`}{`\t`}Extracurricular Activities</Text>
+          <Text style = {globalStyles.H1}>{`\t`}{`\t`}{`\t`}Extracurricular Activities</Text>
           <FlatList
             data={data.extracurriculars}
             keyExtractor = {({ actId }, index) => actId}
             renderItem = {({item}) => (
               <View>
               <Text>{`\n`}</Text>
-              <Text>{`\t`}{item.title}</Text>
+              <Text>{`\t`}Activity: {item.title}</Text>
               <Text>{`\t`}{`\t`}{item.descr}</Text>
-              <Text>{`\t`}{`\t`}{item.location}</Text>
-              <Text>{`\t`}{`\t`}{item.startTime},{item.endTime}</Text>
+              <Text>{`\t`}{`\t`}Location: {item.location}</Text>
+              <Text>{`\t`}{`\t`}Timing: {item.startTime} - {item.endTime}</Text>
               </View>
             )}
           />
@@ -89,41 +94,3 @@ export default function App({route, navigation}) {
       </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: AppColors.c5,
-    alignItems: 'center',
-    justifyContent: 'center' 
-  },
-  text: {
-    fontSize: 20,
-    textAlign: 'left',
-    textDecorationLine: 'underline',
-    alignSelf: 'baseline',
-    color: Colors.c1
-  },
-  button: {
-    backgroundColor: AppColors.c3,
-    color: AppColors.c2
-  },
-  title:{
-    fontSize: 40,
-    fontWeight: 'bold',
-    color: Colors.c1
-  },
-  topLabel: {
-    textAlign: 'right',
-    fontSize: 20
-  },
-  header: {
-    backgroundColor: Colors.white,
-    width: "100%",
-    height: "10%",
-  },
-  logo: {
-    width: 50,
-    height: "100%"
-  }
-});

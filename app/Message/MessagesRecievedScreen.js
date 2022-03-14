@@ -29,22 +29,33 @@ export default function App({route, navigation}) {
     }, []);
 
     return (
-        <View style={styles.container}>
-          <Text style={styles.title}>Message Screen</Text>
+        <View style={globalStyles.container2}>
+          <Text style={globalStyles.title}>Message Screen</Text>
+          <Text>{`\n`}</Text>
 
           {isLoading ? <ActivityIndicator/> : (
             <FlatList
             data={data}
-            keyExtractor = {({ msg_id }, index) => msg_id}
+            keyExtractor = {({ msgId }, index) => msgId}
             renderItem = {({item}) => (
-                <Text>
-                  {item.msg_id},
-                  {item.firstname},
-                  {item.lastname},
-                  {item.subject},
-                  {item.msg_content},
-                  {item.msg_date}
-                </Text>
+              <View>
+                <View style={globalStyles.MessageFormat}>
+                  <Text style={globalStyles.H2}>From: </Text>
+                  <Text style={styles.content}>{item.user.firstName} {item.user.lastName}</Text>
+                </View>
+
+                <View style={globalStyles.MessageFormat}>
+                  <Text style={globalStyles.H2}>Subject: </Text>
+                  <Text style={styles.content}>{item.subject}</Text>
+                </View>
+
+                  <Text style={globalStyles.H2}>Message:</Text>
+                  <Text style={styles.content}>{`\t`}{item.msgContent}</Text>
+                  
+                  <Text style={styles.enter}>{`\n`}</Text>
+                  <Text>{item.datetime} </Text>
+                  <Text>...........................................................................................</Text>
+              </View>
             )}
             />
         )}
@@ -73,31 +84,11 @@ export default function App({route, navigation}) {
     }
   
     const styles = StyleSheet.create({
-      container: {
-        flex: 1,
-        backgroundColor: Colors.c5,
-        alignItems: 'center',
-        justifyContent: 'center',
-      },
-      dayTitle:{
+      content:{
         fontSize: 20,
-        fontWeight: 'bold',
-        color: Colors.c1
-      },
-      subTitles:{
-        fontSize: 15,
-        fontWeight: 'bold',
-        color: Colors.c1,
-      },
-      title: {
-        fontSize: 30,
-        fontWeight: 'bold',
-        color: Colors.c1,
-        textDecorationLine: 'underline'
-      },
-      items: {
-        fontSize: 15,
-        fontWeight: 'bold',
         color: Colors.black
+      },
+      enter: {
+        fontSize: 5
       }
     });

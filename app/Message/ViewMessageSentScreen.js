@@ -29,7 +29,7 @@ export default function App({route, navigation}) {
     }, []);
 
     return (
-        <View style={[globalStyles.container]}>
+        <View style={[globalStyles.container2]}>
           <Text style={styles.title}>Past Sent Messages:</Text>
 
           {isLoading ? <ActivityIndicator/> : (
@@ -38,12 +38,22 @@ export default function App({route, navigation}) {
             keyExtractor = {({ msgId }, index) => msgId}
             renderItem = {({item}) => (
               <View>
-                <Text>{item.msgId}</Text>
-                <Text>{item.firstname}</Text>
-                <Text>{item.lastname}</Text>
-                <Text>{item.subject}</Text>
-                <Text>{item.msg_content}</Text>
-                <Text>{item.msg_date}</Text>
+                <View style={globalStyles.MessageFormat}>
+                  <Text style={globalStyles.H2}>From: </Text>
+                  <Text style={styles.content}>{item.user.firstName} {item.user.lastName}</Text>
+                </View>
+
+                <View style={globalStyles.MessageFormat}>
+                  <Text style={globalStyles.H2}>Subject: </Text>
+                  <Text style={styles.content}>{item.subject}</Text>
+                </View>
+
+                  <Text style={globalStyles.H2}>Message:</Text>
+                  <Text style={styles.content}>{`\t`}{item.msgContent}</Text>
+                  
+                  <Text style={styles.enter}>{`\n`}</Text>
+                  <Text>{item.datetime} </Text>
+                  <Text>...........................................................................................</Text>
               </View>
             )}
             />
@@ -65,22 +75,11 @@ export default function App({route, navigation}) {
     }
   
     const styles = StyleSheet.create({
-      container: {
-        flex: 1,
-        backgroundColor: '#fff',
-        alignItems: 'center',
-        justifyContent: 'center',
-      },
-      text: {
+      content:{
         fontSize: 20,
-        textAlign: 'left',
-        textDecorationLine: 'underline',
-        alignSelf: 'baseline',
-        color: Colors.c1
+        color: Colors.black
       },
-      title:{
-        fontSize: 40,
-        fontWeight: 'bold',
-        color: Colors.c1
-      },
+      enter: {
+        fontSize: 5
+      }
     });

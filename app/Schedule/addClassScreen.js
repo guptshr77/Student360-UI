@@ -12,9 +12,7 @@ export default function App({route, navigation}) {
     const AddClass = async () => {
         try{
           const response = await fetch(enviornment.restUrl + 'addschedule?user_id=' + userId + '&class_id=' + classId);
-          // const json = await response.json();
           console.log(response);
-//          setData(response);
         } catch (error) {
           console.error(error);
         }finally{
@@ -27,7 +25,8 @@ export default function App({route, navigation}) {
       }, []);
 
     return (
-        <View style={styles.container}>
+        <View style={globalStyles.container2}>
+          <Text style={globalStyles.Message}>Class Added :)</Text>
       <Button
         title="Schedule Home" 
         onPress={() => navigation.navigate('GetSchedule', {

@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import { StyleSheet, Image, Text, View, SafeAreaView, Button, ActivityIndicator, FlatList, Picker} from 'react-native'; 
+import { StyleSheet, Image, Text, View, SafeAreaView, Button, ActivityIndicator, FlatList} from 'react-native'; 
 import Colors from '../config/Colors.js';
 import globalStyles from '../config/globalStyles';
 import enviornment from '../config/enviornment';
@@ -27,20 +27,8 @@ export default function App({route, navigation}) {
     }, []);
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Lunch Menu</Text>
-
-      {/* <Picker
-        selectedValue = {day}
-        onValueChange = {(itemValue) => setDay(itemValue)}
-      >
-        <Picker.Item key="" label="" value=""/>
-        {data.map ((obj, day) => (
-          <Picker.Item key={obj.day} label={obj.day} value={obj.foodItems + ", " + obj.grabNGo + ", " + obj.milks}/>
-        ))}
-
-      </Picker>
-      <Text>{day}</Text> */}
+    <View style={globalStyles.container1}>
+      <Text style={globalStyles.title}>Lunch Menu</Text>
 
       {isLoading ? <ActivityIndicator/> : (
         <FlatList
@@ -49,15 +37,15 @@ export default function App({route, navigation}) {
           renderItem = {({item}) => (
             <View>
 
-              <Text style={styles.dayTitle}>{item.day}</Text>
+              <Text style={globalStyles.H1}>{item.day}</Text>
 
               <Text>{`\n`}</Text>
-              <Text style={styles.subTitles}>{`\t`}Hot Lunch:</Text>
-              <Text style={styles.items}>{`\t`}{`\t`}{item.foodItems}</Text>
-              <Text style={styles.subTitles}>{`\t`}Grab N Go:</Text>
-              <Text style={styles.items}>{`\t`}{`\t`}{item.grabNGo}</Text>
-              <Text style={styles.subTitles}>{`\t`}Milk:</Text>
-              <Text style={styles.items}>{`\t`}{`\t`}{item.milks}</Text>
+              <Text style={globalStyles.H2}>{`\t`}Hot Lunch:</Text>
+              <Text style={globalStyles.content}>{`\t`}{`\t`}{item.foodItems}</Text>
+              <Text style={globalStyles.H2}>{`\t`}Grab N Go:</Text>
+              <Text style={globalStyles.content}>{`\t`}{`\t`}{item.grabNGo}</Text>
+              <Text style={globalStyles.H2}>{`\t`}Milk:</Text>
+              <Text style={globalStyles.content}>{`\t`}{`\t`}{item.milks}</Text>
 
               <Text>{`\n`}</Text>
             </View>
@@ -72,36 +60,3 @@ export default function App({route, navigation}) {
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: Colors.c5,
-    // alignItems: 'center',
-    // justifyContent: 'center',
-  },
-  dayTitle:{
-    fontSize: 20,
-    fontWeight: 'bold',
-    color: Colors.c1
-  },
-  subTitles:{
-    fontSize: 15,
-    fontWeight: 'bold',
-    color: Colors.c1,
-  },
-  title: {
-    fontSize: 30,
-    fontWeight: 'bold',
-    color: Colors.c1,
-    textDecorationLine: 'underline'
-  },
-  items: {
-    fontSize: 15,
-    fontWeight: 'bold',
-    color: Colors.black
-  }
-});
-
-//https://www.npmjs.com/package/react-native-collapsible 
-//collapsable list

@@ -1,6 +1,6 @@
 import { NavigationContainer } from '@react-navigation/native';
 import React, {useState} from "react";
-import { StyleSheet, Text, View, SafeAreaView, Image} from 'react-native';
+import { StyleSheet, Text, View, SafeAreaView, Image, Platform} from 'react-native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import globalStyles from './app/config/globalStyles';
 
@@ -44,16 +44,6 @@ export default function App() {
         flexDirection: "row",
       }}>
 
-        {/* <View style={{
-          background: "dodgerblue",
-          width: "5%",
-          height: 100,
-          justifyContent: "center",
-          alignItems: "center",
-          paddingLeft: 40,
-          paddingBottom: 20
-        }}>
-        </View> */}
         <View style={{
           background: "gold",
           flexGrow: 1,
@@ -70,12 +60,6 @@ export default function App() {
             }}
           />
         </View>
-        {/* <View style={{
-          background: "orange",
-          width: "5%",
-          height: 100,
-        }}>
-        </View> */}
       </View>
       <View style={{
         flex: .9,
@@ -122,26 +106,11 @@ export default function App() {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  input: {
-    height: 40,
-    margin: 12,
-    borderWidth: 1,
-    padding: 10,
-  },
-  title: {
-    fontSize: 20,
-    fontWeight: "bold"
-  },
   header: {
     backgroundColor: "#fff",
     flex: 1,
     flexDirection: "column",
-    justifyContent: "space-between"
+    justifyContent: "space-between",
+    paddingTop: Platform.OS === "android" ? 20 : 0
   }  
 });

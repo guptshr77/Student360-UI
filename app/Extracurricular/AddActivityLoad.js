@@ -27,7 +27,8 @@ export default function App({route, navigation}) {
       }, []);
 
     return (
-        <View style={styles.container}>
+        <View style={globalStyles.container2}>
+          <Text style={globalStyles.Message}>Activity Added</Text>
       <Button
         title="Extracurricular Home" 
         onPress={() => navigation.navigate('ECActivities', {
@@ -37,34 +38,4 @@ export default function App({route, navigation}) {
         </View>
       );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: Colors.c5,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  dayTitle:{
-    fontSize: 20,
-    fontWeight: 'bold',
-    color: Colors.c1
-  },
-  subTitles:{
-    fontSize: 15,
-    fontWeight: 'bold',
-    color: Colors.c1,
-  },
-  title: {
-    fontSize: 30,
-    fontWeight: 'bold',
-    color: Colors.c1,
-    textDecorationLine: 'underline'
-  },
-  items: {
-    fontSize: 15,
-    fontWeight: 'bold',
-    color: Colors.black
-  }
-});
   

@@ -11,7 +11,8 @@ export default function App({route, navigation}){
     const closeMenu = () => setVisible(false);
 
     return (
-        <View style={globalStyles.container}>
+        <View style={globalStyles.container3}>
+          <Text style={globalStyles.title}>Main Menu</Text>
         <Button
           title="Extracurricular" 
           onPress={() => navigation.navigate('ECActivities', {

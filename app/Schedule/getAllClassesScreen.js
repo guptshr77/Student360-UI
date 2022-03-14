@@ -29,8 +29,8 @@ export default function App({route, navigation}) {
 
     return (
         <View style={styles.container}>
-          <Text>Add Classes</Text>
-      
+          <Text style={globalStyles.title}>Add Classes</Text>
+          <Text>{`\n`}</Text>
         {isLoading ? <ActivityIndicator/> : (
             <FlatList
             data={data}
@@ -38,7 +38,7 @@ export default function App({route, navigation}) {
             renderItem = {({item}) => (
               <View>
 
-              <Text style={styles.dayTitle}>{item.classname}</Text>
+              <Text style={globalStyles.H2}>{item.classname}</Text>
 
               <Button
                 title="Add"

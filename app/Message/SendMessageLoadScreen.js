@@ -11,7 +11,8 @@ export default function App({route, navigation}) {
 
   const getMessageSendScreen = async () => {
     try{
-      const response = await fetch(enviornment.restUrl + 'sendMessage?user_id=' + userId + '&recipient_id='+ recipient_id + '&subject=' + subject + '&msg_content=' + msg_content);
+      console.log(encodeURI(enviornment.restUrl + 'sendMessage?user_id=' + userId + '&recipient_id='+ recipient_id + '&subject=' + subject + '&msg_content=' + msg_content));
+      const response = await fetch(encodeURI(enviornment.restUrl + 'sendMessage?user_id=' + userId + '&recipient_id='+ recipient_id + '&subject=' + subject + '&msg_content=' + msg_content));
       // const json = await response.json();
       // console.log(json);
       // setData(json);
@@ -28,9 +29,8 @@ export default function App({route, navigation}) {
 
 
     return (
-        <View style={styles.container}>
-          <Text>Message Send Loading Screen</Text>
-          <Text>Message Sent</Text>
+        <View style={globalStyles.container2}>
+          <Text style={globalStyles.Message}>Message Sent</Text>
         <Button
           title="Go Back" 
           onPress={() => navigation.goBack()}

@@ -8,24 +8,24 @@ export default function App({navigation}) {
     const [password, onChangePassword] = React.useState("lol");    
 
     return (
-    <View style={globalStyles.container}>
+    <View style={globalStyles.container1}>
 
-      <Text style = {globalStyles.text}>Login</Text>
+      <Text style = {globalStyles.title}>Login</Text>
       <Text>{`\n`}</Text>
       <Text>{`\n`}</Text>
 
-      <Text style={globalStyles.inputTitle}>Username:</Text>
+      <Text style={globalStyles.H2}>Username:</Text>
           <TextInput 
-            style={[globalStyles.input]}
+            style={[globalStyles.inputBox]}
             onChangeText = {onChangeUsername}
             value = {username}
             keyboardType = "default"
           />
     
 
-      <Text style={globalStyles.inputTitle}>Password:</Text>
+      <Text style={globalStyles.H2}>Password:</Text>
           <TextInput 
-            style={globalStyles.input}
+            style={globalStyles.inputBox}
             onChangeText = {onChangePassword}
             value = {password}
             keyboardType = "default"
