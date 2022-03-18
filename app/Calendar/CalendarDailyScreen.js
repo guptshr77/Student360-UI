@@ -5,10 +5,10 @@ import Colors from '../config/Colors';
 import { useIsFocused } from "@react-navigation/native";
 import enviornment from '../config/enviornment';
 import globalStyles from '../config/globalStyles';
+import Moment from 'moment';
 
 //Screens
 import AppColors from '../config/Colors';
-import moment from 'moment';
 
 export default function App({route, navigation}) {
     let {userId, date} = route.params;
@@ -37,7 +37,7 @@ export default function App({route, navigation}) {
         <Text style = {globalStyles.title}>Daily Calendar</Text>
         <Text>{`\n`}</Text>
 
-        <Text style = {globalStyles.title}>{moment(date).format('MM/DD/yyyy')}</Text>
+        <Text style = {globalStyles.H1}>{`\t`}{`\t`}{`\t`}{`\t`}{`\t`}{Moment(date).format('MM/DD/yyyy')}</Text>
         <Text>{`\n`}</Text>
         
         <Text style={globalStyles.H1}>{`\t`}{`\t`}{`\t`}Classes:</Text>   

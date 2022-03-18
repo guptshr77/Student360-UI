@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Button } from 'react-native';
+import { StyleSheet, View, Button, Text} from 'react-native';
 import CalendarPicker from 'react-native-calendar-picker';
 import Moment from 'moment';
 import globalStyles from '../config/globalStyles';
@@ -33,6 +33,8 @@ export default class CalendarScreen extends Component {
   render() {
     return (
       <View style={globalStyles.container2}>
+        <Text style={globalStyles.title}>Monthly Calendar</Text>
+        <Text>{`\n`}</Text>
         <CalendarPicker
           onDateChange={this.onDateChange}
         />

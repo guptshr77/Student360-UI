@@ -29,10 +29,10 @@ import GetAllEC from './app/Extracurricular/GetAllEC';
 import AddActivity from './app/Extracurricular/AddActivityLoad';
 
 //Messages
-import MessagesRecievedScreen from './app/Message/MessagesRecievedScreen';
-import MessageSendScreen from './app/Message/MessageSendScreen';
-import ViewMessageSentScreen from './app/Message/ViewMessageSentScreen';
-import SendMessageLoadingScreen from './app/Message/SendMessageLoadScreen';
+import InboxScreen from './app/Message/InboxScreen';
+import ComposeScreen from './app/Message/ComposeScreen';
+import SentScreen from './app/Message/SentScreen';
+import SendMessageLoadingScreen from './app/Message/MessageConfirmationScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -86,10 +86,10 @@ export default function App() {
           <Stack.Screen name = "GetAllEC" component={GetAllEC} options={{ headerShown: false }}/>
           
           {/* Messages */}
-          <Stack.Screen name = "MessageSend" component={MessageSendScreen} options={{ headerShown: false }}/>
-          <Stack.Screen name = "MessagesRecieved" component={MessagesRecievedScreen} options={{ headerShown: false }}/>
+          <Stack.Screen name = "MessageSend" component={ComposeScreen} options={{ headerShown: false }}/>
+          <Stack.Screen name = "InboxScreen" component={InboxScreen} options={{ headerShown: false }}/>
           <Stack.Screen name = "SendMessage" component={SendMessageLoadingScreen} options={{ headerShown: false }}/>
-          <Stack.Screen name = "ViewSentMessages" component={ViewMessageSentScreen} options={{ headerShown: false }}/>
+          <Stack.Screen name = "ViewSentMessages" component={SentScreen} options={{ headerShown: false }}/>
 
           {/* Schedule */}
           <Stack.Screen name = "GetSchedule" component={GetSchedule} options={{ headerShown: false }}/>

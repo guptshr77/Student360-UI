@@ -2,8 +2,8 @@ import React, {useEffect, useState} from 'react';
 import { StyleSheet, Text, View, Button, ActivityIndicator, FlatList} from 'react-native';
 // import { FlatList } from 'react-native-web';
 import globalStyles from '../config/globalStyles';
-import enviornment from '../config/enviornment';
 import Colors from '../config/Colors';
+import enviornment from '../config/enviornment';
 
 export default function App({route, navigation}) {
   const {userId}= route.params;
@@ -11,9 +11,9 @@ export default function App({route, navigation}) {
   const [data, setData] = useState([]);
   let x = false
 
-  const ViewMessageSentScreen = async () => {
+  const MessagesRecievedScreen = async () => {
       try{
-        const response = await fetch(enviornment.restUrl+ 'getSentMessages?user_id=' + userId);
+        const response = await fetch(enviornment.restUrl + 'getMessage?user_id='+ userId);
         const json = await response.json();
         console.log(json);
         setData(json);
@@ -25,12 +25,13 @@ export default function App({route, navigation}) {
     }
 
     useEffect(() => {
-      ViewMessageSentScreen();
+      MessagesRecievedScreen();
     }, []);
 
     return (
-        <View style={[globalStyles.container2]}>
-          <Text style={styles.title}>Past Sent Messages:</Text>
+        <View style={globalStyles.container2}>
+          <Text style={globalStyles.title}>Message Screen</Text>
+          <Text>{`\n`}</Text>
 
           {isLoading ? <ActivityIndicator/> : (
             <FlatList
@@ -58,18 +59,26 @@ export default function App({route, navigation}) {
             )}
             />
         )}
-      <Button
+      <Button  
         title="Go Back" 
         onPress={() => navigation.goBack()}
       /> 
       <Button
-        title="SendMessage" 
+        title="Send Message" 
         onPress={() => navigation.navigate('MessageSend'
         ,{
-           userid: userid 
+          userId1: userId 
         }
         )}
-      />           
+      />
+      <Button
+        title="Sent" 
+        onPress={() => navigation.navigate('ViewSentMessages'
+        ,{
+           userId: userId 
+        }
+        )}
+      />            
         </View>
       );
     }

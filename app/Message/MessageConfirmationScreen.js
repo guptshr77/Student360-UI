@@ -9,13 +9,10 @@ export default function App({route, navigation}) {
   const [isLoading, setLoading] = useState(true);
   const [data, setData] = useState([]); 
 
-  const getMessageSendScreen = async () => {
+  const getComposeScreen = async () => {
     try{
       console.log(encodeURI(enviornment.restUrl + 'sendMessage?user_id=' + userId + '&recipient_id='+ recipient_id + '&subject=' + subject + '&msg_content=' + msg_content));
       const response = await fetch(encodeURI(enviornment.restUrl + 'sendMessage?user_id=' + userId + '&recipient_id='+ recipient_id + '&subject=' + subject + '&msg_content=' + msg_content));
-      // const json = await response.json();
-      // console.log(json);
-      // setData(json);
     } catch (error) {
       console.error(error);
     }finally{
@@ -24,7 +21,7 @@ export default function App({route, navigation}) {
   }
 
   useEffect(() => {
-    getMessageSendScreen();
+    getComposeScreen();
   }, []);
 
 

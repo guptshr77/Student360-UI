@@ -13,6 +13,13 @@ export default function App({route, navigation}){
     return (
         <View style={globalStyles.container3}>
           <Text style={globalStyles.title}>Main Menu</Text>
+          <Button
+          title="Schedule" 
+          onPress={() => navigation.navigate('GetSchedule', {
+            userId: userId
+          })}
+        /> 
+
         <Button
           title="Extracurricular" 
           onPress={() => navigation.navigate('ECActivities', {
@@ -32,16 +39,9 @@ export default function App({route, navigation}){
             userId: userId
           })}
         /> 
-
         <Button
-          title="Schedule" 
-          onPress={() => navigation.navigate('GetSchedule', {
-            userId: userId
-          })}
-        /> 
-        <Button
-        title="Messages"
-        onPress={() => navigation.navigate('MessagesRecieved',{
+        title="Messages Inbox"
+        onPress={() => navigation.navigate('InboxScreen',{
           userId: userId
         })}
         /> 

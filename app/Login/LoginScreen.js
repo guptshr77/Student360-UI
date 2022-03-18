@@ -21,7 +21,6 @@ export default function App({navigation}) {
             value = {username}
             keyboardType = "default"
           />
-    
 
       <Text style={globalStyles.H2}>Password:</Text>
           <TextInput 

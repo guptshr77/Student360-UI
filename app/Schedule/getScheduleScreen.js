@@ -4,6 +4,7 @@ import { StyleSheet, Text, View, Button, ActivityIndicator, FlatList} from 'reac
 import Colors from '../config/Colors.js';
 import globalStyles from '../config/globalStyles';
 import enviornment from '../config/enviornment';
+import Moment from 'moment';
 
 export default function App({route, navigation}) {
   const {userId}= route.params;
@@ -46,7 +47,7 @@ export default function App({route, navigation}) {
               <Text style={globalStyles.H1}>{`\t`}Room:</Text>
               <Text style={globalStyles.content}>{`\t`}{`\t`}{item.roomnum}</Text>
               <Text style={globalStyles.H1}>{`\t`}Timing:</Text>
-              <Text style={globalStyles.content}>{`\t`}{`\t`}{item.startTime} to {item.endTime}</Text>
+              <Text style={globalStyles.content}>{`\t`}{`\t`}{Moment('2022-03-17 ' +item.startTime).format('H:mm')} to {Moment('2022-03-17 ' + item.endTime).format('H:mm')}</Text>
               <Text>{`\n`}</Text>
               </View>
                 
