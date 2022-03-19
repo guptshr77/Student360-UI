@@ -1,3 +1,4 @@
+//Global Colors
 export default {
     c1: "#b22222",
     c2: "#dc143c",

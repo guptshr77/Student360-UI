@@ -1,11 +1,13 @@
+//libraries
 import React, { Component } from 'react';
-import { StyleSheet, View, Button, Text} from 'react-native';
+import {View, Text} from 'react-native';
 import CalendarPicker from 'react-native-calendar-picker';
 import Moment from 'moment';
-import globalStyles from '../config/globalStyles';
-import enviornment from '../config/enviornment';
-import Colors from '../config/Colors';
 
+//screens
+import globalStyles from '../config/globalStyles';
+
+//Monthly Calendar Class 
 export default class CalendarScreen extends Component {
   userId = '';
   constructor(props) {
@@ -19,6 +21,7 @@ export default class CalendarScreen extends Component {
     this.onDateChange = this.onDateChange.bind(this);
   }
 
+  //When user clicks a new date returns the date selected and the userId
   onDateChange(date) {
     this.setState({
       selectedStartDate: date,
@@ -30,6 +33,7 @@ export default class CalendarScreen extends Component {
     });
 
   }
+  //returns the date selected 
   render() {
     return (
       <View style={globalStyles.container2}>

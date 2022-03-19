@@ -1,16 +1,19 @@
+//libraries
 import React, {useEffect, useState} from 'react';
 import { StyleSheet, Text, View, Button, ActivityIndicator, FlatList} from 'react-native';
-// import { FlatList } from 'react-native-web';
+
+//screens
 import globalStyles from '../config/globalStyles';
 import Colors from '../config/Colors';
 import enviornment from '../config/enviornment';
 
 export default function App({route, navigation}) {
+  //variables
   const {userId}= route.params;
   const [isLoading, setLoading] = useState(true);
   const [data, setData] = useState([]);
-  let x = false
 
+  //Sends URL to get all the messages that the user Recieved
   const MessagesRecievedScreen = async () => {
       try{
         const response = await fetch(enviornment.restUrl + 'getMessage?user_id='+ userId);
@@ -28,6 +31,7 @@ export default function App({route, navigation}) {
       MessagesRecievedScreen();
     }, []);
 
+      //renders all the messages that the user received
     return (
         <View style={globalStyles.container2}>
           <Text style={globalStyles.title}>Message Screen</Text>
@@ -83,6 +87,7 @@ export default function App({route, navigation}) {
       );
     }
   
+    //StyleSheet
     const styles = StyleSheet.create({
       content:{
         fontSize: 20,

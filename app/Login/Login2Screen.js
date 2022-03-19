@@ -1,16 +1,19 @@
+//libraries
 import React, {useEffect, useState} from 'react';
 import {Text, View, Button} from 'react-native';
 import Moment from 'moment';
-import globalStyles from '../config/globalStyles';
 
 //Screens
 import enviornment from '../config/enviornment';
+import globalStyles from '../config/globalStyles';
 
 export default function App({route, navigation}) {
+  //variables
     const {username, password} = route.params;
     const [isLoading, setLoading] = useState(true);
     const [data, setData] = useState([]);
 
+    //Sends URL to check if the login info is correct
     const getLogin2 = async () => {
       try{
         console.log(enviornment.restUrl + 'login?username=' + username + '&password='+ password);
@@ -28,6 +31,7 @@ export default function App({route, navigation}) {
       getLogin2();
     }, []);
 
+  //If correct, displays a welcome page 
   return (
     <View style={globalStyles.container1}>
       <Text style = {globalStyles.Message}>Welcome, {data.firstName} {data.lastName}!</Text> 

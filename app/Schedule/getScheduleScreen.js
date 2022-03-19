@@ -1,16 +1,20 @@
+//libraries
 import React, {useEffect, useState} from 'react';
 import { StyleSheet, Text, View, Button, ActivityIndicator, FlatList} from 'react-native';
-// import { FlatList } from 'react-native-web';
-import Colors from '../config/Colors.js';
-import globalStyles from '../config/globalStyles';
-import enviornment from '../config/enviornment';
 import Moment from 'moment';
 
+//screens
+import globalStyles from '../config/globalStyles';
+import enviornment from '../config/enviornment';
+
+
 export default function App({route, navigation}) {
+  //variables
   const {userId}= route.params;
   const [isLoading, setLoading] = useState(true);
   const [data, setData] = useState([]);
  
+  //sends URL to get the schedule of the User
   const getSchedule = async () => {
     try{
       const response = await fetch(enviornment.restUrl + 'getschedule?user_id=' + userId);
@@ -28,6 +32,7 @@ export default function App({route, navigation}) {
     getSchedule();
   }, []);
 
+  //renders the user's schedule
     return (
         <View style={globalStyles.container2}>
           <Text style={globalStyles.title}>Schedule:</Text>

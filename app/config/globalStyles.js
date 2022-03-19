@@ -1,8 +1,12 @@
+//libraries
 import { StyleSheet} from 'react-native';
+
+//screens
 import AppColors from './Colors';
 
 export default StyleSheet.create({
-    container1: {
+  //containers  
+  container1: {
       flex: 1,
       backgroundColor: AppColors.c4,
       alignItems: 'center',
@@ -20,6 +24,7 @@ export default StyleSheet.create({
       alignItems: 'center',
       justifyContent: 'center' 
     },
+    //Headings
     title: {
       fontSize: 30,
       fontWeight: 'bold',
@@ -38,6 +43,7 @@ export default StyleSheet.create({
       fontSize: 20,
       color: AppColors.c2
     },
+    //Special Tools
     inputBox: {
         height:  60,
         width: 200,

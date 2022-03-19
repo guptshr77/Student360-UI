@@ -1,15 +1,15 @@
+//libraries
 import React from "react";
-import { StyleSheet, Text, View, Button, ActivityIndicator, FlatList} from 'react-native';
-import { useNavigation } from '@react-navigation/native';
-import Colors from './config/Colors';
+import {Text, View, Button} from 'react-native';
+
+//Screens
 import globalStyles from './config/globalStyles';
 
 export default function App({route, navigation}){
+    //Variables
     const {userId} = route.params;
-    const [visible, setVisible] = React.useState(false);
-    const openMenu = () => setVisible(true);
-    const closeMenu = () => setVisible(false);
 
+    //renders a menu for navigation
     return (
         <View style={globalStyles.container3}>
           <Text style={globalStyles.title}>Main Menu</Text>

@@ -1,44 +1,44 @@
+//libraries
 import { NavigationContainer } from '@react-navigation/native';
-import React, {useState} from "react";
-import { StyleSheet, Text, View, SafeAreaView, Image, Platform} from 'react-native';
+import React from "react";
+import { StyleSheet, View, SafeAreaView, Image, Platform} from 'react-native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import globalStyles from './app/config/globalStyles';
 
-//navigation
-import Menu from './app/MenuScreen';
+  //navigation
+  import Menu from './app/MenuScreen';
 
-//Login
-import LoginScreen from './app/Login/LoginScreen';
-import Login2Screen from './app/Login/Login2Screen';
+  //Login
+  import LoginScreen from './app/Login/LoginScreen';
+  import Login2Screen from './app/Login/Login2Screen';
 
-//LunchMenu
-import LunchMenuScreen from './app/LunchMenu/LunchMenuScreen';
+  //LunchMenu
+  import LunchMenuScreen from './app/LunchMenu/LunchMenuScreen';
 
-//Calendar
-import CalendarDailyScreen from './app/Calendar/CalendarDailyScreen';
-import CalendarMonthlyScreen from './app/Calendar/CalendarMonthlyScreen'
+  //Calendar
+  import CalendarDailyScreen from './app/Calendar/CalendarDailyScreen';
+  import CalendarMonthlyScreen from './app/Calendar/CalendarMonthlyScreen'
 
-//Schedule
-import GetAllClasses from './app/Schedule/getAllClassesScreen';
-import AddClass from './app/Schedule/addClassScreen';
-import GetSchedule from './app/Schedule/getScheduleScreen';
+  //Schedule
+  import GetAllClasses from './app/Schedule/getAllClassesScreen';
+  import AddClass from './app/Schedule/addClassScreen';
+  import GetSchedule from './app/Schedule/getScheduleScreen';
 
-//Extracurricular Activities
-import ECActivitiesScreen from './app/Extracurricular/ECActivitiesScreen';
-import GetAllEC from './app/Extracurricular/GetAllEC';
-import AddActivity from './app/Extracurricular/AddActivityLoad';
+  //Extracurricular Activities
+  import ECActivitiesScreen from './app/Extracurricular/ECActivitiesScreen';
+  import GetAllEC from './app/Extracurricular/GetAllEC';
+  import AddActivity from './app/Extracurricular/AddActivityLoad';
 
-//Messages
-import InboxScreen from './app/Message/InboxScreen';
-import ComposeScreen from './app/Message/ComposeScreen';
-import SentScreen from './app/Message/SentScreen';
-import SendMessageLoadingScreen from './app/Message/MessageConfirmationScreen';
+  //Messages
+  import InboxScreen from './app/Message/InboxScreen';
+  import ComposeScreen from './app/Message/ComposeScreen';
+  import SentScreen from './app/Message/SentScreen';
+  import SendMessageLoadingScreen from './app/Message/MessageConfirmationScreen';
 
-const Stack = createNativeStackNavigator();
+  const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
-   <SafeAreaView style={styles.header}>
+  <SafeAreaView style={styles.header}>
       <View style={{
         flex: .1,
         flexDirection: "row",

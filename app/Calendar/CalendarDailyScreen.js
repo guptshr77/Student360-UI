@@ -1,20 +1,20 @@
+//libraries
 import React, {useEffect, useState} from 'react';
-import { StyleSheet, Text, View, SafeAreaView, Button, Image, FlatList} from 'react-native';
-// import { FlatList, View } from 'react-native-web';
-import Colors from '../config/Colors';
-import { useIsFocused } from "@react-navigation/native";
+import {Text, View, Button, FlatList} from 'react-native';
+
+//screens
 import enviornment from '../config/enviornment';
 import globalStyles from '../config/globalStyles';
 import Moment from 'moment';
 
-//Screens
-import AppColors from '../config/Colors';
 
 export default function App({route, navigation}) {
+  //variables (Inputs)
     let {userId, date} = route.params;
     let [isLoading, setLoading] = useState(true);
     let [data, setData] = useState([]);
 
+    //obtains data after sending URL
     const getCalendarDailyScreen = async () => {
       try{
         console.log(enviornment.restUrl + 'calendar?userid=' + userId + '&date=' + date);
@@ -32,6 +32,7 @@ export default function App({route, navigation}) {
       getCalendarDailyScreen();
     }, []);
 
+  //renders and formats data 
   return (
       <View style={globalStyles.container2}>
         <Text style = {globalStyles.title}>Daily Calendar</Text>
@@ -40,6 +41,7 @@ export default function App({route, navigation}) {
         <Text style = {globalStyles.H1}>{`\t`}{`\t`}{`\t`}{`\t`}{`\t`}{Moment(date).format('MM/DD/yyyy')}</Text>
         <Text>{`\n`}</Text>
         
+        //Classes
         <Text style={globalStyles.H1}>{`\t`}{`\t`}{`\t`}Classes:</Text>   
           <FlatList
             data={data.classes}
@@ -55,6 +57,7 @@ export default function App({route, navigation}) {
             )}
           />
           
+           //Events
           <Text style = {globalStyles.H1}>{`\t`}{`\t`}{`\t`}Events:</Text>
           <FlatList
             data={data.events}
@@ -70,6 +73,7 @@ export default function App({route, navigation}) {
             )}
           />
 
+          //Activities
           <Text style = {globalStyles.H1}>{`\t`}{`\t`}{`\t`}Extracurricular Activities</Text>
           <FlatList
             data={data.extracurriculars}
@@ -80,7 +84,7 @@ export default function App({route, navigation}) {
               <Text>{`\t`}Activity: {item.title}</Text>
               <Text>{`\t`}{`\t`}{item.descr}</Text>
               <Text>{`\t`}{`\t`}Location: {item.location}</Text>
-              <Text>{`\t`}{`\t`}Timing: {item.startTime} - {item.endTime}</Text>
+              <Text>{`\t`}{`\t`}Timing: {Moment('2022-03-17 ' +item.startTime).format('H:mm')} to {Moment('2022-03-17 ' + item.endTime).format('H:mm')}</Text>
               </View>
             )}
           />

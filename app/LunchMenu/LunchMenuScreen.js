@@ -1,15 +1,19 @@
+//libraries
 import React, {useEffect, useState} from 'react';
-import { StyleSheet, Image, Text, View, SafeAreaView, Button, ActivityIndicator, FlatList} from 'react-native'; 
-import Colors from '../config/Colors.js';
+import { Text, View, Button, ActivityIndicator, FlatList} from 'react-native'; 
+
+//Screens
 import globalStyles from '../config/globalStyles';
 import enviornment from '../config/enviornment';
 
 export default function App({route, navigation}) {
+  //variables
     const {userId, firstName, lastName} = route.params;
     const [isLoading, setLoading] = useState(true);
     const [data, setData] = useState([]);
     const [day,setDay] = useState("");
 
+    //sends URL to get the Lunch Menu
     const getLunchMenu = async () => {
       try{
         const response = await fetch(enviornment.restUrl + 'lunchmenu');
@@ -26,6 +30,7 @@ export default function App({route, navigation}) {
       getLunchMenu();
     }, []);
 
+    //renders the lunch menu by day of the week
   return (
     <View style={globalStyles.container1}>
       <Text style={globalStyles.title}>Lunch Menu</Text>

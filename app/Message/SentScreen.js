@@ -1,16 +1,19 @@
+//libraries
 import React, {useEffect, useState} from 'react';
 import { StyleSheet, Text, View, Button, ActivityIndicator, FlatList} from 'react-native';
-// import { FlatList } from 'react-native-web';
+
+//Screens
 import globalStyles from '../config/globalStyles';
 import enviornment from '../config/enviornment';
 import Colors from '../config/Colors';
 
 export default function App({route, navigation}) {
+  //variables
   const {userId}= route.params;
   const [isLoading, setLoading] = useState(true);
   const [data, setData] = useState([]);
-  let x = false
 
+  //Sends URL to View past messages that were sent
   const SentScreen = async () => {
       try{
         const response = await fetch(enviornment.restUrl+ 'getSentMessages?user_id=' + userId);
@@ -28,6 +31,7 @@ export default function App({route, navigation}) {
       SentScreen();
     }, []);
 
+    //Renders the messages that the user sent in the past
     return (
         <View style={[globalStyles.container2]}>
           <Text style={globalStyles.title}>Past Sent Messages:</Text>
@@ -75,6 +79,7 @@ export default function App({route, navigation}) {
       );
     }
   
+    //StyleSheet
     const styles = StyleSheet.create({
       content:{
         fontSize: 20,

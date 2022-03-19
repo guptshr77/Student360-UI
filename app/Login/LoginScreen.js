@@ -1,12 +1,16 @@
-import React, {useEffect, useState} from 'react';
-import { StyleSheet, Image, Text, View, Button, TextInput, SafeAreaView} from 'react-native';
+//libraries
+import React from 'react';
+import {Text, View, Button, TextInput} from 'react-native';
+
+//screens
 import globalStyles from '../config/globalStyles';
-import enviornment from '../config/enviornment';
 
 export default function App({navigation}) {
+  //variable that take in inputs
     const [username, onChangeUsername] = React.useState("zekepat");
     const [password, onChangePassword] = React.useState("lol");    
 
+    //renders a login screen so the user can input their information
     return (
     <View style={globalStyles.container1}>
 

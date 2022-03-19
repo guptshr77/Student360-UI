@@ -1,20 +1,21 @@
+//libraries
 import React, {useEffect, useState} from 'react';
-import { StyleSheet, Text, View, Button} from 'react-native';
-import Colors from '../config/Colors.js';
+import { Text, View, Button} from 'react-native';
+
+//screens
 import globalStyles from '../config/globalStyles';
 import enviornment from '../config/enviornment';
 
 export default function App({route, navigation}) {
+  //variables
     const {userId, actId} = route.params;
     const [isLoading, setLoading] = useState(true);
-    // const [data, setData] = useState("");
 
+    //call url to add the activity 
     const AddActivity = async () => {
         try{
           const response = await fetch(enviornment.restUrl + 'addactivity?userid=' + userId +'&act_id='+ actId);
-          // const json = await response.json();
           console.log(response);
-//          setData(response);
         } catch (error) {
           console.error(error);
         }finally{
@@ -25,7 +26,8 @@ export default function App({route, navigation}) {
       useEffect(() => {
         AddActivity();
       }, []);
-
+      
+    //Confirmation message
     return (
         <View style={globalStyles.container2}>
           <Text style={globalStyles.Message}>Activity Added</Text>

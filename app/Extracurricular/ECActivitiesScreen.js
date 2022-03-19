@@ -1,15 +1,18 @@
+//libraries
 import React, {useEffect, useState} from 'react';
-import { StyleSheet, Text, View, Button, ActivityIndicator, FlatList} from 'react-native';
+import { Text, View, Button, ActivityIndicator, FlatList} from 'react-native';
+
+//screens
 import globalStyles from '../config/globalStyles';
-import Colors from '../config/Colors';
 import enviornment from '../config/enviornment';
 
 export default function App({route, navigation}) {
+  //variables
   const {userId} = route.params;
   const [isLoading, setLoading] = useState(true);
   const [data, setData] = useState([]);
 
-
+  //sends URL to get all activities the user is a part of
   const getUserActivities = async () => {
     try{
       const response = await fetch(enviornment.restUrl + 'getuseractivity?userid='+ userId);
@@ -26,7 +29,7 @@ export default function App({route, navigation}) {
     getUserActivities();
   }, []);
 
-
+    //Renders all the activities that the user is a part of 
     return (
         <View style={globalStyles.container2}>
           <Text style={globalStyles.title}>Activity Screen</Text>
@@ -51,6 +54,7 @@ export default function App({route, navigation}) {
         />
       )}
 
+      //navigation
       <Button
         title="Add Activity" 
         onPress={() => navigation.navigate('GetAllEC',{

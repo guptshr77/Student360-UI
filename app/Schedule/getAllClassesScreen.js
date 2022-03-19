@@ -1,15 +1,19 @@
+//libraries
 import React, {useEffect, useState} from 'react';
 import { StyleSheet, Text, View, Button, ActivityIndicator, FlatList} from 'react-native';
-// import { FlatList } from 'react-native-web';
+
+//screens
 import Colors from '../config/Colors.js';
 import globalStyles from '../config/globalStyles';
 import enviornment from '../config/enviornment';
 
 export default function App({route, navigation}) {
+  //variables
     const {userId} = route.params;
     const [isLoading, setLoading] = useState(true);
     const [data, setData] = useState([]);
 
+    //Sends URL to get all the classes offered at the school
     const getAllClasses = async () => {
         try{
           const response = await fetch(enviornment.restUrl + 'getallclasses');
@@ -27,8 +31,9 @@ export default function App({route, navigation}) {
         getAllClasses();
       }, []);
 
+      //Renders Confirmation Message
     return (
-        <View style={styles.container}>
+        <View style={globalStyles.container2}>
           <Text style={globalStyles.title}>Add Classes</Text>
           <Text>{`\n`}</Text>
         {isLoading ? <ActivityIndicator/> : (
@@ -59,34 +64,3 @@ export default function App({route, navigation}) {
         </View>
       );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: Colors.c5,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  dayTitle:{
-    fontSize: 20,
-    fontWeight: 'bold',
-    color: Colors.c1
-  },
-  subTitles:{
-    fontSize: 15,
-    fontWeight: 'bold',
-    color: Colors.c1,
-  },
-  title: {
-    fontSize: 30,
-    fontWeight: 'bold',
-    color: Colors.c1,
-    textDecorationLine: 'underline'
-  },
-  items: {
-    fontSize: 15,
-    fontWeight: 'bold',
-    color: Colors.black
-  }
-});
-  

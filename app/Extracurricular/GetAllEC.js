@@ -1,15 +1,18 @@
+//libraries
 import React, {useEffect, useState} from 'react';
 import { StyleSheet, Text, View, Button, ActivityIndicator, FlatList} from 'react-native';
-// import { FlatList } from 'react-native-web';
+
+//screens
 import Colors from '../config/Colors.js';
-import globalStyles from '../config/globalStyles';
 import enviornment from '../config/enviornment';
 
 export default function App({route, navigation}) {
+  //variables
     const {userId} = route.params;
     const [isLoading, setLoading] = useState(true);
     const [data, setData] = useState([]);
 
+    //sends URL to get all activities offered that the user can choose from 
     const getAllActivities = async () => {
         try{
           const response = await fetch(enviornment.restUrl + 'getallactivities');
@@ -27,6 +30,7 @@ export default function App({route, navigation}) {
         getAllActivities();
       }, []);
 
+      //renders all the activity names with a ADD button that the user can click to add it 
     return (
         <View style={styles.container}>
           <Text>Activity Add Screen</Text>
@@ -60,6 +64,7 @@ export default function App({route, navigation}) {
       );
 }
 
+//StyleSheet for formatting
 const styles = StyleSheet.create({
   container: {
     flex: 1,
