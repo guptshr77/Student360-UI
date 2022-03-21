@@ -9,9 +9,9 @@ import globalStyles from '../config/globalStyles';
 
 
 
-export default function App({route, navigation}) {
+export default function App(props) {
   // variables (Inputs)
-    let {userId, date} = route.params;
+    let {userId, date} = props.route.params;
     let [isLoading, setLoading] = useState(true);
     let [data, setData] = useState([]);
 
@@ -31,7 +31,7 @@ export default function App({route, navigation}) {
     }
     useEffect(() => {
       getCalendarDailyScreen();
-    }, []);
+    }, [props]);
 
   // renders and formats data 
   return (
@@ -52,7 +52,7 @@ export default function App({route, navigation}) {
                 <Text>{`\n`}</Text>
                 <Text>{`\t`}Class: {item.classname}</Text>
                 <Text>{`\t`}{`\t`}Room: {item.roomnum}</Text>
-                <Text>{`\t`}{`\t`}Timing: {item.startTime} to {item.endTime}</Text>
+                <Text>{`\t`}{`\t`}Timing: {Moment('2022-03-17 ' +item.startTime).format('H:mm')} to {Moment('2022-03-17 ' + item.endTime).format('H:mm')}</Text>
               </View> 
               
             )}
@@ -67,7 +67,7 @@ export default function App({route, navigation}) {
               <View>
               <Text>{`\n`}</Text>
               <Text>{`\t`}Event: {item.title}</Text>
-              <Text>{`\t`}{`\t`}Time: {item.dateTime}</Text>
+              <Text>{`\t`}{`\t`}Time: {Moment(item.dateTime).format('H:mm')}</Text>
               <Text>{`\t`}{`\t`}{item.description}</Text>
 
               </View>
@@ -92,7 +92,7 @@ export default function App({route, navigation}) {
 
         <Button
           title="Main Menu" 
-          onPress={() => navigation.navigate('Menu',{
+          onPress={() => props.navigation.navigate('Menu',{
             userId: userId
           })}
         /> 

@@ -8,9 +8,9 @@ import globalStyles from '../config/globalStyles';
 import enviornment from '../config/enviornment';
 
 
-export default function App({route, navigation}) {
+export default function App(props) {
   //variables
-  const {userId}= route.params;
+  const {userId}= props.route.params;
   const [isLoading, setLoading] = useState(true);
   const [data, setData] = useState([]);
  
@@ -61,13 +61,13 @@ export default function App({route, navigation}) {
         )}
       <Button
         title="Add Class" 
-        onPress={() => navigation.navigate('GetAllClasses', {
+        onPress={() => props.navigation.navigate('GetAllClasses', {
           userId: userId
         }) }
       />
       <Button
         title="Go Back" 
-        onPress={() => navigation.goBack()}
+        onPress={() => props.navigation.goBack()}
       />                     
         </View>
       );

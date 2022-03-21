@@ -5,8 +5,9 @@ import {Text, View, Button, TextInput} from 'react-native';
 //screens
 import globalStyles from '../config/globalStyles';
 
-export default function App({navigation}) {
+export default function App({route, navigation}) {
   //variable that take in inputs
+    const {message} = route.params;
     const [username, onChangeUsername] = React.useState("zekepat");
     const [password, onChangePassword] = React.useState("lol");    
 
@@ -18,6 +19,9 @@ export default function App({navigation}) {
       <Text>{`\n`}</Text>
       <Text>{`\n`}</Text>
 
+      <Text style={globalStyles.errorMessage}>{message}</Text>
+      <Text>{`\n`}</Text>
+      
       <Text style={globalStyles.H2}>Username:</Text>
           <TextInput 
             style={[globalStyles.inputBox]}
@@ -50,3 +54,5 @@ export default function App({navigation}) {
     </View>
   );
 }
+
+

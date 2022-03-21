@@ -70,7 +70,7 @@ export default function App() {
     <NavigationContainer>
         <Stack.Navigator>
           {/* Login */}
-          <Stack.Screen name = "Login" component={LoginScreen} options={{ headerShown: false }}/>
+          <Stack.Screen name = "Login" component={LoginScreen} options={{ headerShown: false }} initialParams={{ message: '' }}/>          
           <Stack.Screen name = "Login2" component={Login2Screen} options={{ headerShown: false }}/>
           
           {/* LunchMenu */}

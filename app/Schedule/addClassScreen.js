@@ -6,9 +6,9 @@ import {Text, View, Button} from 'react-native';
 import globalStyles from '../config/globalStyles';
 import enviornment from '../config/enviornment';
 
-export default function App({route, navigation}) {
+export default function App(props) {
     //variables
-    const {userId, classId} = route.params;
+    const {userId, classId} = props.route.params;
     const [isLoading, setLoading] = useState(true);
 
     //sends URL to add a class to the user's schedule
@@ -25,7 +25,7 @@ export default function App({route, navigation}) {
 
       useEffect(() => {
         AddClass();
-      }, []);
+      }, [props]);
 
     //renders Confirmation Message
     return (
@@ -33,7 +33,7 @@ export default function App({route, navigation}) {
           <Text style={globalStyles.Message}>Class Added</Text>
       <Button
         title="Schedule Home" 
-        onPress={() => navigation.navigate('GetSchedule', {
+        onPress={() => props.navigation.navigate('GetSchedule', {
           userId: userId
         }) }
       />           

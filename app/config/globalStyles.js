@@ -71,5 +71,11 @@ export default StyleSheet.create({
     },
     inputLabel:{
       fontSize: 17
+    },
+    errorMessage: {
+      fontSize: 15,
+      color: AppColors.c2,
+      fontWeight: 'bold',
+      textDecorationLine: 'underline'      
     }
   });

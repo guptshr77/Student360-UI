@@ -6,11 +6,10 @@ import Moment from 'moment';
 //Screens
 import enviornment from '../config/enviornment';
 import globalStyles from '../config/globalStyles';
-import { render } from 'react-dom';
 
-export default function App({route, navigation}) {
+export default function App(props) {
   //variables
-    const {username, password} = route.params;
+    const {username, password} = props.route.params;
     const [isLoading, setLoading] = useState(true);
     const [data, setData] = useState([]);
 
@@ -22,6 +21,12 @@ export default function App({route, navigation}) {
         const json = await response.json();
         console.log(json);
         setData(json);
+        console.log(json.userId);
+        if(json.userId == '0'){
+          props.navigation.navigate('Login', {
+            message: 'Username or Password is incorrect. Please try again.'
+          })
+        }
       } catch (error) {
         console.error(error);
       }finally{
@@ -30,33 +35,26 @@ export default function App({route, navigation}) {
     }
     useEffect(() => {
       getLogin2();
-    }, []);
+      return function cleanup(){
+        API.unsubscribe();
+      }
+    }, [props]);
+
 
   //If correct, displays a welcome page 
-  // render ()
   return(
-    // if (data.userId != null){
+
       <View style={globalStyles.container1}>
       <Text style = {globalStyles.Message}>Welcome, {data.firstName} {data.lastName}!</Text> 
 
       <Button
         title="Continue" 
-        onPress={() => navigation.navigate('DailyCalendar', {
+        onPress={() => props.navigation.navigate('DailyCalendar', {
           userId: data.userId,
           date: Moment(new Date()).format('yyyy-MM-DD')
         })
           }
         /> 
       </View>
-    // } else {
-    //   <View style={globalStyles.container1}>
-    //   <Text style = {globalStyles.Message}>Incorrect username or password. Please go back and try again</Text> 
-
-    //   <Button
-    //     title="Go Back" 
-    //     onPress={() => navigation.goBack()}
-    //   />
-    // </View>
-    // }
   )
 }

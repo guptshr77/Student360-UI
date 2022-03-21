@@ -6,9 +6,9 @@ import { Text, View, Button} from 'react-native';
 import globalStyles from '../config/globalStyles';
 import enviornment from '../config/enviornment';
 
-export default function App({route, navigation}) {
+export default function App(props) {
   //variables
-    const {userId, actId} = route.params;
+    const {userId, actId} = props.route.params;
     const [isLoading, setLoading] = useState(true);
 
     //call url to add the activity 
@@ -25,7 +25,7 @@ export default function App({route, navigation}) {
 
       useEffect(() => {
         AddActivity();
-      }, []);
+      }, [props]);
       
     //Confirmation message
     return (
@@ -33,7 +33,7 @@ export default function App({route, navigation}) {
           <Text style={globalStyles.Message}>Activity Added</Text>
       <Button
         title="Extracurricular Home" 
-        onPress={() => navigation.navigate('ECActivities', {
+        onPress={() => props.navigation.navigate('ECActivities', {
           userId: userId
         }) }
       />           
