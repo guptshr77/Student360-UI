@@ -64,7 +64,7 @@ export default function App({route, navigation}) {
       );
 }
 
-//StyleSheet for formatting
+// StyleSheet for formatting
 const styles = StyleSheet.create({
   container: {
     flex: 1,

@@ -6,6 +6,7 @@ import Moment from 'moment';
 //Screens
 import enviornment from '../config/enviornment';
 import globalStyles from '../config/globalStyles';
+import { render } from 'react-dom';
 
 export default function App({route, navigation}) {
   //variables
@@ -32,8 +33,10 @@ export default function App({route, navigation}) {
     }, []);
 
   //If correct, displays a welcome page 
-  return (
-    <View style={globalStyles.container1}>
+  // render ()
+  return(
+    // if (data.userId != null){
+      <View style={globalStyles.container1}>
       <Text style = {globalStyles.Message}>Welcome, {data.firstName} {data.lastName}!</Text> 
 
       <Button
@@ -42,8 +45,18 @@ export default function App({route, navigation}) {
           userId: data.userId,
           date: Moment(new Date()).format('yyyy-MM-DD')
         })
-      }
-      /> 
-    </View>
-  );
+          }
+        /> 
+      </View>
+    // } else {
+    //   <View style={globalStyles.container1}>
+    //   <Text style = {globalStyles.Message}>Incorrect username or password. Please go back and try again</Text> 
+
+    //   <Button
+    //     title="Go Back" 
+    //     onPress={() => navigation.goBack()}
+    //   />
+    // </View>
+    // }
+  )
 }

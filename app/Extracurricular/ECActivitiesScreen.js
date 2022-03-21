@@ -54,7 +54,7 @@ export default function App({route, navigation}) {
         />
       )}
 
-      //navigation
+      {/* //navigation */}
       <Button
         title="Add Activity" 
         onPress={() => navigation.navigate('GetAllEC',{

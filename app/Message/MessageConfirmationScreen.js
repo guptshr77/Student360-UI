@@ -40,7 +40,7 @@ export default function App({route, navigation}) {
       );
     }
 
-    //StyleSheet
+    // StyleSheet
     const styles = StyleSheet.create({
         container: {
             flex: 1,

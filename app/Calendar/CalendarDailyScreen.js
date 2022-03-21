@@ -1,20 +1,21 @@
 //libraries
 import React, {useEffect, useState} from 'react';
 import {Text, View, Button, FlatList} from 'react-native';
+import Moment from 'moment';
 
 //screens
 import enviornment from '../config/enviornment';
 import globalStyles from '../config/globalStyles';
-import Moment from 'moment';
+
 
 
 export default function App({route, navigation}) {
-  //variables (Inputs)
+  // variables (Inputs)
     let {userId, date} = route.params;
     let [isLoading, setLoading] = useState(true);
     let [data, setData] = useState([]);
 
-    //obtains data after sending URL
+    // obtains data after sending URL
     const getCalendarDailyScreen = async () => {
       try{
         console.log(enviornment.restUrl + 'calendar?userid=' + userId + '&date=' + date);
@@ -32,7 +33,7 @@ export default function App({route, navigation}) {
       getCalendarDailyScreen();
     }, []);
 
-  //renders and formats data 
+  // renders and formats data 
   return (
       <View style={globalStyles.container2}>
         <Text style = {globalStyles.title}>Daily Calendar</Text>
@@ -41,7 +42,7 @@ export default function App({route, navigation}) {
         <Text style = {globalStyles.H1}>{`\t`}{`\t`}{`\t`}{`\t`}{`\t`}{Moment(date).format('MM/DD/yyyy')}</Text>
         <Text>{`\n`}</Text>
         
-        //Classes
+        {/* Classes */}
         <Text style={globalStyles.H1}>{`\t`}{`\t`}{`\t`}Classes:</Text>   
           <FlatList
             data={data.classes}
@@ -57,7 +58,7 @@ export default function App({route, navigation}) {
             )}
           />
           
-           //Events
+           {/* //Events */}
           <Text style = {globalStyles.H1}>{`\t`}{`\t`}{`\t`}Events:</Text>
           <FlatList
             data={data.events}
@@ -73,7 +74,7 @@ export default function App({route, navigation}) {
             )}
           />
 
-          //Activities
+          {/* //Activities */}
           <Text style = {globalStyles.H1}>{`\t`}{`\t`}{`\t`}Extracurricular Activities</Text>
           <FlatList
             data={data.extracurriculars}

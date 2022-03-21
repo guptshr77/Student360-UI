@@ -1,6 +1,6 @@
 //libraries
 import React, { Component } from 'react';
-import {View, Text} from 'react-native';
+import {View, Text, Button} from 'react-native';
 import CalendarPicker from 'react-native-calendar-picker';
 import Moment from 'moment';
 
@@ -42,6 +42,11 @@ export default class CalendarScreen extends Component {
         <CalendarPicker
           onDateChange={this.onDateChange}
         />
+
+       <Button
+         title="Go Back" 
+         onPress={() => this.props.navigation.goBack()}
+       />
       </View>
     );
   }

@@ -30,7 +30,7 @@ export default function App({route, navigation}) {
       getLunchMenu();
     }, []);
 
-    //renders the lunch menu by day of the week
+    // renders the lunch menu by day of the week
   return (
     <View style={globalStyles.container1}>
       <Text style={globalStyles.title}>Lunch Menu</Text>
