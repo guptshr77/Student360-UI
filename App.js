@@ -34,6 +34,9 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
   import SentScreen from './app/Message/SentScreen';
   import SendMessageLoadingScreen from './app/Message/MessageConfirmationScreen';
 
+  //Social Media
+  import SocialMedia from './app/SocialMedia/SocialMedia';
+
   const Stack = createNativeStackNavigator();
 
 export default function App() {
@@ -98,6 +101,10 @@ export default function App() {
           
           {/* Menu*/}
           <Stack.Screen name = "Menu" component={Menu} options={{ headerShown: false }}/>
+
+          {/* Social Media*/}
+          <Stack.Screen name = "SocialMedia" component={SocialMedia} options={{ headerShown: false }}/>
+          
         </Stack.Navigator>
       </NavigationContainer>
       </View>
