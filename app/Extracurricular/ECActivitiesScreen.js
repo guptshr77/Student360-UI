@@ -6,9 +6,9 @@ import { Text, View, Button, ActivityIndicator, FlatList} from 'react-native';
 import globalStyles from '../config/globalStyles';
 import enviornment from '../config/enviornment';
 
-export default function App({route, navigation}) {
+export default function App(props) {
   //variables
-  const {userId} = route.params;
+  const {userId} = props.route.params;
   const [isLoading, setLoading] = useState(true);
   const [data, setData] = useState([]);
 
@@ -27,7 +27,7 @@ export default function App({route, navigation}) {
   }
   useEffect(() => {
     getUserActivities();
-  }, []);
+  }, [props]);
 
     //Renders all the activities that the user is a part of 
     return (
@@ -42,11 +42,11 @@ export default function App({route, navigation}) {
           renderItem = {({item}) => ( 
             <View>
 
-              <Text style={globalStyles.H1}>{item.title}</Text>
+              <Text style={globalStyles.H2}>{item.title}</Text>
 
               <Text>{`\n`}</Text>
-              <Text style={globalStyles.H2}>{`\t`}Description:</Text>
-              <Text style = {globalStyles.content}>{`\t`}{`\t`}{item.descr}</Text>
+              {/* <Text style={globalStyles.H2}>{`\t`}Description:</Text> */}
+              <Text style = {globalStyles.content2}>{item.descr}</Text>
 
               <Text>{`\n`}</Text>
             </View>
@@ -57,13 +57,13 @@ export default function App({route, navigation}) {
       {/* //navigation */}
       <Button
         title="Add Activity" 
-        onPress={() => navigation.navigate('GetAllEC',{
+        onPress={() => props.navigation.navigate('GetAllEC',{
           userId: userId
         })}
       />
       <Button
         title="Go Back" 
-        onPress={() => navigation.goBack()}
+        onPress={() => props.navigation.goBack()}
       />           
         </View>
       );

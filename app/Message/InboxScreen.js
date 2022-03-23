@@ -1,10 +1,10 @@
 //libraries
 import React, {useEffect, useState} from 'react';
 import { StyleSheet, Text, View, Button, ActivityIndicator, FlatList} from 'react-native';
+import Moment from 'moment';
 
 //screens
 import globalStyles from '../config/globalStyles';
-import Colors from '../config/Colors';
 import enviornment from '../config/enviornment';
 
 export default function App({route, navigation}) {
@@ -18,7 +18,6 @@ export default function App({route, navigation}) {
       try{
         const response = await fetch(enviornment.restUrl + 'getMessage?user_id='+ userId);
         const json = await response.json();
-        console.log(json);
         setData(json);
       } catch (error) {
         console.error(error);
@@ -34,7 +33,7 @@ export default function App({route, navigation}) {
       //renders all the messages that the user received
     return (
         <View style={globalStyles.container2}>
-          <Text style={globalStyles.title}>Message Screen</Text>
+          <Text style={globalStyles.title}>Inbox</Text>
           <Text>{`\n`}</Text>
 
           {isLoading ? <ActivityIndicator/> : (
@@ -42,33 +41,29 @@ export default function App({route, navigation}) {
             data={data}
             keyExtractor = {({ msgId }, index) => msgId}
             renderItem = {({item}) => (
-              <View>
+              <View style={{ paddingLeft:5 }}>
                 <View style={globalStyles.MessageFormat}>
-                  <Text style={globalStyles.H2}>From: </Text>
-                  <Text style={styles.content}>{item.user.firstName} {item.user.lastName}</Text>
+                  <Text style={globalStyles.H3}>From: </Text>
+                  <Text style={globalStyles.content2}>{item.user.firstName} {item.user.lastName}</Text>
                 </View>
 
                 <View style={globalStyles.MessageFormat}>
-                  <Text style={globalStyles.H2}>Subject: </Text>
-                  <Text style={styles.content}>{item.subject}</Text>
+                  <Text style={globalStyles.H3}>Subject: </Text>
+                  <Text style={globalStyles.content2}>{item.subject}</Text>
                 </View>
 
-                  <Text style={globalStyles.H2}>Message:</Text>
-                  <Text style={styles.content}>{`\t`}{item.msgContent}</Text>
+                  <Text style={globalStyles.H3}>Message:</Text>
+                  <Text style={globalStyles.content2}>{item.msgContent}</Text>
                   
                   <Text style={styles.enter}>{`\n`}</Text>
-                  <Text>{item.datetime} </Text>
-                  <Text>...........................................................................................</Text>
+                  <Text>{Moment(item.datetime).format('MM/DD/yyyy')}</Text>
+                  <Text>.....................................................................................................</Text>
               </View>
             )}
             />
         )}
-      <Button  
-        title="Go Back" 
-        onPress={() => navigation.goBack()}
-      /> 
       <Button
-        title="Send Message" 
+        title="Compose" 
         onPress={() => navigation.navigate('MessageSend'
         ,{
           userId1: userId 
@@ -76,23 +71,23 @@ export default function App({route, navigation}) {
         )}
       />
       <Button
-        title="Sent" 
+        title="Sent Messages" 
         onPress={() => navigation.navigate('ViewSentMessages'
         ,{
            userId: userId 
         }
         )}
       />            
+      <Button  
+        title="Go Back" 
+        onPress={() => navigation.goBack()}
+      /> 
         </View>
       );
     }
   
     //StyleSheet
     const styles = StyleSheet.create({
-      content:{
-        fontSize: 20,
-        color: Colors.black
-      },
       enter: {
         fontSize: 5
       }

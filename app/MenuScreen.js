@@ -21,7 +21,7 @@ export default function App({route, navigation}){
         /> 
 
         <Button
-          title="Extracurricular" 
+          title="Activity" 
           onPress={() => navigation.navigate('ECActivities', {
               userId: userId
           })}

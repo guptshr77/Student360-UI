@@ -29,19 +29,23 @@ export default StyleSheet.create({
       fontSize: 30,
       fontWeight: 'bold',
       color: AppColors.c1,
-      textDecorationLine: 'underline'
     },
     H1: {
       fontSize: 20,
       textAlign: 'left',
-      textDecorationLine: 'underline',
       alignSelf: 'baseline',
       color: AppColors.c1,
       fontWeight: 'bold'
     },
     H2:{
       fontSize: 20,
-      color: AppColors.c2
+      color: AppColors.c2,
+      fontWeight: 'bold'
+    },
+    H3:{
+      fontSize: 17,
+      color: AppColors.c2,
+      fontWeight: 'bold'
     },
     //Special Tools
     inputBox: {
@@ -62,6 +66,10 @@ export default StyleSheet.create({
     content: {
       fontSize: 15,
       fontWeight: 'bold',
+      color: AppColors.black
+    },
+    content2: {
+      fontSize: 17,
       color: AppColors.black
     },
     button: {

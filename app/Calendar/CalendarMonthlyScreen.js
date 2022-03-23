@@ -37,16 +37,24 @@ export default class CalendarScreen extends Component {
   render() {
     return (
       <View style={globalStyles.container2}>
-        <Text style={globalStyles.title}>Monthly Calendar</Text>
-        <Text>{`\n`}</Text>
-        <CalendarPicker
-          onDateChange={this.onDateChange}
-        />
 
-       <Button
-         title="Go Back" 
-         onPress={() => this.props.navigation.goBack()}
-       />
+        <View style={{ flex: .2, flexDirection: "row", justifyContent:"center", alignItems:"center"}}>
+          <Text style={globalStyles.title}>Monthly Calendar</Text>
+        </View>
+
+        <View style={{ flex: .6, flexDirection: "row", justifyContent:"center"}}>
+          <CalendarPicker
+            onDateChange={this.onDateChange} 
+          />
+        </View>
+
+        <View style={{ flex: .2, flexDirection: "row", justifyContent:"center", alignItems:"center"}}>
+          <Button
+            title="Go Back" 
+            onPress={() => this.props.navigation.goBack()}
+          />
+        </View>
+
       </View>
     );
   }

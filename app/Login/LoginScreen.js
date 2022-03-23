@@ -36,6 +36,7 @@ export default function App({route, navigation}) {
             onChangeText = {onChangePassword}
             value = {password}
             keyboardType = "default"
+            secureTextEntry={true}
           />
 
 

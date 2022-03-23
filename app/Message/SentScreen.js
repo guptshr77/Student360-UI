@@ -1,6 +1,7 @@
 //libraries
 import React, {useEffect, useState} from 'react';
 import { StyleSheet, Text, View, Button, ActivityIndicator, FlatList} from 'react-native';
+import Moment from 'moment';
 
 //Screens
 import globalStyles from '../config/globalStyles';
@@ -42,39 +43,40 @@ export default function App({route, navigation}) {
             data={data}
             keyExtractor = {({ msgId }, index) => msgId}
             renderItem = {({item}) => (
-              <View>
+              <View style={{ paddingLeft:5 }}>
                 <View style={globalStyles.MessageFormat}>
-                  <Text style={globalStyles.H2}>From: </Text>
-                  <Text style={styles.content}>{item.user.firstName} {item.user.lastName}</Text>
+                  <Text style={globalStyles.H3}>To: </Text>
+                  <Text style={globalStyles.content2}>{item.user.firstName} {item.user.lastName}</Text>
                 </View>
 
                 <View style={globalStyles.MessageFormat}>
-                  <Text style={globalStyles.H2}>Subject: </Text>
-                  <Text style={styles.content}>{item.subject}</Text>
+                  <Text style={globalStyles.H3}>Subject: </Text>
+                  <Text style={globalStyles.content2}>{item.subject}</Text>
                 </View>
 
-                  <Text style={globalStyles.H2}>Message:</Text>
-                  <Text style={styles.content}>{`\t`}{item.msgContent}</Text>
-                  
-                  <Text style={styles.enter}>{`\n`}</Text>
-                  <Text>{item.datetime} </Text>
-                  <Text>...........................................................................................</Text>
+                <Text style={globalStyles.H3}>Message:</Text>
+                <Text style={globalStyles.content2}>{item.msgContent}</Text>
+                
+                <Text style={styles.enter}>{`\n`}</Text>
+                <Text>{Moment(item.datetime).format('MM/DD/yyyy')}</Text>
+                <Text>.....................................................................................................</Text>
               </View>
+
             )}
             />
         )}
       <Button
-        title="Go Back" 
-        onPress={() => navigation.goBack()}
-      /> 
-      <Button
-        title="SendMessage" 
+        title="Compose" 
         onPress={() => navigation.navigate('MessageSend'
         ,{
-           userid: userid 
+           userId: userId 
         }
         )}
       />           
+      <Button
+        title="Go Back" 
+        onPress={() => navigation.goBack()}
+      /> 
         </View>
       );
     }

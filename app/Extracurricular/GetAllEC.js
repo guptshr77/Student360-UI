@@ -5,6 +5,7 @@ import { StyleSheet, Text, View, Button, ActivityIndicator, FlatList} from 'reac
 //screens
 import Colors from '../config/Colors.js';
 import enviornment from '../config/enviornment';
+import globalStyles from '../config/globalStyles';
 
 export default function App({route, navigation}) {
   //variables
@@ -32,9 +33,10 @@ export default function App({route, navigation}) {
 
       //renders all the activity names with a ADD button that the user can click to add it 
     return (
-        <View style={styles.container}>
-          <Text>Activity Add Screen</Text>
-      
+        <View style={globalStyles.container2}>
+          <Text style={globalStyles.title}>Activity Add Screen</Text>
+          <Text>{`\n`}</Text>
+          
         {isLoading ? <ActivityIndicator/> : (
             <FlatList
             data={data}
@@ -42,7 +44,7 @@ export default function App({route, navigation}) {
             renderItem = {({item}) => (
               <View>
 
-              <Text style={styles.dayTitle}>{item.title}</Text>
+              <Text style={globalStyles.H2}>{item.title}</Text>
 
               <Button
                 title="Add"
@@ -62,36 +64,4 @@ export default function App({route, navigation}) {
       />           
         </View>
       );
-}
-
-// StyleSheet for formatting
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: Colors.c5,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  dayTitle:{
-    fontSize: 20,
-    fontWeight: 'bold',
-    color: Colors.c1
-  },
-  subTitles:{
-    fontSize: 15,
-    fontWeight: 'bold',
-    color: Colors.c1,
-  },
-  title: {
-    fontSize: 30,
-    fontWeight: 'bold',
-    color: Colors.c1,
-    textDecorationLine: 'underline'
-  },
-  items: {
-    fontSize: 15,
-    fontWeight: 'bold',
-    color: Colors.black
-  }
-});
-  
+}  

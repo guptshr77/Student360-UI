@@ -15,7 +15,7 @@ export default function App(props) {
     const AddActivity = async () => {
         try{
           const response = await fetch(enviornment.restUrl + 'addactivity?userid=' + userId +'&act_id='+ actId);
-          console.log(response);
+          console.log(JSON.stringify(response));
         } catch (error) {
           console.error(error);
         }finally{

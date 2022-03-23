@@ -41,7 +41,7 @@ export default function App({route, navigation}) {
             data={data}
             keyExtractor = {({ classId }, index) => classId}
             renderItem = {({item}) => (
-              <View>
+              <View style={{ justifyContent:"center" }}>
 
               <Text style={globalStyles.H2}>{item.classname}</Text>
 

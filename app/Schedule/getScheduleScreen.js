@@ -47,13 +47,9 @@ export default function App(props) {
               <View>
 
               <Text>{`\n`}</Text>
-              <Text style={globalStyles.H1}>{`\t`}Class:</Text>
-              <Text style={globalStyles.content}>{`\t`}{`\t`}{item.classname}</Text>
-              <Text style={globalStyles.H1}>{`\t`}Room:</Text>
-              <Text style={globalStyles.content}>{`\t`}{`\t`}{item.roomnum}</Text>
-              <Text style={globalStyles.H1}>{`\t`}Timing:</Text>
-              <Text style={globalStyles.content}>{`\t`}{`\t`}{Moment('2022-03-17 ' +item.startTime).format('H:mm')} to {Moment('2022-03-17 ' + item.endTime).format('H:mm')}</Text>
-              <Text>{`\n`}</Text>
+              <Text style={globalStyles.content}>{item.classname}</Text>
+              <Text style={globalStyles.content2}>Room: {item.roomnum}</Text>
+              <Text style={globalStyles.content2}>Timing: {Moment('2022-03-17 ' +item.startTime).format('H:mm')} to {Moment('2022-03-17 ' + item.endTime).format('H:mm')}</Text>
               </View>
                 
             )}

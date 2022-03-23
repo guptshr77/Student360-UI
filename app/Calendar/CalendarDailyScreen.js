@@ -36,66 +36,80 @@ export default function App(props) {
   // renders and formats data 
   return (
       <View style={globalStyles.container2}>
-        <Text style = {globalStyles.title}>Daily Calendar</Text>
-        <Text>{`\n`}</Text>
-
-        <Text style = {globalStyles.H1}>{`\t`}{`\t`}{`\t`}{`\t`}{`\t`}{Moment(date).format('MM/DD/yyyy')}</Text>
-        <Text>{`\n`}</Text>
         
-        {/* Classes */}
-        <Text style={globalStyles.H1}>{`\t`}{`\t`}{`\t`}Classes:</Text>   
+        <View style={{ flex: .1, flexDirection: "column" }}>
+
+          <View style={{ flex: .5, flexDirection: "row", justifyContent:"center" }}>
+            <Text style = {globalStyles.title}>Daily Calendar</Text>
+          </View>
+
+          <View style={{ flex: .5, flexDirection: "row", justifyContent:"center" }}>
+            <Text style = {globalStyles.H1}>{Moment(date).format('MM/DD/yyyy')}</Text>
+          </View>
+
+        </View>
+
+        <View style={{ flex: .3, flexDirection: "row", justifyContent:"center"}}>
+          {/* Classes */}
+          <Text style={globalStyles.H2}>Classes:</Text><Text>{`\t`}</Text>
+            <FlatList
+              data={data.classes}
+              keyExtractor = {({ classId }, index) => classId}
+              renderItem = {({item}) => (
+                <View>
+                  <Text>{`\n`}</Text>
+                  <Text style={globalStyles.content}>{item.classname}</Text>
+                  <Text style={globalStyles.content2}>Room: {item.roomnum}</Text>
+                  <Text style={globalStyles.content2}>Timing: {Moment('2022-03-17 ' +item.startTime).format('H:mm')} to {Moment('2022-03-17 ' + item.endTime).format('H:mm')}</Text>
+                </View> 
+                
+              )}
+            />
+          </View>
+          
+          <View style={{ flex: .2, flexDirection: "row", justifyContent:"center" }}>
+           {/* //Events */}
+          <Text style = {globalStyles.H2}>Events:</Text><Text>{`\t`}</Text>
           <FlatList
-            data={data.classes}
-            keyExtractor = {({ classId }, index) => classId}
+            data={data.events}
+            keyExtractor = {({ eventId }, index) => eventId}
             renderItem = {({item}) => (
               <View>
                 <Text>{`\n`}</Text>
-                <Text>{`\t`}Class: {item.classname}</Text>
-                <Text>{`\t`}{`\t`}Room: {item.roomnum}</Text>
-                <Text>{`\t`}{`\t`}Timing: {Moment('2022-03-17 ' +item.startTime).format('H:mm')} to {Moment('2022-03-17 ' + item.endTime).format('H:mm')}</Text>
-              </View> 
-              
-            )}
-          />
-          
-           {/* //Events */}
-          <Text style = {globalStyles.H1}>{`\t`}{`\t`}{`\t`}Events:</Text>
-          <FlatList
-            data={data.events}
-            keyExtractor = {({ event_id }, index) => event_id}
-            renderItem = {({item}) => (
-              <View>
-              <Text>{`\n`}</Text>
-              <Text>{`\t`}Event: {item.title}</Text>
-              <Text>{`\t`}{`\t`}Time: {Moment(item.dateTime).format('H:mm')}</Text>
-              <Text>{`\t`}{`\t`}{item.description}</Text>
-
+                <Text style={globalStyles.content}>{item.title}</Text>
+                <Text style={globalStyles.content2}>Time: {Moment(item.dateTime).format('H:mm')}</Text>
+                <Text style={globalStyles.content2}>{item.description}</Text>
               </View>
             )}
           />
+          </View>
 
-          {/* //Activities */}
-          <Text style = {globalStyles.H1}>{`\t`}{`\t`}{`\t`}Extracurricular Activities</Text>
-          <FlatList
-            data={data.extracurriculars}
-            keyExtractor = {({ actId }, index) => actId}
-            renderItem = {({item}) => (
-              <View>
-              <Text>{`\n`}</Text>
-              <Text>{`\t`}Activity: {item.title}</Text>
-              <Text>{`\t`}{`\t`}{item.descr}</Text>
-              <Text>{`\t`}{`\t`}Location: {item.location}</Text>
-              <Text>{`\t`}{`\t`}Timing: {Moment('2022-03-17 ' +item.startTime).format('H:mm')} to {Moment('2022-03-17 ' + item.endTime).format('H:mm')}</Text>
-              </View>
-            )}
-          />
+          <View style={{ flex: .3, flexDirection: "row", justifyContent:"center" }}>
+            {/* //Activities */}
+            <Text style = {globalStyles.H2}>Activities</Text><Text>{`\t`}</Text>
+            <FlatList
+              data={data.extracurriculars}
+              keyExtractor = {({ actId }, index) => actId}
+              renderItem = {({item}) => (
+                <View>
+                  <Text>{`\n`}</Text>
+                  <Text style={globalStyles.content}>{item.title}</Text>
+                  <Text style={globalStyles.content2}>{item.descr}</Text>
+                  <Text style={globalStyles.content2}>Location: {item.location}</Text>
+                  <Text style={globalStyles.content2}>Timing: {Moment('2022-03-17 ' + item.startTime).format('H:mm')} to {Moment('2022-03-17 ' + item.endTime).format('H:mm')}</Text>
+                </View>
+              )}
+            />
+          </View>
 
-        <Button
-          title="Main Menu" 
-          onPress={() => props.navigation.navigate('Menu',{
-            userId: userId
-          })}
-        /> 
+          <View style={{ flex: .1, flexDirection: "row" }}>
+            <Button
+              title="Main Menu" 
+              onPress={() => props.navigation.navigate('Menu',{
+                userId: userId
+              })}
+            /> 
+          </View>
       </View>
   );
 }

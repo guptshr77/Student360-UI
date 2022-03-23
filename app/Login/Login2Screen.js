@@ -19,9 +19,9 @@ export default function App(props) {
         console.log(enviornment.restUrl + 'login?username=' + username + '&password='+ password);
         const response = await fetch(enviornment.restUrl + 'login?username=' + username + '&password='+ password);
         const json = await response.json();
-        console.log(json);
         setData(json);
         console.log(json.userId);
+        // checks if login was successful. IF not sends back to Login screen with this message
         if(json.userId == '0'){
           props.navigation.navigate('Login', {
             message: 'Username or Password is incorrect. Please try again.'
@@ -35,9 +35,7 @@ export default function App(props) {
     }
     useEffect(() => {
       getLogin2();
-      return function cleanup(){
-        API.unsubscribe();
-      }
+
     }, [props]);
 
 

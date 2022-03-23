@@ -15,7 +15,7 @@ export default function App(props) {
     const AddClass = async () => {
         try{
           const response = await fetch(enviornment.restUrl + 'addschedule?user_id=' + userId + '&class_id=' + classId);
-          console.log(response);
+          console.log(JSON.stringify(response));
         } catch (error) {
           console.error(error);
         }finally{

@@ -33,30 +33,41 @@ export default function App({route, navigation}) {
     // renders the lunch menu by day of the week
   return (
     <View style={globalStyles.container1}>
-      <Text style={globalStyles.title}>Lunch Menu</Text>
+      <View style={{ flex: .1, flexDirection: "column" }}>
+        <Text style={globalStyles.title}>Lunch Menu</Text>
+      </View>
 
-      {isLoading ? <ActivityIndicator/> : (
-        <FlatList
-          data={data}
-          keyExtractor = {({ day }, index) => day}
-          renderItem = {({item}) => (
-            <View>
+      <View style={{ flex: .9, flexDirection: "row" }}>
+        {isLoading ? <ActivityIndicator/> : (
+          <FlatList
+            data={data}
+            keyExtractor = {({ day }, index) => day}
+            renderItem = {({item}) => (
+              <View style={{ flex: 1, flexDirection: "column" }}>
+                <Text style={globalStyles.H1}>{item.day}</Text>
+                <Text>{`\n`}</Text>
 
-              <Text style={globalStyles.H1}>{item.day}</Text>
+                <View style={{ flex: 1, flexDirection: "row" }}>
+                  <Text style={globalStyles.content}>{`\t`}Hot Lunch: </Text>
+                  <Text style={globalStyles.content2}>{item.foodItems}</Text>
+                </View>
 
-              <Text>{`\n`}</Text>
-              <Text style={globalStyles.H2}>{`\t`}Hot Lunch:</Text>
-              <Text style={globalStyles.content}>{`\t`}{`\t`}{item.foodItems}</Text>
-              <Text style={globalStyles.H2}>{`\t`}Grab N Go:</Text>
-              <Text style={globalStyles.content}>{`\t`}{`\t`}{item.grabNGo}</Text>
-              <Text style={globalStyles.H2}>{`\t`}Milk:</Text>
-              <Text style={globalStyles.content}>{`\t`}{`\t`}{item.milks}</Text>
+                <View style={{ flex: 1, flexDirection: "row" }}>
+                  <Text style={globalStyles.content}>{`\t`}Grab N Go:</Text>
+                  <Text style={globalStyles.content2}>{item.grabNGo}</Text>
+                </View>
 
-              <Text>{`\n`}</Text>
-            </View>
-          )}
-        />
-      )}
+                <View style={{ flex: 1, flexDirection: "row" }}>
+                  <Text style={globalStyles.content}>{`\t`}Milk:</Text>
+                  <Text style={globalStyles.content2}>{item.milks}</Text>
+                </View>
+
+                <Text>{`\n`}</Text>
+              </View>
+            )}
+          />
+        )}
+      </View>
 
       <Button
         title="Go Back" 
