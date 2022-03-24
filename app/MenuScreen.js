@@ -24,15 +24,42 @@ export default function App({route, navigation}){
               /> 
             </TouchableHighlight>
 
-            <TouchableHighlight onPress={() => navigation.navigate('ECActivities', {userId: userId})}>
+            <TouchableHighlight onPress={() => navigation.navigate('SocialMedia', {userId: userId})}>           
+            <Image  
+                style={styles.imagestyle}
+                source={require('./assets/school_news_icon.png')}              
+            /> 
+          </TouchableHighlight>
+          
+          </View>
+
+          <View style={{ flex: .3, flexDirection: "row", justifyContent:"center" }}>
+
+          <TouchableHighlight onPress={() => navigation.navigate('InboxScreen', {userId: userId})}>            
+            <Image
+                style={styles.imagestyle}
+                source={require('./assets/message_inbox_icon.png')}               
+            /> 
+          </TouchableHighlight>
+
+          <TouchableHighlight onPress={() => navigation.navigate('ECActivities', {userId: userId})}>
               <Image
                 style={styles.imagestyle}
                 source={require('./assets/club_icon.png')}
               />
             </TouchableHighlight>
+
           </View>
 
+
+
           <View style={{ flex: .3, flexDirection: "row", justifyContent:"center" }}>
+          <TouchableHighlight onPress={() => navigation.navigate('LunchMenu', {userId: userId})}>
+            <Image
+                style={styles.imagestyle}
+                source={require('./assets/lunch_menu_icon.png')}               
+            /> 
+          </TouchableHighlight>
 
           <TouchableHighlight onPress={() => navigation.navigate('MonthlyCalendar', {userId: userId})}>            
             <Image
@@ -41,30 +68,6 @@ export default function App({route, navigation}){
             />
           </TouchableHighlight>
 
-          <TouchableHighlight onPress={() => navigation.navigate('LunchMenu', {userId: userId})}>
-            <Image
-                style={styles.imagestyle}
-                source={require('./assets/lunch_menu_icon.png')}               
-            /> 
-          </TouchableHighlight>
-          </View>
-
-
-
-          <View style={{ flex: .3, flexDirection: "row", justifyContent:"center" }}>
-          <TouchableHighlight onPress={() => navigation.navigate('InboxScreen', {userId: userId})}>            
-            <Image
-                style={styles.imagestyle}
-                source={require('./assets/message_inbox_icon.png')}               
-            /> 
-          </TouchableHighlight>
-
-          <TouchableHighlight onPress={() => navigation.navigate('SocialMedia', {userId: userId})}>           
-            <Image  
-                style={styles.imagestyle}
-                source={require('./assets/school_news_icon.png')}              
-            /> 
-          </TouchableHighlight>
           </View>
 
         </View>
@@ -74,7 +77,7 @@ export default function App({route, navigation}){
     //StyleSheet
     const styles = StyleSheet.create({
       imagestyle: {
-        width: 200,
-        height: 200
-      }
+        width: 150,
+        height: 150
+      },
     });
