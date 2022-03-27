@@ -1,15 +1,23 @@
 //libraries
-import React from 'react';
+import React, {useEffect} from 'react';
 import {Text, View, Button, TextInput} from 'react-native';
 
 //screens
 import globalStyles from '../config/globalStyles';
 
-export default function App({route, navigation}) {
+export default function App(props) {
   //variable that take in inputs
-    const {message} = route.params;
-    const [username, onChangeUsername] = React.useState("zekepat");
-    const [password, onChangePassword] = React.useState("lol");    
+    const {message} = props.route.params;
+    const [username, onChangeUsername] = React.useState("");
+    const [password, onChangePassword] = React.useState("");    
+
+    const login = async () => {
+        console.log('login screen');
+    }
+    useEffect(() => {
+      login();
+
+    }, [props]);
 
     //renders a login screen so the user can input their information
     return (
@@ -43,7 +51,7 @@ export default function App({route, navigation}) {
       <Text>
           <Button
             onPress={() => {
-                navigation.navigate('Login2', {
+                props.navigation.navigate('Login2', {
                     username: username,
                     password: password
                 });

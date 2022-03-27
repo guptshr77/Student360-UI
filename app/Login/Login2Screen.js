@@ -23,6 +23,7 @@ export default function App(props) {
         console.log(json.userId);
         // checks if login was successful. IF not sends back to Login screen with this message
         if(json.userId == '0'){
+          console.log(json.userId);
           props.navigation.navigate('Login', {
             message: 'Username or Password is incorrect. Please try again.'
           })
