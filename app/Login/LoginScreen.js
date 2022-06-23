@@ -8,10 +8,11 @@ export default function App(props) {
   //variable that take in inputs
     const {message} = props.route.params;
     const {usernameout, passwordout} = props.route.params;
-    const [username, onChangeUsername] = React.useState("zekepat");
-    const [password, onChangePassword] = React.useState("lol");    
+    const [username, onChangeUsername] = React.useState("");
+    const [password, onChangePassword] = React.useState("");    
 
     const login = async () => {
+
         console.log('login screen');
     }
     useEffect(() => {

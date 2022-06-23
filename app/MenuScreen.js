@@ -9,6 +9,7 @@ import globalStyles from './config/globalStyles';
 export default function App(props){
     //Variables
     const {userId} = props.route.params;
+    
 
     //renders a menu for navigation
     return (
