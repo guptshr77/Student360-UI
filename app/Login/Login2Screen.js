@@ -1,6 +1,6 @@
 //libraries
 import React, {useEffect, useState} from 'react';
-import {Text, View, Button} from 'react-native';
+import {Text, View, TouchableOpacity} from 'react-native';
 import Moment from 'moment';
 
 //Screens
@@ -45,15 +45,17 @@ export default function App(props) {
 
       <View style={globalStyles.container1}>
       <Text style = {globalStyles.Message}>Welcome, {data.firstName} {data.lastName}!</Text> 
-
-      <Button
-        title="Continue" 
+      <Text>{`\n`}</Text>
+      <TouchableOpacity
+        style = {globalStyles.button}
         onPress={() => props.navigation.navigate('DailyCalendar', {
           userId: data.userId,
           date: Moment(new Date()).format('yyyy-MM-DD')
         })
           }
-        /> 
+      >
+        <Text style={globalStyles.buttonFontBlue}>Continue</Text>
+      </TouchableOpacity> 
       </View>
   )
 }

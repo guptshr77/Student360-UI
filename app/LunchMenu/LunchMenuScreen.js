@@ -1,14 +1,14 @@
 //libraries
 import React, {useEffect, useState} from 'react';
-import { Text, View, Button, ActivityIndicator, FlatList} from 'react-native'; 
+import { Text, View, TouchableOpacity, ActivityIndicator, FlatList, Image} from 'react-native'; 
 
 //Screens
 import globalStyles from '../config/globalStyles';
 import enviornment from '../config/enviornment';
 
-export default function App({route, navigation}) {
+export default function App(props) {
   //variables
-    const {userId, firstName, lastName} = route.params;
+    const {userId, firstName, lastName} = props.route.params;
     const [isLoading, setLoading] = useState(true);
     const [data, setData] = useState([]);
     const [day,setDay] = useState("");
@@ -32,12 +32,30 @@ export default function App({route, navigation}) {
 
     // renders the lunch menu by day of the week
   return (
-    <View style={globalStyles.container1}>
-      <View style={{ flex: .1, flexDirection: "column" }}>
-        <Text style={globalStyles.title}>Lunch Menu</Text>
+    <View style={globalStyles.container2}>
+
+      <View style={{ flex: .1, flexDirection: "row" }}>
+
+        <View style={{ flex: .3, flexDirection: "row", justifyContent:"center"}}>
+          <TouchableOpacity
+            onPress={() => props.navigation.navigate('Menu', {
+              userId: userId
+            })}
+          >
+            <Image
+              style={globalStyles.menuImage}
+              source={require('../assets/menu.png')}
+            />
+          </TouchableOpacity>
+        </View>
+
+        <View style={{ flex: .9, flexDirection: "column", left: 25}}>
+          <Text style={globalStyles.title}>Lunch Menu</Text>
+        </View>
+      
       </View>
 
-      <View style={{ flex: .9, flexDirection: "row" }}>
+      <View style={{ flex: .9, flexDirection: "row", justifyContent:"center"}}>		
         {isLoading ? <ActivityIndicator/> : (
           <FlatList
             data={data}
@@ -67,12 +85,9 @@ export default function App({route, navigation}) {
             )}
           />
         )}
+
       </View>
 
-      <Button
-        title="Go Back" 
-        onPress={() => navigation.goBack()}
-      />
     </View>
   );
 }

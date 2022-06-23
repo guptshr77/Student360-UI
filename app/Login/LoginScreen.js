@@ -1,15 +1,15 @@
 //libraries
 import React, {useEffect} from 'react';
-import {Text, View, Button, TextInput} from 'react-native';
-
+import {Text, View, TouchableOpacity, TextInput} from 'react-native';
 //screens
 import globalStyles from '../config/globalStyles';
 
 export default function App(props) {
   //variable that take in inputs
     const {message} = props.route.params;
-    const [username, onChangeUsername] = React.useState("");
-    const [password, onChangePassword] = React.useState("");    
+    const {usernameout, passwordout} = props.route.params;
+    const [username, onChangeUsername] = React.useState("zekepat");
+    const [password, onChangePassword] = React.useState("lol");    
 
     const login = async () => {
         console.log('login screen');
@@ -34,7 +34,7 @@ export default function App(props) {
           <TextInput 
             style={[globalStyles.inputBox]}
             onChangeText = {onChangeUsername}
-            value = {username}
+            value = {usernameout}
             keyboardType = "default"
           />
 
@@ -42,23 +42,24 @@ export default function App(props) {
           <TextInput 
             style={globalStyles.inputBox}
             onChangeText = {onChangePassword}
-            value = {password}
+            value = {passwordout}
             keyboardType = "default"
             secureTextEntry={true}
           />
-
+      <Text>{`\n`}</Text>
 
       <Text>
-          <Button
+          <TouchableOpacity 
             onPress={() => {
                 props.navigation.navigate('Login2', {
                     username: username,
                     password: password
                 });
             }}
-            title="Submit" 
             style={globalStyles.button}
-          />
+          >
+            <Text style={globalStyles.buttonFontBlue}>Submit</Text>
+            </TouchableOpacity>
       </Text>
     </View>
   );

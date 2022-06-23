@@ -20,20 +20,26 @@ export default StyleSheet.create({
     },
     container3: {
       flex: 1,
-      backgroundColor: AppColors.c3,
+      backgroundColor: AppColors.c4,
       alignItems: 'center',
       justifyContent: 'center' 
+    },
+    titleContainer: {
+      flex: 1,
+      backgroundColor: AppColors.c5
     },
     //Headings
     title: {
       fontSize: 30,
       fontWeight: 'bold',
       color: AppColors.c1,
+      alignItems: "center",
+      justifyContent: "center"
     },
     H1: {
       fontSize: 20,
-      textAlign: 'left',
-      alignSelf: 'baseline',
+      alignItems:"center",
+      justifyContent: "center",
       color: AppColors.c1,
       fontWeight: 'bold'
     },
@@ -58,7 +64,9 @@ export default StyleSheet.create({
     },
     Message: {
       fontSize: 20,
-      color: AppColors.c1
+      color: AppColors.c1,
+      alignItems: "center",
+      justifyContent: "center"
     },
     MessageFormat:{
       flexDirection: 'row'
@@ -73,17 +81,36 @@ export default StyleSheet.create({
       color: AppColors.black
     },
     button: {
-      backgroundColor: AppColors.c3,
-      color: AppColors.c2,
-      fontSize: 20
+      backgroundColor: AppColors.white,
+      padding: 10,
+      height: 40
+    },
+    buttonFontBlue: {
+      color: AppColors.c3,
+      fontSize: 16,
+      fontWeight: 'bold' 
+    },
+    buttonFontGrey: {
+      color: AppColors.c6,
+      fontSize: 16,
+      fontWeight: 'bold' 
     },
     inputLabel:{
       fontSize: 17
     },
     errorMessage: {
       fontSize: 15,
-      color: AppColors.c2,
+      color: AppColors.error,
       fontWeight: 'bold',
-      textDecorationLine: 'underline'      
+      textDecorationLine: 'underline',
+      alignContent: 'center'      
+    },
+    menuImage: {
+      width: 40,
+      height: 40,
+      position: 'absolute',
+      right: 0,
+      top: 0
+
     }
   });

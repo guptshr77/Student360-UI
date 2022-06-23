@@ -1,15 +1,15 @@
 //libraries
 import React, {useEffect, useState} from 'react';
-import { StyleSheet, Text, View, Button, ActivityIndicator, FlatList} from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, ActivityIndicator, FlatList} from 'react-native';
 
 //screens
 import Colors from '../config/Colors.js';
 import enviornment from '../config/enviornment';
 import globalStyles from '../config/globalStyles';
 
-export default function App({route, navigation}) {
+export default function App(props) {
   //variables
-    const {userId} = route.params;
+    const {userId} = props.route.params;
     const [isLoading, setLoading] = useState(true);
     const [data, setData] = useState([]);
 
@@ -34,7 +34,7 @@ export default function App({route, navigation}) {
       //renders all the activity names with a ADD button that the user can click to add it 
     return (
         <View style={globalStyles.container2}>
-          <Text style={globalStyles.title}>Activity Add Screen</Text>
+          <Text style={globalStyles.title}>Add Activity</Text>
           <Text>{`\n`}</Text>
           
         {isLoading ? <ActivityIndicator/> : (
@@ -46,22 +46,26 @@ export default function App({route, navigation}) {
 
               <Text style={globalStyles.H2}>{item.title}</Text>
 
-              <Button
-                title="Add"
-                onPress={() => navigation.navigate('AddActivity', {
+              <TouchableOpacity
+                style={globalStyles.button}
+                onPress={() => props.navigation.navigate('AddActivity', {
                   userId: userId,
                   actId: item.actId
                 })}
-              />
+              >
+                <Text style={globalStyles.buttonFontGrey}>Add</Text>
+              </TouchableOpacity>
             </View>
 
             )}
             />
         )}
-      <Button
-        title="Go Back" 
-        onPress={() => navigation.goBack()}
-      />           
+          <TouchableOpacity
+            style={globalStyles.button}
+            onPress={() => props.navigation.goBack()}
+          >
+            <Text style={globalStyles.buttonFontGrey}>Go Back</Text>
+          </TouchableOpacity>            
         </View>
       );
 }  

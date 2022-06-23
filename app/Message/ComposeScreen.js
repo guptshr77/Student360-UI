@@ -1,6 +1,6 @@
 //libraries
 import React, {useEffect, useState} from 'react';
-import { StyleSheet, Text, View, Button, TextInput, Picker, LogBox} from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, TextInput, Picker, LogBox, Keyboard} from 'react-native';
 
 //screens
 import Colors from '../config/Colors';
@@ -26,66 +26,84 @@ export default function App(props) {
       console.error(error);
     }
   }
+
   useEffect(() => {
     getTeachers();
   }, [props]);
 
   //renders an interface for the user to input their message and send it 
     return (
-        <View style={styles.container}>
-          <Text style={styles.title}>{`\t`}{`\t`}{`\t`}New Message</Text>
+      <View style={styles.container}>
 
-          {/* pick user to send the message  */}
-          <Text style={globalStyles.H3}>To:</Text>
-
-          <Picker
-            selectedValue = {recipientId}
-            onValueChange = {(itemValue) => setRecipientId(itemValue)}
-          >
-            <Picker.Item key="" label="" value=""/>
-            {data.map ((obj, userId) => (
-              <Picker.Item key={obj.userId} label={obj.firstName + ' '+ obj.lastName} value={obj.userId}/>
-            ))}
-
-          </Picker>
-        
-          {/* enter subject */}
-          <Text style={globalStyles.H3}>Subject:</Text>
-              <TextInput 
-                style={styles.inputSubject}
-                onChangeText = {onChangeSubject}
-                value = {subject}
-                keyboardType = "default"
-              />
-
-          {/* Enter Message */}
-          <Text style={globalStyles.H3}>Message:</Text>
-              <TextInput 
-                multiline={true}
-                style={styles.inputMessage}
-                onChangeText = {onChangeContent}
-                value = {msg_content}
-                keyboardType = "default"
-              />
+        <View style={{ flex: .1, flexDirection: "row", left: 125}}>
+          <Text style={styles.title}>Message</Text>
+        </View>
 
 
-          <Button
-            title="Send" 
+        <View style={{ flex: .8, flexDirection: "column", justifyContent:"center"}}>
+          <View style= {{ flex: .3}}>
+            <Picker
+              selectedValue = {recipientId}
+              onValueChange = {(itemValue) => setRecipientId(itemValue)}
+            >
+              <Picker.Item key="" label="" value=""/>
+              {data.map ((obj, userId) => (
+                <Picker.Item key={obj.userId} label={obj.firstName + ' '+ obj.lastName} value={obj.userId}/>
+              ))}
+            </Picker>
+          </View>
+  
+          <View style= {{ flex: .7}}>
+            {/* enter subject */}
+            <Text style={globalStyles.H3}>Subject:</Text>
+            <TextInput 
+              style={styles.inputSubject}
+              onChangeText = {onChangeSubject}
+              value = {subject}
+              keyboardType = "default"
+              onPressOut={Keyboard.dismiss}
+            />
+
+            {/* Enter Message */}
+            <Text style={globalStyles.H3}>Message:</Text>
+            <TextInput 
+              multiline={true}
+              style={styles.inputMessage}
+              onChangeText = {onChangeContent}
+              value = {msg_content}
+              keyboardType = "default"
+              onPressOut={Keyboard.dismiss}
+            />
+          </View>
+                
+        </View>
+    
+        <View style={{ flex: .1, flexDirection: "row", justifyContent:"center", alignItems: "center"}}>
+          <TouchableOpacity
+            style={globalStyles.button} 
             onPress={() => props.navigation.navigate('SendMessage', {
               userId: userId1,
               recipient_id: recipientId,
               subject: subject,
               msg_content: msg_content
             })}
-          />  
-          <Button
-            title="Go Back" 
-            onPress={() => props.navigation.goBack()}
-          />            
-        </View>
-      );
-    }
+          >
+            <Text style={globalStyles.buttonFontGrey}>Send</Text>
+          </TouchableOpacity>  
+            
+            <Text>   </Text>
 
+          <TouchableOpacity
+            style={globalStyles.button}
+            onPress={() => props.navigation.goBack()}
+          >
+            <Text style={globalStyles.buttonFontGrey}>Go Back</Text>
+          </TouchableOpacity>             
+        </View>
+
+      </View>
+    );
+}
     //StyleSheet
     const styles = StyleSheet.create({
       container: {

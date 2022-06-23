@@ -1,15 +1,15 @@
 //libraries
 import React, {useEffect, useState} from 'react';
-import { StyleSheet, Text, View, Button, ActivityIndicator, FlatList} from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, ActivityIndicator, FlatList} from 'react-native';
 
 //screens
 import Colors from '../config/Colors.js';
 import globalStyles from '../config/globalStyles';
 import enviornment from '../config/enviornment';
 
-export default function App({route, navigation}) {
+export default function App(props) {
   //variables
-    const {userId} = route.params;
+    const {userId} = props.route.params;
     const [isLoading, setLoading] = useState(true);
     const [data, setData] = useState([]);
 
@@ -31,7 +31,6 @@ export default function App({route, navigation}) {
         getAllClasses();
       }, []);
 
-      //Renders Confirmation Message
     return (
         <View style={globalStyles.container2}>
           <Text style={globalStyles.title}>Add Classes</Text>
@@ -45,22 +44,26 @@ export default function App({route, navigation}) {
 
               <Text style={globalStyles.H2}>{item.classname}</Text>
 
-              <Button
-                title="Add"
-                onPress={() => navigation.navigate('AddClass', {
+              <TouchableOpacity
+                style = {globalStyles.button}
+                onPress={() => props.navigation.navigate('AddClass', {
                   userId: userId,
                   classId: item.classId
                 })}
-              />
+              >
+                <Text style={globalStyles.buttonFontGrey}>Add</Text>
+              </TouchableOpacity>
             </View>
 
             )}
             />
         )}
-      <Button
-        title="Go Back" 
-        onPress={() => navigation.goBack()}
-      />           
+      <TouchableOpacity
+        style={globalStyles.button}
+        onPress={() => props.navigation.goBack()}
+      >
+        <Text style={globalStyles.buttonFontGrey}>Go Back</Text>
+      </TouchableOpacity>           
         </View>
       );
 }

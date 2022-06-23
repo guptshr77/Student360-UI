@@ -1,6 +1,6 @@
 //libraries
 import React, {useEffect, useState} from 'react';
-import { Text, View, Button, ActivityIndicator, FlatList} from 'react-native';
+import { Text, View, TouchableOpacity, ActivityIndicator, FlatList, Image} from 'react-native';
 
 //screens
 import globalStyles from '../config/globalStyles';
@@ -31,41 +31,65 @@ export default function App(props) {
 
     //Renders all the activities that the user is a part of 
     return (
-        <View style={globalStyles.container2}>
-          <Text style={globalStyles.title}>Activity Screen</Text>
-          <Text>{`\n`}</Text>
+      <View style={globalStyles.container2}>
 
-      {isLoading ? <ActivityIndicator/> : (
-        <FlatList
-          data={data}
-          keyExtractor = {({ actId }, index) => actId}
-          renderItem = {({item}) => ( 
-            <View>
+        <View style={{ flex: .1, flexDirection: "row" }}>
 
-              <Text style={globalStyles.H2}>{item.title}</Text>
+          <View style={{ flex: .3, flexDirection: "row", justifyContent:"center"}}>
+            <TouchableOpacity
+              onPress={() => props.navigation.navigate('Menu', {
+              userId: userId
+              })}
+            >
+              <Image
+                style={globalStyles.menuImage}
+                source={require('../assets/menu.png')}
+              />
+            </TouchableOpacity>
 
-              <Text>{`\n`}</Text>
-              {/* <Text style={globalStyles.H2}>{`\t`}Description:</Text> */}
-              <Text style = {globalStyles.content2}>{item.descr}</Text>
+          </View>
 
-              <Text>{`\n`}</Text>
-            </View>
-          )}
-        />
-      )}
-
-      {/* //navigation */}
-      <Button
-        title="Add Activity" 
-        onPress={() => props.navigation.navigate('GetAllEC',{
-          userId: userId
-        })}
-      />
-      <Button
-        title="Go Back" 
-        onPress={() => props.navigation.goBack()}
-      />           
+          <View style={{ flex: .9, flexDirection: "column", left: 35}}>
+            <Text style={globalStyles.title}>Activities</Text>
+          </View>
         </View>
+
+
+        <View style={{ flex: .8, flexDirection: "row", justifyContent:"center"}}>		
+          {isLoading ? <ActivityIndicator/> : (
+            <FlatList
+              data={data}
+              keyExtractor = {({ actId }, index) => actId}
+              renderItem = {({item}) => ( 
+                <View>
+
+                  <Text style={globalStyles.H2}>{item.title}</Text>
+
+                  <Text>{`\n`}</Text>
+                  {/* <Text style={globalStyles.H2}>{`\t`}Description:</Text> */}
+                  <Text style = {globalStyles.content2}>{item.descr}</Text>
+
+                  <Text>{`\n`}</Text>
+                </View>
+              )}
+            />
+          )}
+  
+        </View>
+      
+        <View style={{ flex: .1, flexDirection: "row", justifyContent:"center", alignItems: "center"}}>
+          <TouchableOpacity
+            style={globalStyles.button} 
+            onPress={() => props.navigation.navigate('GetAllEC',{
+              userId: userId
+            })}
+          >
+            <Text style={globalStyles.buttonFontGrey}>Add Activity</Text>
+          </TouchableOpacity>
+                       
+        </View>
+
+    </View>
       );
 }
   

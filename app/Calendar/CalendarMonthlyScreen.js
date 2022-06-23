@@ -1,6 +1,6 @@
 //libraries
 import React, { Component } from 'react';
-import {View, Text, Button} from 'react-native';
+import {View, Text, TouchableOpacity, Image} from 'react-native';
 import CalendarPicker from 'react-native-calendar-picker';
 import Moment from 'moment';
 
@@ -38,22 +38,34 @@ export default class CalendarScreen extends Component {
     return (
       <View style={globalStyles.container2}>
 
-        <View style={{ flex: .2, flexDirection: "row", justifyContent:"center", alignItems:"center"}}>
-          <Text style={globalStyles.title}>Monthly Calendar</Text>
+        <View style={{ flex: .2, flexDirection: "row" }}>
+
+          <View style={{ flex: .3, flexDirection: "row", justifyContent:"center"}}>
+            <TouchableOpacity
+              onPress={() => this.props.navigation.navigate('Menu', {
+                userId: this.userId
+              })}
+            >
+              <Image
+                style={globalStyles.menuImage}
+                source={require('../assets/menu.png')}
+              />
+            </TouchableOpacity>
+
+          </View>
+
+          <View style={{ flex: .9, flexDirection: "column", top: 20, left: -10}}>
+            <Text style={globalStyles.title}>Monthly Calendar</Text>
+          </View>
         </View>
 
-        <View style={{ flex: .6, flexDirection: "row", justifyContent:"center"}}>
+
+        <View style={{ flex: .8, flexDirection: "row", justifyContent:"center"}}>		
           <CalendarPicker
             onDateChange={this.onDateChange} 
           />
         </View>
-
-        <View style={{ flex: .2, flexDirection: "row", justifyContent:"center", alignItems:"center"}}>
-          <Button
-            title="Go Back" 
-            onPress={() => this.props.navigation.goBack()}
-          />
-        </View>
+      
 
       </View>
     );

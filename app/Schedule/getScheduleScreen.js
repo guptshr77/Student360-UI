@@ -1,6 +1,6 @@
 //libraries
 import React, {useEffect, useState} from 'react';
-import { StyleSheet, Text, View, Button, ActivityIndicator, FlatList} from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, ActivityIndicator, FlatList, Image} from 'react-native';
 import Moment from 'moment';
 
 //screens
@@ -30,14 +30,36 @@ export default function App(props) {
 
   useEffect(() => {
     getSchedule();
-  }, []);
+  }, [props]);
 
   //renders the user's schedule
     return (
         <View style={globalStyles.container2}>
-          <Text style={globalStyles.title}>Schedule:</Text>
-          <Text>{`\n`}</Text>
 
+          <View style={{ flex: .1, flexDirection: "row" }}>
+
+          <View style={{ flex: .3, flexDirection: "row", justifyContent:"center"}}>
+            <TouchableOpacity
+                onPress={() => props.navigation.navigate('Menu', {
+                  userId: userId
+                })}
+              >
+                <Image
+                  style={globalStyles.menuImage}
+                  source={require('../assets/menu.png')}
+                />
+              </TouchableOpacity>
+
+            </View>
+
+            <View style={{ flex: .9, flexDirection: "column", left: 30}}>
+              <Text style={globalStyles.title}>Schedule:</Text>
+            </View>
+          </View>
+
+
+          <View style={{ flex: .7, flexDirection: "row", justifyContent:"center", left: 100}}>
+          
           {isLoading ? <ActivityIndicator/> : (
             <FlatList
             data={data}
@@ -54,17 +76,21 @@ export default function App(props) {
                 
             )}
             />
-        )}
-      <Button
-        title="Add Class" 
-        onPress={() => props.navigation.navigate('GetAllClasses', {
-          userId: userId
-        }) }
-      />
-      <Button
-        title="Go Back" 
-        onPress={() => props.navigation.goBack()}
-      />                     
-        </View>
+             )}
+          </View>
+          
+          <View style={{ flex: .2, flexDirection: "row", justifyContent:"center", alignItems: "center"}}>
+            <TouchableOpacity
+                style={globalStyles.button}
+                onPress={() => props.navigation.navigate('GetAllClasses', {
+                  userId: userId
+                }) }
+              >
+                <Text style={globalStyles.buttonFontGrey}>Add Class</Text>
+              </TouchableOpacity>                    
+          </View>
+
+        </View> 
+
       );
     }

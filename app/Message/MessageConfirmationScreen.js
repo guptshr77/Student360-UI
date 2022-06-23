@@ -1,15 +1,15 @@
 //libraries
 import React, {useEffect, useState} from 'react';
-import { StyleSheet, Text, View, Button} from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, Image} from 'react-native';
 
 //Screens
 import globalStyles from '../config/globalStyles';
 import enviornment from '../config/enviornment';
 import Colors from '../config/Colors';
 
-export default function App({route, navigation}) {
+export default function App(props) {
   //variables
-  const {userId, recipient_id, subject, msg_content} = route.params;
+  const {userId, recipient_id, subject, msg_content} = props.route.params;
   const [setLoading] = useState(true);
 
   //Sends URL to send the message to the teacher 
@@ -30,13 +30,46 @@ export default function App({route, navigation}) {
 
   //Confirmation message
     return (
-        <View style={globalStyles.container2}>
-          <Text style={globalStyles.Message}>Message Sent</Text>
-        <Button
-          title="Go Back" 
-          onPress={() => navigation.goBack()}
-        />            
-        </View>
+      <View style={globalStyles.container2}>
+
+      <View style={{ flex: .1, flexDirection: "row" }}>
+
+          <View style={{ flex: .3, flexDirection: "row", justifyContent:"center"}}>
+              <TouchableOpacity
+                  onPress={() => props.navigation.navigate('Menu', {
+                  userId: userId
+                  })}
+              >
+                  <Image
+                  style={globalStyles.menuImage}
+                  source={require('../assets/menu.png')}
+                  />
+              </TouchableOpacity>
+
+              </View>
+
+          <View style={{ flex: .9, flexDirection: "column", left: 10}}>
+          </View>
+      </View>
+
+
+      <View style={{ flex: .7, flexDirection: "column", justifyContent:"center"}}>
+  <Text style={globalStyles.Message}>Message Sent</Text>
+                
+      </View>
+    
+    <View style={{ flex: .2, flexDirection: "row", justifyContent:"center", alignItems: "center"}}>
+      <TouchableOpacity 
+        style = {globalStyles.button}
+        onPress={() => 
+          props.navigation.navigate('InboxScreen', 
+            {userId: userId})}
+      >            
+        <Text style = {globalStyles.buttonFontGrey}>Inbox</Text>
+      </TouchableOpacity>
+    </View>
+
+  </View>
       );
     }
 

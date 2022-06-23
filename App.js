@@ -37,6 +37,11 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
   //Social Media
   import SocialMedia from './app/SocialMedia/SocialMedia';
 
+  //BugReporting
+  import BugReporting from './app/BugReporting/BugReporting';
+  import BugReportingLoad from './app/BugReporting/BugReportingLoad';
+
+
   const Stack = createNativeStackNavigator();
 
 export default function App() {
@@ -55,11 +60,12 @@ export default function App() {
           justifyContent: "center"
         }}>
           <Image 
-            source={require("./app/assets/Student360_idea1.png")} 
+            source={require("./app/assets/Student360_banner.png")} 
             style={{
               width: 200, 
-              height: 50,
-              resizeMode: 'contain'
+              height: 100,
+              resizeMode: 'contain',
+              bottom: 25
             }}
           />
         </View>
@@ -104,6 +110,10 @@ export default function App() {
 
           {/* Social Media*/}
           <Stack.Screen name = "SocialMedia" component={SocialMedia} options={{ headerShown: false }}/>
+
+          {/*Bug Reporting*/}
+          <Stack.Screen name = "BugReporting" component={BugReporting} options={{ headerShown: false}}/>
+          <Stack.Screen name = "BugReportingLoad" component={BugReportingLoad} options={{ headerShown:false}}/>
           
         </Stack.Navigator>
       </NavigationContainer>

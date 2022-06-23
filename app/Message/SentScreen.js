@@ -1,6 +1,6 @@
 //libraries
 import React, {useEffect, useState} from 'react';
-import { StyleSheet, Text, View, Button, ActivityIndicator, FlatList} from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, ActivityIndicator, FlatList, Image} from 'react-native';
 import Moment from 'moment';
 
 //Screens
@@ -8,9 +8,9 @@ import globalStyles from '../config/globalStyles';
 import enviornment from '../config/enviornment';
 import Colors from '../config/Colors';
 
-export default function App({route, navigation}) {
+export default function App(props) {
   //variables
-  const {userId}= route.params;
+  const {userId}= props.route.params;
   const [isLoading, setLoading] = useState(true);
   const [data, setData] = useState([]);
 
@@ -34,50 +34,84 @@ export default function App({route, navigation}) {
 
     //Renders the messages that the user sent in the past
     return (
-        <View style={[globalStyles.container2]}>
-          <Text style={globalStyles.title}>Past Sent Messages:</Text>
-          <Text>{`\n`}</Text>
-          
-          {isLoading ? <ActivityIndicator/> : (
-            <FlatList
-            data={data}
-            keyExtractor = {({ msgId }, index) => msgId}
-            renderItem = {({item}) => (
-              <View style={{ paddingLeft:5 }}>
-                <View style={globalStyles.MessageFormat}>
-                  <Text style={globalStyles.H3}>To: </Text>
-                  <Text style={globalStyles.content2}>{item.user.firstName} {item.user.lastName}</Text>
-                </View>
+      <View style={globalStyles.container2}>
 
-                <View style={globalStyles.MessageFormat}>
-                  <Text style={globalStyles.H3}>Subject: </Text>
-                  <Text style={globalStyles.content2}>{item.subject}</Text>
-                </View>
+      <View style={{ flex: .1, flexDirection: "row" }}>
 
-                <Text style={globalStyles.H3}>Message:</Text>
-                <Text style={globalStyles.content2}>{item.msgContent}</Text>
-                
-                <Text style={styles.enter}>{`\n`}</Text>
-                <Text>{Moment(item.datetime).format('MM/DD/yyyy')}</Text>
-                <Text>.....................................................................................................</Text>
-              </View>
-
-            )}
+      <View style={{ flex: .3, flexDirection: "row", justifyContent:"center"}}>
+        <TouchableOpacity
+            onPress={() => props.navigation.navigate('Menu', {
+              userId: userId
+            })}
+          >
+            <Image
+              style={globalStyles.menuImage}
+              source={require('../assets/menu.png')}
             />
-        )}
-      <Button
-        title="Compose" 
-        onPress={() => navigation.navigate('MessageSend'
-        ,{
-           userId: userId 
-        }
-        )}
-      />           
-      <Button
-        title="Go Back" 
-        onPress={() => navigation.goBack()}
-      /> 
+          </TouchableOpacity>
+
         </View>
+
+        <View style={{ flex: .9, flexDirection: "column", left: -20}}>
+          <Text style={globalStyles.title}>Past Sent Messages</Text>
+        </View>
+      </View>
+
+
+      <View style={{ flex: .8, flexDirection: "row", justifyContent:"center"}}>		
+    {isLoading ? <ActivityIndicator/> : (
+    <FlatList
+    data={data}
+    keyExtractor = {({ msgId }, index) => msgId}
+    renderItem = {({item}) => (
+      <View style={{ paddingLeft:5 }}>
+      <View style={globalStyles.MessageFormat}>
+        <Text style={globalStyles.H3}>To: </Text>
+        <Text style={globalStyles.content2}>{item.user.firstName} {item.user.lastName}</Text>
+      </View>
+
+      <View style={globalStyles.MessageFormat}>
+        <Text style={globalStyles.H3}>Subject: </Text>
+        <Text style={globalStyles.content2}>{item.subject}</Text>
+      </View>
+
+      <Text style={globalStyles.H3}>Message:</Text>
+      <Text style={globalStyles.content2}>{item.msgContent}</Text>
+      
+      <Text style={styles.enter}>{`\n`}</Text>
+      <Text>{Moment(item.datetime).format('MM/DD/yyyy')}</Text>
+      <Text>..........................................................................................</Text>
+      </View>
+
+    )}
+    />
+  )}
+  
+      </View>
+      
+      <View style={{ flex: .1, flexDirection: "row", justifyContent:"center", alignItems: "center"}}>
+    <TouchableOpacity
+    style={globalStyles.button} 
+    onPress={() => props.navigation.navigate('MessageSend'
+    ,{
+       userId: userId 
+    }
+    )}
+    >
+      <Text style={globalStyles.buttonFontGrey}>Compose</Text>
+    </TouchableOpacity>
+
+      <Text>   </Text>
+
+      <TouchableOpacity
+      style={globalStyles.button}
+      onPress={() => props.navigation.goBack()}
+      >
+      <Text style={globalStyles.buttonFontGrey}>Go Back</Text>
+      </TouchableOpacity>                   
+      </View>
+
+    </View>
       );
     }
   

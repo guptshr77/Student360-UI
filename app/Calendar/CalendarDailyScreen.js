@@ -1,11 +1,12 @@
 //libraries
 import React, {useEffect, useState} from 'react';
-import {Text, View, Button, FlatList} from 'react-native';
+import {Text, View, TouchableOpacity, FlatList, Image, StyleSheet} from 'react-native';
 import Moment from 'moment';
 
 //screens
 import enviornment from '../config/enviornment';
 import globalStyles from '../config/globalStyles';
+import AppColors from '../config/Colors';
 
 
 
@@ -37,16 +38,53 @@ export default function App(props) {
   return (
       <View style={globalStyles.container2}>
         
-        <View style={{ flex: .1, flexDirection: "column" }}>
+        <View style={{ flex: .1, flexDirection: "row" }}>
 
-          <View style={{ flex: .5, flexDirection: "row", justifyContent:"center" }}>
+          <View style={{ flex: .3, flexDirection: "row", justifyContent:"center"}}>
+            <TouchableOpacity
+                onPress={() => props.navigation.navigate('Menu', {
+                  userId: userId
+                })}
+              >
+                <Image
+                  style={globalStyles.menuImage}
+                  source={require('../assets/menu.png')}
+                />
+              </TouchableOpacity>
+
+            </View>
+
+          <View style={{ flex: .9, flexDirection: "column"}}>
             <Text style = {globalStyles.title}>Daily Calendar</Text>
-          </View>
-
-          <View style={{ flex: .5, flexDirection: "row", justifyContent:"center" }}>
             <Text style = {globalStyles.H1}>{Moment(date).format('MM/DD/yyyy')}</Text>
           </View>
 
+        </View>
+        
+        <View style={{ flex: .1, flexDirection: "row"}}>
+          <View style={{ flex: .5, flexDirection: "column", left: 5}}>
+            <TouchableOpacity
+                  style={styles.button}
+                  onPress={() => props.navigation.navigate('DailyCalendar', {
+                    date: (Moment(date).subtract(1, 'days')).format('yyyy-MM-DD'),
+                    userId: userId
+                  })}
+                >
+              <Text style={globalStyles.buttonFontGrey}>{'<'}--</Text>
+            </TouchableOpacity>
+          </View>
+          
+          <View style={{ flex: .5, flexDirection: "row", justifyContent: "flex-end", right: 10}}>
+            <TouchableOpacity
+                  style={styles.button}
+                  onPress={() => props.navigation.navigate('DailyCalendar', {
+                    date: (Moment(date).add(1, 'days')).format('yyyy-MM-DD'),
+                    userId: userId
+                  })}
+                >
+              <Text style = {globalStyles.buttonFontGrey}>--{'>'}</Text>
+            </TouchableOpacity>
+          </View>
         </View>
 
         <View style={{ flex: .3, flexDirection: "row", justifyContent:"center"}}>
@@ -67,7 +105,7 @@ export default function App(props) {
             />
           </View>
           
-          <View style={{ flex: .2, flexDirection: "row", justifyContent:"center" }}>
+          <View style={{ flex: .3, flexDirection: "row", justifyContent:"center" }}>
            {/* //Events */}
           <Text style = {globalStyles.H2}>Events:</Text><Text>{`\t`}</Text>
           <FlatList
@@ -84,7 +122,7 @@ export default function App(props) {
           />
           </View>
 
-          <View style={{ flex: .3, flexDirection: "row", justifyContent:"center" }}>
+          <View style={{ flex: .2, flexDirection: "row", justifyContent:"center" }}>
             {/* //Activities */}
             <Text style = {globalStyles.H2}>Activities</Text><Text>{`\t`}</Text>
             <FlatList
@@ -101,15 +139,23 @@ export default function App(props) {
               )}
             />
           </View>
-
-          <View style={{ flex: .1, flexDirection: "row" }}>
-            <Button
-              title="Main Menu" 
-              onPress={() => props.navigation.navigate('Menu',{
-                userId: userId
-              })}
-            /> 
-          </View>
       </View>
   );
 }
+
+    //StyleSheet
+    const styles = StyleSheet.create({
+      imagestyle: {
+        width: 40,
+        height: 40,
+        position: 'absolute',
+        right: 0,
+        top: 0
+      },
+      button: {
+        backgroundColor: AppColors.white,
+        padding: 10,
+        height: 40,
+        width: 50
+      },
+    });
